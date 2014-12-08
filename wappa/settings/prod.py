@@ -9,3 +9,17 @@ TEMPLATE_DEBUG = False
 
 # You must set ALLOWED_HOSTS if Debug is false
 ALLOWED_HOSTS = ['178.62.127.105'] # ['*'] or ['127.0.0.1', 'localhost'] or [www.wappa.com]
+
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'wappa',
+        'USER': 'wappa',
+        'PASSWORD': '75708787712200040608',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        }
+}
