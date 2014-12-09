@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# the directory containing the manage.py file
+ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, os.pardir))
+
+# add ROOT_DIR to the python path
+import sys
+sys.path.append(ROOT_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -52,6 +58,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # my apps
+    'apps.photo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,3 +116,10 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),
     )
+
+# Media files ( user uploaded contents)
+# https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-MEDIA_ROOT
+
+MEDIA_ROOT = "/var/www/wappa/media/"
+
+MEDIA_URL = "/media/"
