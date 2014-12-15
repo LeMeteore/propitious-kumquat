@@ -8,6 +8,27 @@ class Country(models.Model):
 
 
 class Pack(models.Model):
+    ACTUALITE = 'ACTUALITE'
+    REPORTAGE = 'REPORTAGE'
+    PACK_TYPE_CHOICES = (
+        (ACTUALITE, 'Actualite'),
+        (REPORTAGE, 'Reportage'),
+        )
+
+    ONLINE = 'ONLINE'
+    OFFLINE = 'OFFLINE'
+    STATUS_CHOICES = (
+        (ONLINE, 'Online'),
+        (OFFLINE, 'Offline'),
+        )
+
+    pack_type = models.CharField(max_length=200,
+                                choices=PACK_TYPE_CHOICES,
+                                default=ACTUALITE)
+    status = models.CharField(max_length=200,
+                              choices=STATUS_CHOICES,
+                              default=OFFLINE)
+
     label = models.CharField(max_length=200)
     country = models.ManyToManyField(Country)
     description = models.TextField()
