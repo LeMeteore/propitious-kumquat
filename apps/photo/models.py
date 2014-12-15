@@ -41,11 +41,23 @@ class Pack(models.Model):
         return "%s" % self.label
 
 class Photo(models.Model):
+    ONLINE = 'ONLINE'
+    OFFLINE = 'OFFLINE'
+    STATUS_CHOICES = (
+        (ONLINE, 'Online'),
+        (OFFLINE, 'Offline'),
+        )
     label = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.CharField(max_length=200)
+    country = models.ManyToManyField(Country)
     image = models.ImageField(max_length=200, upload_to='wappa')
-    pub_date = models.DateTimeField('date published')
-    pack = models.ForeignKey(Pack)
+    pub_date = models.DateField(name='date published', default=datetime.now)
+    pack = models.ManyToManyField(Pack)
+    status = models.CharField(max_length=200,
+                              choices=STATUS_CHOICES,
+                              default=OFFLINE)
 
     def __str__(self):
         return "%s" % self.label
+
+#    def default_country(self):
