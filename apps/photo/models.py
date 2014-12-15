@@ -24,15 +24,18 @@ class Pack(models.Model):
 
     pack_type = models.CharField(max_length=200,
                                 choices=PACK_TYPE_CHOICES,
-                                default=ACTUALITE)
+                                default=ACTUALITE,
+                                verbose_name="type")
     status = models.CharField(max_length=200,
                               choices=STATUS_CHOICES,
                               default=OFFLINE)
 
     label = models.CharField(max_length=200)
     country = models.ManyToManyField(Country)
-    description = models.TextField()
-    pub_date = models.DateTimeField('date published')
+    description = models.CharField(max_length=200)
+    domain = models.CharField(max_length=200)
+    image = models.ImageField(max_length=200, upload_to='wappa')
+    pub_date = models.DateField(default=datetime.now, name='date published')
 
     def __str__(self):
         return "%s" % self.label
