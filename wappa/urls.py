@@ -3,6 +3,7 @@
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.i18n import i18n_patterns
 from apps.photo.views import home, home_files
 
 urlpatterns = patterns('',
@@ -13,5 +14,8 @@ urlpatterns = patterns('',
         home_files, name='home-files'),
 )
 
+urlpatterns += i18n_patterns(
+    '',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', home, name='home'),
 )

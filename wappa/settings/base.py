@@ -11,6 +11,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+from django.utils.translation import ugettext_lazy as _
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -64,8 +66,10 @@ INSTALLED_APPS = (
     'apps.photo',
 )
 
+# https://docs.djangoproject.com/en/1.7/topics/http/middleware/
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -96,7 +100,8 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 
@@ -106,11 +111,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+# languages that we want to use for translations
+# http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+LANGUAGES = (
+    ('en', _('English')),
+    ('de', _('German')),
+    ('fr', _('French')),
+)
+
+#
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locales"),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# https://docs.djangoproject.com/en/1.7/ref/settings/#static-root
+# absolute path to directory where collectstatic will collect static files 4 deployment.
+STATIC_ROOT = "/var/www/wappa/static/"
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     )
@@ -118,6 +140,9 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),
     )
+
+# templates context processors
+# https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS
 
 # Media files ( user uploaded contents)
 # https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-MEDIA_ROOT
