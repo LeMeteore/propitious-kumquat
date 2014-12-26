@@ -3,6 +3,17 @@
 
 from django.db import models
 from datetime import datetime
+from hvad.models import TranslatableModel, TranslatedFields
+
+
+class Entity(TranslatableModel):
+    translations = TranslatedFields(
+        label = models.CharField(max_length=200),
+        description = models.CharField(max_length=200)
+        )
+    class Meta:
+        abstract = True
+
 
 class Country(models.Model):
     label = models.CharField(max_length=200)
@@ -10,7 +21,7 @@ class Country(models.Model):
         return "%s" % self.label
 
 
-class Pack(models.Model):
+class Pack(Entity):
     ACTUALITE = 'ACTUALITE'
     REPORTAGE = 'REPORTAGE'
     PACK_TYPE_CHOICES = (
@@ -33,25 +44,24 @@ class Pack(models.Model):
                               choices=STATUS_CHOICES,
                               default=OFFLINE)
 
-    label = models.CharField(max_length=200)
+    translations = TranslatedFields()
     country = models.ManyToManyField(Country)
-    description = models.CharField(max_length=200)
     domain = models.CharField(max_length=200)
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(default=datetime.now, name='date published')
 
     def __str__(self):
-        return "%s" % self.label
+        return "%s" % self.lazy_translation_getter('label', str(self.pk))
 
-class Photo(models.Model):
+class Photo(Entity):
     ONLINE = 'ONLINE'
     OFFLINE = 'OFFLINE'
     STATUS_CHOICES = (
         (ONLINE, 'Online'),
         (OFFLINE, 'Offline'),
         )
-    label = models.CharField(max_length=200)
-    description = models.CharField(max_length=200)
+
+    translations = TranslatedFields()
     country = models.ManyToManyField(Country)
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(name='date published', default=datetime.now)
@@ -61,6 +71,7 @@ class Photo(models.Model):
                               default=OFFLINE)
 
     def __str__(self):
-        return "%s" % self.label
+        return "%s" % self.safe_translation_getter('label', str(self.pk))
+
 
 #    def default_country(self):
