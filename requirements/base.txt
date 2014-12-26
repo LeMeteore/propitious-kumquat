@@ -5,3 +5,4 @@ Pygments==2.0
 Sphinx==1.2.3
 docutils==0.12
 Pillow==2.6.1
+pytz==2014.10
