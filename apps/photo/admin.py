@@ -24,7 +24,7 @@ class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (
         (_("Common"), {
             'fields': ('domain', 'country', 'image',
-                       'pub_date', 'pack_type', 'status',)
+                       'date published', 'pack_type', 'status',)
             }),
         (_("Language dependent"), {
             'fields': ('label', 'description',),
