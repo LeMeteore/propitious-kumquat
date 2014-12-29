@@ -7,28 +7,27 @@ module.exports = function(grunt){
         files: {
             css : {
                 src : [
-                    'css/src/config.css',
-                    'css/src/reset.css', 
-                    'css/src/typography.css', 
-                    'css/src/utils+grid.css', 
-                    'css/src/forms.css', 
-                    'css/src/components.css', 
-                    'css/src/layout+skin.css'
+                    'static/css/src/config.css',
+                    'static/css/src/reset.css', 
+                    'static/css/src/typography.css', 
+                    'static/css/src/utils+grid.css', 
+                    'static/css/src/forms.css', 
+                    'static/css/src/components.css', 
+                    'static/css/src/layout+skin.css'
                 ],
                 output : [
-                    'css/output/reset.css', 
-                    'css/output/typography.css', 
-                    'css/output/utils+grid.css', 
-                    'css/output/forms.css', 
-                    'css/output/components.css', 
-                    'css/output/layout+skin.css'
+                    'static/css/output/reset.css', 
+                    'static/css/output/typography.css', 
+                    'static/css/output/utils+grid.css', 
+                    'static/css/output/forms.css', 
+                    'static/css/output/components.css', 
+                    'static/css/output/layout+skin.css'
                 ],
             },
             html : [
-                '*.html',
-                '*.php',
-                'includes/*.html',
-                'includes/*.php'
+                'templates/*.html',
+                'templates/*/*/*.html',
+                'templates/*/*.html'
             ]
         },
 
@@ -48,13 +47,13 @@ module.exports = function(grunt){
             combine: 
             {
                 files: {
-                    'css/<%= pkg.name %>.min.css' : '<%= files.css.output %>'
+                    'static/css/<%= pkg.name %>.min.css' : '<%= files.css.output %>'
                 }
             },
             vars:
             {
                 files: {
-                    'css/src/config.min.css' : 'css/src/config.css'
+                    'static/css/src/config.min.css' : 'static/css/src/config.css'
                 }
             }
         },
@@ -77,7 +76,7 @@ module.exports = function(grunt){
                     expand: true,
                     flatten: true,
                     src  : '<%= files.css.src %>',
-                    dest : 'css/output/'
+                    dest : 'static/css/output/'
                 }]
             }
         },
@@ -88,7 +87,7 @@ module.exports = function(grunt){
             {
                 files: [{
                     expand: true,
-                    cwd: 'img/',
+                    cwd: 'static/img/',
                     src: '*.svg',
                     dest: 'img/'
 
@@ -98,7 +97,7 @@ module.exports = function(grunt){
             {
                 files: [{
                     expand: true,
-                    cwd: 'img/icons/',
+                    cwd: 'static/img/icons/',
                     src: '*.svg',
                     dest: 'img/icons/'
                 }]
