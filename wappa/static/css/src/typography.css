@@ -1,0 +1,150 @@
+@import "config.min.css";
+/* -------------------------------------------------------------- 
+   
+	typography.css
+	* Sets up some sensible default typography.
+	* Thanks to Boilerplate, Knacss and blueprint
+	© sacripant.fr
+
+-------------------------------------------------------------- */
+
+/* Default font settings. */
+html {
+	font-size: 100%; /*default 16px*/
+}
+body { 
+	font-size: 1em;
+	line-height: var(--vr);
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+	color: hsl(0, 0%, 30%); 
+	background: #fff;
+}
+
+
+/* 
+*	Headings
+*
+* quotient : 1.1667 (http://instacalc.com/17574)
+-------------------------------------------------------------- */
+
+h1,h2,h3,h4,h5,h6
+	{ font-weight: normal; color: hsl(0, 0%, 15%); }
+
+h1, .h1 { font-size: var(--fs-h1)em;	line-height: 1;			margin-bottom: var(--vr)rem; }
+h2, .h2 { font-size: var(--fs-h2)em;	line-height: 1.1;		margin-bottom: var(--vr)rem; }
+h3, .h3 { font-size: var(--fs-h3)em;	line-height: 1.1;		margin-bottom: var(--vr)rem; }
+h4, .h4 { font-size: var(--fs-h4)em;	line-height: 1.2;		margin-bottom: var(--vr)rem; }
+h5, .h5 { font-size: var(--fs-h5)em;	line-height: 1.2;		margin-bottom: var(--vr)rem; }
+h6, .h6 { font-size: var(--fs-h6)em;	line-height: 1.285;		margin-bottom: var(--vr)rem; }
+
+/* avoid collapsing margins on headings */
+h1:first-child, h2:first-child,
+h3:first-child, h4:first-child,
+h5:first-child, h6:first-child {
+	margin-top: 0;
+}
+h1 img, h2 img, h3 img, 
+h4 img, h5 img, h6 img {
+	margin: 0;
+}
+
+/*Complementary sizes*/
+
+small, 
+.small		{ font-size: var(--fs-small)em } /* *small size */
+.xsmall		{ font-size: var(--fs-xsmall)em }
+.big		{ font-size: var(--fs-h6)em }
+.xbig		{ font-size: var(--fs-h5)em }
+
+
+/* Text elements
+-------------------------------------------------------------- */
+
+p, .p 		{
+	font-size: 1em; 
+	margin-bottom: var(--vr)em; 
+	hyphens: auto;
+}
+
+/*Links*/
+a:focus 		{ outline: thin dotted; }
+a:active,a:hover
+				{ outline: 0; }
+a:focus, 
+a:hover     { color: #000; }
+a           { color: #009; text-decoration: underline; }
+
+/*citations*/
+blockquote, q 	{ quotes: none; }
+blockquote:before, blockquote:after, 
+q:before, q:after 
+				{ content: ''; content: none; }
+blockquote  	{ margin: var(--vr)em; color: #666; font-style: italic; }
+
+
+strong      { font-weight: bold; }
+em,dfn      { font-style: italic; }
+dfn         { font-weight: bold; }
+
+sub, sup 	{ font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup 		{ top: -0.5em; }
+sub 		{ bottom: -0.25em; }
+    	
+abbr		{ border-bottom: 1px dotted #666; }
+address     { margin-bottom: var(--vr)em; font-style: italic; }
+del         { color:#666; }
+
+/*Code / pre*/
+pre, code, kbd, samp 	{ font-family: monospace, serif; _font-family: 'courier new', monospace; font-size: 1em; line-height: var(--vr);}
+pre 					{ margin-bottom: var(--vr)em;  white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
+
+/* Addresses styling not present in IE 6/7/8/9. */
+mark { background: #ff0; color: #000; }
+
+
+/* Lists
+-------------------------------------------------------------- */
+
+li ul, 
+li ol       { margin:0 var(--vr)em; }
+ul, ol      { margin: 0 var(--vr)em var(--vr)em var(--vr)em; }
+
+ul          { list-style-type: disc; }
+ol          { list-style-type: decimal; }
+
+dl          { margin: 0 0 var(--vr)em 0; }
+dl dt       { font-weight: bold; }
+dd          { margin-left: var(--vr)em;}
+
+/* avoid margins on nested elements */
+li p,
+li ul,
+li ol {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+
+/* Tables
+-------------------------------------------------------------- */
+/* Tables still need 'cellspacing="0"' in the markup. */
+
+table       	{ border-collapse: separate; border-spacing: 0; margin-bottom: 1.5em; width:100%; }
+table, td, th	{ vertical-align: middle; }
+th          	{ font-weight: bold; }
+thead th 		{ background: #c3d9ff; }
+th,td,caption	{ text-align: left; font-weight: normal; padding: 4px 10px 4px 5px; }
+tr.even td  	{ background: #e5ecf9; }
+tfoot       	{ font-style: italic; }
+caption     	{ background: #eee; }
+
+
+
+/* Text-selection colors (remove any text shadows: twitter.com/miketaylr/status/12228805301) 
+-------------------------------------------------------------- */
+::selection { background: #fcd700; color: #fff; text-shadow: none; }
+
+/* Divers
+-------------------------------------------------------------- */
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }

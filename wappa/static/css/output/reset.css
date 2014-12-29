@@ -1,0 +1,48 @@
+/* -------------------------------------------------------------- 
+  
+	reset.css for HTML5
+	Mélange maison de boilerplate & htlm5reset
+	© sacripant.fr
+   
+-------------------------------------------------------------- */
+
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, hgroup, menu, nav, section, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; height: 0; }
+[hidden] { display: none; }
+
+/* Responsive images and other embedded objects
+   Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+   If this default setting for images is causing issues, you might want to replace it with a .responsive class instead. */
+img,object, embed { max-width: 100%; height: auto; }
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+/* SVG Corrects overflow displayed oddly in IE 9. */
+svg:not(:root) { overflow: hidden; }
+/* FIGURE Addresses margin not present in IE 6/7/8/9, Safari 5, and Opera 11. */
+figure { margin: 0; }
+
+/* force a vertical scrollbar to prevent a jumpy page */
+html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; overflow-y: scroll;}
+
+/*NAV*/
+nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
+
+/*Box model*/
+* { box-sizing: border-box; }
+
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9yZXNldC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztrRUFNaUU7O0FBRWpFO0NBQ0MsV0FBVTtDQUNWLFlBQVc7Q0FDWCxXQUFVO0NBQ1YsWUFBVztDQUNYLGlCQUFnQjtDQUNoQiwwQkFBeUI7Q0FDekIseUJBQXdCO0VBQ3hCO0FBQ0Q7O2lGQUVnRjs7QUFFaEYsMEZBQTBGLGdCQUFlLEVBQUU7QUFDM0csdUJBQXVCLHVCQUFzQixDQUFDLGlCQUFpQixDQUFDLFNBQVMsRUFBRTtBQUMzRSx3QkFBd0IsZUFBYyxBQUFDLFdBQVUsRUFBRTtBQUNuRCxXQUFXLGVBQWMsRUFBRTs7QUFFM0I7OzJIQUUwSDtBQUMxSCxvQkFBb0IsaUJBQWdCLEFBQUMsY0FBYSxFQUFFO0FBQ3BELE1BQU0sV0FBVSxBQUFDLGlDQUFnQyxBQUFDLHdCQUF1QixFQUFFO0FBQzNFLHFEQUFvRDtBQUNwRCxpQkFBaUIsa0JBQWlCLEVBQUU7QUFDcEMsaUZBQWdGO0FBQ2hGLFNBQVMsV0FBVSxFQUFFOztBQUVyQix5REFBd0Q7QUFDeEQsTUFBTSxpQkFBZ0IsQUFBQyxnQ0FBK0IsQUFBQyw0QkFBMkIsQUFBQyxvQkFBbUIsQ0FBQzs7QUFFdkcsUUFBTztBQUNQLGlCQUFpQixrQkFBaUIsQUFBQyx3QkFBdUIsQUFBQyxXQUFVLEFBQUMsWUFBVyxFQUFFOztBQUVuRixjQUFhO0FBQ2IsSUFBSSx3QkFBdUIsRUFBRSIsImZpbGUiOiJyZXNldC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLSBcbiAgXG5cdHJlc2V0LmNzcyBmb3IgSFRNTDVcblx0TcOpbGFuZ2UgbWFpc29uIGRlIGJvaWxlcnBsYXRlICYgaHRsbTVyZXNldFxuXHTCqSBzYWNyaXBhbnQuZnJcbiAgIFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi9cblxuaHRtbCwgYm9keSwgYm9keSBkaXYsIHNwYW4sIG9iamVjdCwgaWZyYW1lLCBoMSwgaDIsIGgzLCBoNCwgaDUsIGg2LCBwLCBibG9ja3F1b3RlLCBwcmUsIGFiYnIsIGFkZHJlc3MsIGNpdGUsIGNvZGUsIGRlbCwgZGZuLCBlbSwgaW1nLCBpbnMsIGtiZCwgcSwgc2FtcCwgc21hbGwsIHN0cm9uZywgc3ViLCBzdXAsIHZhciwgYiwgaSwgZGwsIGR0LCBkZCwgb2wsIHVsLCBsaSwgZmllbGRzZXQsIGZvcm0sIGxhYmVsLCBsZWdlbmQsIHRhYmxlLCBjYXB0aW9uLCB0Ym9keSwgdGZvb3QsIHRoZWFkLCB0ciwgdGgsIHRkLCBhcnRpY2xlLCBhc2lkZSwgZmlndXJlLCBmb290ZXIsIGhlYWRlciwgaGdyb3VwLCBtZW51LCBuYXYsIHNlY3Rpb24sIHRpbWUsIG1hcmssIGF1ZGlvLCB2aWRlbyB7XG5cdG1hcmdpbjogMDtcblx0cGFkZGluZzogMDtcblx0Ym9yZGVyOiAwO1xuXHRvdXRsaW5lOiAwO1xuXHRmb250LXNpemU6IDEwMCU7XG5cdHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTtcblx0YmFja2dyb3VuZDogdHJhbnNwYXJlbnQ7XG59XG4vKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuICAgSFRNTDUgZGlzcGxheSBkZWZpbml0aW9uc1xuICAgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi9cblxuYXJ0aWNsZSwgYXNpZGUsIGRldGFpbHMsIGZpZ2NhcHRpb24sIGZpZ3VyZSwgZm9vdGVyLCBoZWFkZXIsIGhncm91cCwgbWFpbiwgbmF2LCBzZWN0aW9uIHsgZGlzcGxheTogYmxvY2s7IH1cbmF1ZGlvLCBjYW52YXMsIHZpZGVvIHsgZGlzcGxheTogaW5saW5lLWJsb2NrOyAqZGlzcGxheTogaW5saW5lOyAqem9vbTogMTsgfVxuYXVkaW86bm90KFtjb250cm9sc10pIHsgZGlzcGxheTogbm9uZTsgaGVpZ2h0OiAwOyB9XG5baGlkZGVuXSB7IGRpc3BsYXk6IG5vbmU7IH1cblxuLyogUmVzcG9uc2l2ZSBpbWFnZXMgYW5kIG90aGVyIGVtYmVkZGVkIG9iamVjdHNcbiAgIE5vdGU6IGtlZXBpbmcgSU1HIGhlcmUgd2lsbCBjYXVzZSBwcm9ibGVtcyBpZiB5b3UncmUgdXNpbmcgZm9yZWdyb3VuZCBpbWFnZXMgYXMgc3ByaXRlcy5cbiAgIElmIHRoaXMgZGVmYXVsdCBzZXR0aW5nIGZvciBpbWFnZXMgaXMgY2F1c2luZyBpc3N1ZXMsIHlvdSBtaWdodCB3YW50IHRvIHJlcGxhY2UgaXQgd2l0aCBhIC5yZXNwb25zaXZlIGNsYXNzIGluc3RlYWQuICovXG5pbWcsb2JqZWN0LCBlbWJlZCB7IG1heC13aWR0aDogMTAwJTsgaGVpZ2h0OiBhdXRvOyB9XG5pbWcgeyBib3JkZXI6IDA7IC1tcy1pbnRlcnBvbGF0aW9uLW1vZGU6IGJpY3ViaWM7IHZlcnRpY2FsLWFsaWduOiBtaWRkbGU7IH1cbi8qIFNWRyBDb3JyZWN0cyBvdmVyZmxvdyBkaXNwbGF5ZWQgb2RkbHkgaW4gSUUgOS4gKi9cbnN2Zzpub3QoOnJvb3QpIHsgb3ZlcmZsb3c6IGhpZGRlbjsgfVxuLyogRklHVVJFIEFkZHJlc3NlcyBtYXJnaW4gbm90IHByZXNlbnQgaW4gSUUgNi83LzgvOSwgU2FmYXJpIDUsIGFuZCBPcGVyYSAxMS4gKi9cbmZpZ3VyZSB7IG1hcmdpbjogMDsgfVxuXG4vKiBmb3JjZSBhIHZlcnRpY2FsIHNjcm9sbGJhciB0byBwcmV2ZW50IGEganVtcHkgcGFnZSAqL1xuaHRtbCB7Zm9udC1zaXplOiAxMDAlOyAtd2Via2l0LXRleHQtc2l6ZS1hZGp1c3Q6IDEwMCU7IC1tcy10ZXh0LXNpemUtYWRqdXN0OiAxMDAlOyBvdmVyZmxvdy15OiBzY3JvbGw7fVxuXG4vKk5BViovXG5uYXYgdWwsIG5hdiBvbCB7IGxpc3Qtc3R5bGU6IG5vbmU7IGxpc3Qtc3R5bGUtaW1hZ2U6IG5vbmU7IG1hcmdpbjogMDsgcGFkZGluZzogMDsgfVxuXG4vKkJveCBtb2RlbCovXG4qIHsgYm94LXNpemluZzogYm9yZGVyLWJveDsgfVxuXG5cbiJdfQ== */

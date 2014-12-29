@@ -1,0 +1,19 @@
+/* --------------------------------------------------------------
+	config.css
+		CSS variables
+		* Define typographic ration
+		* Define Vertical rythme & gutter size
+-------------------------------------------------------------- */ 
+:root {
+	/*font-size ratio*/
+
+	/*Size*/
+
+	/*Vertical rythme*/
+
+	/*v-gutter (based vertical rythme )*/
+
+}
+
+/*custom-medias*/
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9jb25maWcuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7OztrRUFLaUU7QUFDakU7Q0FDQyxvQkFBbUI7O0NBR25CLFNBQVE7O0NBV1Isb0JBQW1COztDQUduQixzQ0FBcUM7O0VBSXJDOztBQUVELGtCQUFpQiIsImZpbGUiOiJjb25maWcuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblx0Y29uZmlnLmNzc1xuXHRcdENTUyB2YXJpYWJsZXNcblx0XHQqIERlZmluZSB0eXBvZ3JhcGhpYyByYXRpb25cblx0XHQqIERlZmluZSBWZXJ0aWNhbCByeXRobWUgJiBndXR0ZXIgc2l6ZVxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi8gXG46cm9vdCB7XG5cdC8qZm9udC1zaXplIHJhdGlvKi9cblx0LS1mcy1yYXRpbyA6IDEuMTY2NztcblxuXHQvKlNpemUqL1xuXHQtLWZzLWg2IDogdmFyKC0tZnMtcmF0aW8pO1xuXHQtLWZzLWg1IDogY2FsYyggdmFyKC0tZnMtcmF0aW8pICogdmFyKC0tZnMtaDYpICk7XG5cdC0tZnMtaDQgOiBjYWxjKCB2YXIoLS1mcy1yYXRpbykgKiB2YXIoLS1mcy1oNSkgKTtcblx0LS1mcy1oMyA6IGNhbGMoIHZhcigtLWZzLXJhdGlvKSAqIHZhcigtLWZzLWg0KSApO1xuXHQtLWZzLWgyIDogY2FsYyggdmFyKC0tZnMtcmF0aW8pICogdmFyKC0tZnMtaDMpICk7XG5cdC0tZnMtaDEgOiBjYWxjKCB2YXIoLS1mcy1yYXRpbykgKiB2YXIoLS1mcy1oMikgKTtcblx0LS1mcy1oMCA6IGNhbGMoIHZhcigtLWZzLXJhdGlvKSAqIHZhcigtLWZzLWgxKSApO1xuXHQtLWZzLXNtYWxsIDogY2FsYyggMSAvIHZhcigtLWZzLXJhdGlvKSApO1xuXHQtLWZzLXhzbWFsbCA6IGNhbGMoIHZhcigtLWZzLXNtYWxsKSAvIHZhcigtLWZzLXJhdGlvKSApO1xuXG5cdC8qVmVydGljYWwgcnl0aG1lKi9cblx0LS12cjogMS41O1xuXG5cdC8qdi1ndXR0ZXIgKGJhc2VkIHZlcnRpY2FsIHJ5dGhtZSApKi9cblx0LS1ndXR0ZXIgOiB2YXIoLS12cik7XG5cdC0tZ3V0dGVyLWhhbGYgOiBjYWxjKCB2YXIoLS1ndXR0ZXIpIC8gMiApO1xuXG59XG5cbi8qY3VzdG9tLW1lZGlhcyovXG5AY3VzdG9tLW1lZGlhIC0tbWluUyAobWluLXdpZHRoOiAzMGVtKTtcbkBjdXN0b20tbWVkaWEgLS1taW5NIChtaW4td2lkdGg6IDUwZW0pO1xuQGN1c3RvbS1tZWRpYSAtLW1pbkwgKG1pbi13aWR0aDogNjBlbSk7XG5AY3VzdG9tLW1lZGlhIC0tbWluWEwgKG1pbi13aWR0aDogODBlbSk7Il19 */

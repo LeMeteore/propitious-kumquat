@@ -1,0 +1,289 @@
+@import "config.min.css";
+/* --------------------------------------------------------------
+    utils+grid.css
+        define default form styles
+        * Thanks boilerplate for Normalize Form CSS
+        © sacripant.fr
+-------------------------------------------------------------- */ 
+
+
+/*
+**  utils class
+*/
+
+.clear              { clear: both; }
+.hide               { display: none; visibility: hidden; }
+.visuallyhidden     { border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px; }
+
+/* CLEARFIX 
+-------------*/
+.clearfix:before, .clearfix:after   { content: ""; display: table; }
+.clearfix:after                     { clear: both; }
+
+/* image replacement 
+---------------------*/
+.ir { 
+    background-color: transparent; border: 0; overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+.ir:before { content: ""; display: block; width: 0; height: 100%; }
+
+/* img Placeholder
+--------------------*/
+img[alt="placeholder"]      { background-size: cover; }
+img[alt="placeholder"].gray { background-color: #ddd; }
+img[alt="placeholder"].music{ background-image : url(../../img/placeholder/music.jpg); }
+img[alt="placeholder"].food { background-image : url(../../img/placeholder/food.jpg); }
+img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.jpg); }
+
+/* Initialize list
+------------------*/
+.nude { list-style-type: none; margin: 0; }
+
+/* bloc link
+--------------*/
+.bloc_link {
+    position: relative;
+}
+.a--bloc_link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+/*
+*   Grids
+*   - display table (knacss)
+*   - float:left 1 à 7 colonnes imbricable
+*   - display:inline 1 à 7 colonnes imbricable
+*
+*   - gouttière = 1.428%
+*/
+
+/* table layout grid 
+---------------------*/
+.tb_grid {
+    display: table;
+    table-layout: fixed;
+
+    border-collapse: separate;
+    border-spacing: var(--gutter)em 0; /* don't work with % */
+
+    width: 100%;
+
+    /*delet visualy border between table and cells*/
+    width: calc( 100% + 3em );
+    margin-left: -var(--gutter)em;
+}
+.tb_grid > *,
+.tb_grid > [class*=span] {
+    display: table-cell;
+    vertical-align: bottom;
+    float: none;
+}
+
+/* Grid (inline-block & f-left)
+** Calcul de la gouttière en %
+** (1) margin neg = x%
+** (2) padding = x*(100+2x)/100
+-------------------------------*/
+.fl_grid
+, .il_grid  
+{ 
+    margin: 0 -var(--gutter-half)rem; /*(1)*/
+    overflow: hidden;
+    /*background-color: yellow;*/
+}
+
+.fl_grid  > [class*=-span]
+, .il_grid  > [class*=-span]
+{
+    padding-left: var(--gutter-half)em; /*(2)*/
+    padding-right: var(--gutter-half)em; /*(2)*/
+}
+
+
+
+/* Float-left grid
+--------------------*/
+
+/*CLEARFIX for grid*/
+.fl_grid:before, .fl_grid:after { content: ""; display: table; }
+.fl_grid:after                  { clear: both; }
+
+.fl_grid > [class*=-span] {
+    float: left;
+    display: block;
+}
+
+
+
+/* Inline-block grid
+----------------------*/
+.il_grid {
+    font-size: 0; 
+}
+.il_grid > [class*=-span] {
+    font-size: 1rem; 
+    display: inline-block;
+    float: none;
+}
+
+
+/*Collapsed grid (no gutter)
+-----------------------------*/
+
+.no-gutter
+, .fl_grid.no-gutter
+, .il_grid.no-gutter
+, .tb_grid.no-gutter
+{
+    margin-left: 0;
+    margin-right: 0;
+    /*remove gutter for table grid*/
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+.no-gutter > [class*=-span]  
+{
+    padding: 0;
+}
+
+
+
+/*
+**  SPAN
+*/
+
+[class*=-span] { 
+    width: 100%;
+}
+
+/* grid for all viewport */
+.all-span1-7                                { width: 14.285%; }
+.all-span1-6                                { width: 16.666%; }
+.all-span1-5                                { width: 20%; }
+.all-span1-4                                { width: 25%; }
+.all-span2-7                                { width: 28.571%; }
+.all-span1-3, .all-span2-6                  { width: 33.333%; }
+.all-span2-5                                { width: 40%; }
+.all-span3-7                                { width: 42.857%; }
+.all-span1-2, .all-span3-6, .all-span2-4    { width: 50%; }
+.all-span4-7                                { width: 57.142%; }
+.all-span3-5                                { width: 60%; }
+.all-span2-3, .all-span4-6                  { width: 66.666%; }
+.all-span5-7                                { width: 71.428%; }
+.all-span3-4                                { width: 75%; }
+.all-span4-5                                { width: 80%; } 
+.all-span5-6                                { width: 83.333%; }
+.all-span6-7                                { width: 85.714%; }
+.all-span1-1, .all-span2-2, .all-span3-3, 
+.all-span4-4, .all-span5-5, .all-span6-6,
+.all-span7-7                                { width: 100%; }
+
+
+@media only screen and (--minS) {
+    /* 480 and + =================================================== */
+    .s-span1-7                                  { width: 14.285%; }
+    .s-span1-6                                  { width: 16.666%; }
+    .s-span1-5                                  { width: 20%; }
+    .s-span1-4                                  { width: 25%; }
+    .s-span2-7                                  { width: 28.571%; }
+    .s-span1-3, .s-span2-6                      { width: 33.333%; }
+    .s-span2-5                                  { width: 40%; }
+    .s-span3-7                                  { width: 42.857%; }
+    .s-span1-2, .s-span3-6, .s-span2-4          { width: 50%; }
+    .s-span4-7                                  { width: 57.142%; }
+    .s-span3-5                                  { width: 60%; }
+    .s-span2-3, .s-span4-6                      { width: 66.666%; }
+    .s-span5-7                                  { width: 71.428%; }
+    .s-span3-4                                  { width: 75%; }
+    .s-span4-5                                  { width: 80%; } 
+    .s-span5-6                                  { width: 83.333%; }
+    .s-span6-7                                  { width: 85.714%; }
+    .s-span1-1, .s-span2-2, .s-span3-3, 
+    .s-span4-4, .s-span5-5, .s-span6-6,
+    .s-span7-7                                  { width: 100%; }
+    
+}
+
+
+@media only screen and (--minM) {
+  /* 768 and + =================================================== */
+    .m-span1-7                              { width: 14.285%; }
+    .m-span1-6                              { width: 16.666%; }
+    .m-span1-5                              { width: 20%; }
+    .m-span1-4                              { width: 25%; }
+    .m-span2-7                              { width: 28.571%; }
+    .m-span1-3, .m-span2-6                  { width: 33.333%; }
+    .m-span2-5                              { width: 40%; }
+    .m-span3-7                              { width: 42.857%; }
+    .m-span1-2, .m-span3-6, .m-span2-4      { width: 50%; }
+    .m-span4-7                              { width: 57.142%; }
+    .m-span3-5                              { width: 60%; }
+    .m-span2-3, .m-span4-6                  { width: 66.666%; }
+    .m-span5-7                              { width: 71.428%; }
+    .m-span3-4                              { width: 75%; }
+    .m-span4-5                              { width: 80%; } 
+    .m-span5-6                              { width: 83.333%; }
+    .m-span6-7                              { width: 85.714%; }
+    .m-span1-1, .m-span2-2, .m-span3-3, 
+    .m-span4-4, .m-span5-5, .m-span6-6,
+    .m-span7-7                              { width: 100%; }
+}
+@media only screen and (--minL) {
+  /* 992 =================================================== */
+    .l-span1-7                              { width: 14.285%; }
+    .l-span1-6                              { width: 16.666%; }
+    .l-span1-5                              { width: 20%; }
+    .l-span1-4                              { width: 25%; }
+    .l-span2-7                              { width: 28.571%; }
+    .l-span1-3, .l-span2-6                  { width: 33.333%; }
+    .l-span2-5                              { width: 40%; }
+    .l-span3-7                              { width: 42.857%; }
+    .l-span1-2, .l-span3-6, .l-span2-4      { width: 50%; }
+    .l-span4-7                              { width: 57.142%; }
+    .l-span3-5                              { width: 60%; }
+    .l-span2-3, .l-span4-6                  { width: 66.666%; }
+    .l-span5-7                              { width: 71.428%; }
+    .l-span3-4                              { width: 75%; }
+    .l-span4-5                              { width: 80%; } 
+    .l-span5-6                              { width: 83.333%; }
+    .l-span6-7                              { width: 85.714%; }
+    .l-span1-1, .l-span2-2, .l-span3-3, 
+    .l-span4-4, .l-span5-5, .l-span6-6,
+    .l-span7-7                              { width: 100%; }
+}
+@media only screen and (--minXL) {
+  /* 992 =================================================== */
+    .xl-span1-7                              { width: 14.285%; }
+    .xl-span1-6                              { width: 16.666%; }
+    .xl-span1-5                              { width: 20%; }
+    .xl-span1-4                              { width: 25%; }
+    .xl-span2-7                              { width: 28.571%; }
+    .xl-span1-3, .xl-span2-6                 { width: 33.333%; }
+    .xl-span2-5                              { width: 40%; }
+    .xl-span3-7                              { width: 42.857%; }
+    .xl-span1-2, .xl-span3-6, .xl-span2-4    { width: 50%; }
+    .xl-span4-7                              { width: 57.142%; }
+    .xl-span3-5                              { width: 60%; }
+    .xl-span2-3, .xl-span4-6                 { width: 66.666%; }
+    .xl-span5-7                              { width: 71.428%; }
+    .xl-span3-4                              { width: 75%; }
+    .xl-span4-5                              { width: 80%; } 
+    .xl-span5-6                              { width: 83.333%; }
+    .xl-span6-7                              { width: 85.714%; }
+    .xl-span1-1, .xl-span2-2, .xl-span3-3, 
+    .xl-span4-4, .xl-span5-5, .xl-span6-6,
+    .xl-span7-7                              { width: 100%; }
+}
+
+
