@@ -13,3 +13,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup
+INSTALLED_APPS += (
+    'debug_toolbar',
+    'django_extensions',
+)

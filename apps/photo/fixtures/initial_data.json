@@ -1,0 +1,53 @@
+[
+{
+  "model": "photo.country",
+  "fields": {
+    "label": "Senegal"
+  },
+  "pk": 1
+},
+{
+  "model": "photo.country",
+  "fields": {
+    "label": "Mali"
+  },
+  "pk": 2
+},
+{
+  "model": "photo.country",
+  "fields": {
+    "label": "Ghana"
+  },
+  "pk": 3
+},
+{
+  "model": "photo.country",
+  "fields": {
+    "label": "Nigeria"
+  },
+  "pk": 4
+},
+{
+  "model": "photo.pack",
+  "fields": {
+    "country": [
+      1
+    ],
+    "pub_date": "2014-12-09T05:57:35Z",
+    "label": "un pack",
+    "description": "une description"
+  },
+  "pk": 1
+},
+{
+  "model": "photo.photo",
+  "fields": {
+    "pack": 1,
+    "image": "wappa/Capture_d\u00e9cran_-_23112014_-_224647.png",
+    "label": "une photo",
+    "pub_date": "2014-12-09T05:58:57Z",
+    "description": "une description"
+  },
+  "pk": 1
+}
+]
