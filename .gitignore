@@ -58,3 +58,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Grunt node modules
+wappa/node_modules/
