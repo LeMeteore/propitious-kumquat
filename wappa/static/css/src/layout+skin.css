@@ -1,6 +1,8 @@
+@import "config.min.css";
 /* --------------------------------------------------------------
 	layout+skin.css
-		CSS for specifique pages elements
+		Define global layout.
+		CSS for specifique pages elements.
 		© sacripant.fr
 -------------------------------------------------------------- */ 
 
@@ -11,8 +13,9 @@
 #home       	{/*id du body index*/}
 #container  	{  }
 .wrapper    	{  
-	max-width: 90%;
-	margin: 0 auto;
+	max-width: 100%;
+	margin: var(--gutter)em;
+	/*margin: 0 auto;*/
 }
                
 .site-header	{  }
