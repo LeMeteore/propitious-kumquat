@@ -89,7 +89,7 @@ module.exports = function(grunt){
                     expand: true,
                     cwd: 'static/img/',
                     src: '*.svg',
-                    dest: 'img/'
+                    dest: 'static/img/'
 
                 }]
             },
@@ -99,7 +99,7 @@ module.exports = function(grunt){
                     expand: true,
                     cwd: 'static/img/icons/',
                     src: '*.svg',
-                    dest: 'img/icons/'
+                    dest: 'static/img/icons/'
                 }]
             }
         },
