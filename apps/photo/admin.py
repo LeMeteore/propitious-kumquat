@@ -10,7 +10,7 @@ class PhotoModelAdmin(TranslatableAdmin):
     use_fieldsets = (
         (_("Common"), {
             'fields': ('pack', 'country', 'image',
-                       'date published', 'status',)
+                       'date published', 'status', 'tags',)
             }),
         (_("Language dependent"), {
             'fields': ('label', 'description',),
@@ -24,7 +24,7 @@ class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (
         (_("Common"), {
             'fields': ('domain', 'country', 'image',
-                       'date published', 'pack_type', 'status',)
+                       'date published', 'pack_type', 'status', 'tags',)
             }),
         (_("Language dependent"), {
             'fields': ('label', 'description',),

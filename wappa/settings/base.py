@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     # my apps
     'apps.photo',
     'hvad',
+    'taggit',
 )
 
 # https://docs.djangoproject.com/en/1.7/topics/http/middleware/
