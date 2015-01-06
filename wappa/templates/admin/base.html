@@ -16,8 +16,7 @@
 {% endblock %}
 
 <!-- Extras CSS -->
-{% block extrastyle %}
-{% endblock %}
+{% block extrastyle %}{% endblock %}
 
 
 <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="{% block stylesheet_ie %}{% static "css/ie.css" %}{% endblock %}" /><![endif]-->
@@ -79,6 +78,7 @@
 
 
     {% endif %} {# not is_popup #}
+    
 
     {% block messages %}
         {% if messages %}
