@@ -1,0 +1,80 @@
+/*
+*	Blocs
+*/
+
+#wrapper {
+	margin-left: 11em;
+}
+main {
+	margin-right: 1em;
+	max-width: 45em;
+}
+header {
+	position: fixed;
+	top: 0; left: 0;
+	height: 100%;
+	width: 10em;
+	padding: 3em 1em 0 1em;
+}
+
+.code-demo {
+	margin-bottom: 1.5em;
+}
+
+/*
+*	blocs de code
+*/
+
+.bloc-code {
+	background-color: #EBEEDC;
+	padding: 0 1em;
+	border: 1px solid #ccc;
+	font-size: 0.8em;
+	-moz-tab-size : 4;
+	     tab-size : 4;
+	overflow: auto;
+	white-space: pre;
+	margin: 1.5em 0;
+}
+
+/*
+*	grid demo
+*/
+
+
+.demo-grid [class*='_grid'] > div {
+/*	margin: 0.5em 0;	*/
+}
+.demo-grid .fl_grid > div:before 
+, .demo-grid .il_grid > div:before 
+, .demo-grid .tb_grid > div
+{
+	background-color: #ddd;
+	border: 1px solid #aaa;
+	padding: 0.4em;
+	line-height: 1.2em;	
+}
+
+.demo-grid .fl_grid > div:before 
+, .demo-grid .il_grid > div:before 
+{
+	display: block;
+	content: "." attr(class);
+}
+
+.demo-grid [class*="-span"] {
+	word-wrap: break-word;
+}
+
+
+/*
+**	Color blocs
+*/
+.ul-doc-colors li {
+	margin-bottom: 1em;
+}
+.bloc-color {
+	height: 50px;
+}
+
+
