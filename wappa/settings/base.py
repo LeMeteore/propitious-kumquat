@@ -121,7 +121,6 @@ TIME_ZONE = 'Africa/Dakar'
 # http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 LANGUAGES = (
     ('en', _('English')),
-    ('de', _('German')),
     ('fr', _('French')),
 )
 
