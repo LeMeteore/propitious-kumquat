@@ -6,23 +6,44 @@ module.exports = function(grunt){
         
         files: {
             css : {
-                src : [
-                    'static/css/src/config.css',
-                    'static/css/src/reset.css', 
-                    'static/css/src/typography.css', 
-                    'static/css/src/utils+grid.css', 
-                    'static/css/src/forms.css', 
-                    'static/css/src/components.css', 
-                    'static/css/src/layout+skin.css'
-                ],
-                output : [
-                    'static/css/output/reset.css', 
-                    'static/css/output/typography.css', 
-                    'static/css/output/utils+grid.css', 
-                    'static/css/output/forms.css', 
-                    'static/css/output/components.css', 
-                    'static/css/output/layout+skin.css'
-                ],
+                admin : {
+                    src : [
+                        'static/css/src/config.css',
+                        'static/css/src/reset.css', 
+                        'static/css/src/typography.css', 
+                        'static/css/src/utils+grid.css', 
+                        'static/css/src/forms.css', 
+                        'static/css/src/components.css', 
+                        'static/admin/css/src/adminlayout+skin.css'
+                    ],
+                    output : [
+                        'static/css/output/reset.css', 
+                        'static/css/output/typography.css', 
+                        'static/css/output/utils+grid.css', 
+                        'static/css/output/forms.css', 
+                        'static/css/output/components.css', 
+                        'static/admin/css/output/adminlayout+skin.css'
+                    ],  
+                },
+                front : {
+                    src : [
+                        'static/css/src/config.css',
+                        'static/css/src/reset.css', 
+                        'static/css/src/typography.css', 
+                        'static/css/src/utils+grid.css', 
+                        'static/css/src/forms.css', 
+                        'static/css/src/components.css', 
+                        'static/css/src/layout+skin.css'
+                    ],
+                    output : [
+                        'static/css/output/reset.css', 
+                        'static/css/output/typography.css', 
+                        'static/css/output/utils+grid.css', 
+                        'static/css/output/forms.css', 
+                        'static/css/output/components.css', 
+                        'static/css/output/layout+skin.css'
+                    ],  
+                }
             },
             html : [
                 'templates/*.html',
@@ -30,24 +51,19 @@ module.exports = function(grunt){
                 'templates/*/*.html'
             ]
         },
-
-        // autoprefixer: {
-        //     all_css: {
-        //         browser : 'last 3 version',
-        //         cascade : true,
-        //         expand: true,
-        //         flatten: true,
-        //         src  : '<%= files.css.src %>',
-        //         dest : 'css/output/'
-        //     }
-        // },
         
         cssmin: 
         {
-            combine: 
+            admin: 
             {
                 files: {
-                    'static/css/<%= pkg.name %>.min.css' : '<%= files.css.output %>'
+                    'static/admin/css/admin<%= pkg.name %>.min.css' : '<%= files.css.admin.output %>'
+                }
+            },
+            front :
+            {
+                files: {
+                    'static/css/<%= pkg.name %>.min.css' : '<%= files.css.front.output %>'                    
                 }
             },
             vars:
@@ -75,9 +91,17 @@ module.exports = function(grunt){
                 files: [{
                     expand: true,
                     flatten: true,
-                    src  : '<%= files.css.src %>',
+                    src  : 'static/css/src/*.css',
                     dest : 'static/css/output/'
                 }]
+            },
+            admin : {
+                files : [{
+                    expand: true,
+                    flatten: true,
+                    src  : 'static/admin/css/src/*.css',
+                    dest : 'static/admin/css/output/'
+                }] 
             }
         },
 
@@ -108,9 +132,9 @@ module.exports = function(grunt){
             options: {
                 livereload: true,
             },              
-            css : {
-                files: '<%= files.css.src %>',
-                tasks : ['buildcss']
+            admincss : {
+                files: '<%= files.css.admin.src %>',
+                tasks : ['admincss']
             },
             html : {
                 files : '<%= files.html %>'
@@ -129,7 +153,8 @@ module.exports = function(grunt){
     
     // Run plugins
     grunt.registerTask('default', ['cssmin:vars','cssnext']);
-    grunt.registerTask('buildcss', ['cssmin:vars','cssnext', 'cssmin:combine']);
+    grunt.registerTask('frontcss', ['cssmin:vars','cssnext', 'cssmin:front']);
+    grunt.registerTask('admincss', ['cssmin:vars','cssnext', 'cssmin:admin']);
 
 
 };

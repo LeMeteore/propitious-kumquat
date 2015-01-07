@@ -61,3 +61,6 @@ target/
 
 # Grunt node modules
 wappa/node_modules/
+
+wappa/static/admin/css/adminwappa.min.css
+wappa/static/admin/css/output/adminlayout+skin.css
