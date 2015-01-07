@@ -34,39 +34,49 @@
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
 
-<!-- Container -->
-<div class="wrapper">
 
     {% if not is_popup %}
     <!-- Header -->
     <div class="admin_header">
-        
-        <div class="branding">
-            {% block branding %}{% endblock %}
-        </div>
 
-        {% if user.is_active and user.is_staff %}
-            <div class="user-tools">
-                {% block welcome-msg %}
-                    {% trans 'Welcome,' %}
-                    <strong>{% firstof user.get_short_name user.get_username %}</strong>.
-                {% endblock %}
-                {% block userlinks %}
-                    {% url 'django-admindocs-docroot' as docsroot %}
-                    {% if docsroot %}
-                        <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
-                    {% endif %}
-                    {% if user.has_usable_password %}
-                    <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
-                    {% endif %}
-                    <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
-                {% endblock %}
+        <div class="wrapper">
+
+            <div class="tb_grid">
+                
+                {% block branding %}{% endblock %}
+                
+                {% if user.is_active and user.is_staff %}
+                    <div class="user_tools">
+                        {% block welcome-msg %}
+                            {% trans 'Welcome,' %}
+                            <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                        {% endblock %}
+                        {% block userlinks %}
+                            {% url 'django-admindocs-docroot' as docsroot %}
+                            {% if docsroot %}
+                                <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+                            {% endif %}
+                            {% if user.has_usable_password %}
+                                <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+                            {% endif %}
+                                <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+                        {% endblock %}
+                    </div>
+                {% endif %}
+
+                
             </div>
-        {% endif %}
+            
 
-        {% block nav-global %}{% endblock %}
+        </div>
+        <!-- /.wrapper -->
+
     </div>
     <!-- END Header -->
+
+
+    {% block nav-global %}{% endblock %}
+
 
 
     {% block breadcrumbs %}
@@ -111,9 +121,6 @@
     {% block footer %}
         <div class="admin_footer"></div>
     {% endblock %}
-
-</div>
-<!-- END wrapper -->
 
 
 </body>

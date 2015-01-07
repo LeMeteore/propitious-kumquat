@@ -3,11 +3,9 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-
-<h1 class="admin_name">
-	<a href="{% url 'admin:index' %}">Wappa admin</a>
-</h1>
-
+	<h1 class="branding h3">
+		<a href="{% url 'admin:index' %}">Wappa admin</a>
+	</h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

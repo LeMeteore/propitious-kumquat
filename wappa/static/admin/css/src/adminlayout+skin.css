@@ -6,37 +6,39 @@
 		© sacripant.fr
 -------------------------------------------------------------- */ 
 
-/** 
-//	Global layout
+/* 
+**	Global layout
 */
 
-#home       	{/*id du body index*/}
-#container  	{  }
 .wrapper    	{  
 	max-width: 100%;
-	margin: var(--gutter)em;
+	padding: 0 var(--gutter)em;
 	/*margin: 0 auto;*/
-	background-color: #ccc;
-
+	background-color: #eee;
 }
                
-.site-header	{  }
-.main_nav   	{  }
-main    			{  }
-.site-footer   {  }
+.admin_header	{  }
+.admin_main_nav {  }
+main    		{  }
+.admin-footer   {  }
 
-/**
-// All navs
+
+/*
+**	Admin Header 
 */
 
-nav		{  }
-.ul-nav 	{  }
-.li-nav	{  }
-.a-nav 	{  }
-.active	{  }  
+.admin_header	{}
+.branding	{
+	margin-bottom: 0;
+}
+.user_tools
+, .branding
+{
+	vertical-align: middle;
+}
 
-/**
-//	Main Nav
+/*
+**	Main Nav
 */
 
 .main_nav			{  }
