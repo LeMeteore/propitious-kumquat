@@ -13,7 +13,7 @@ class PhotoModelAdmin(TranslatableAdmin):
                        'date published', 'status',)
             }),
         (_("Language dependent"), {
-            'fields': ('label', 'description',),
+            'fields': ('label', 'description', 'tags',),
             }),
         )
 
@@ -27,7 +27,7 @@ class PackModelAdmin(TranslatableAdmin):
                        'date published', 'pack_type', 'status',)
             }),
         (_("Language dependent"), {
-            'fields': ('label', 'description',),
+            'fields': ('label', 'description', 'tags'),
             }),
         )
 

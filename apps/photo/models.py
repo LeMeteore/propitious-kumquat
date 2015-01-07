@@ -4,9 +4,11 @@
 from django.db import models
 from datetime import datetime
 from hvad.models import TranslatableModel, TranslatedFields
+from taggit.managers import TaggableManager
 
 
 class Entity(TranslatableModel):
+    tags = TaggableManager()
     translations = TranslatedFields(
         label = models.CharField(max_length=200),
         description = models.CharField(max_length=200)
@@ -50,6 +52,7 @@ class Pack(Entity):
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(default=datetime.now, name='date published')
 
+
     def __str__(self):
         return "%s" % self.lazy_translation_getter('label', str(self.pk))
 
@@ -69,6 +72,7 @@ class Photo(Entity):
     status = models.CharField(max_length=200,
                               choices=STATUS_CHOICES,
                               default=OFFLINE)
+
 
     def __str__(self):
         return "%s" % self.safe_translation_getter('label', str(self.pk))
