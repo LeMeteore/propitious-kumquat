@@ -102,7 +102,9 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 }
 
 .fl_grid  > [class*=-span]
+, .fl_grid  > *
 , .il_grid  > [class*=-span]
+, .il_grid  > *
 {
     padding-left: var(--gutter-half)em; /*(2)*/
     padding-right: var(--gutter-half)em; /*(2)*/
@@ -129,7 +131,9 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 .il_grid {
     font-size: 0; 
 }
-.il_grid > [class*=-span] {
+.il_grid > [class*=-span] 
+, .il_grid > * 
+{
     font-size: 1rem; 
     display: inline-block;
     float: none;
