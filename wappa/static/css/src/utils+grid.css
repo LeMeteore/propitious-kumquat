@@ -58,7 +58,19 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 
 
 /*
-*   Grids
+*   Horizontale grid
+*   Define vertical rythme
+*   Default vertical rythme and gutter size are identic
+*/
+.v-space {
+    margin-bottom: var(--vr)em;
+    margin-bottom: var(--vr)rem;
+}
+
+
+
+/*
+*   Vertical Grids
 *   - display table (knacss)
 *   - float:left 1 à 7 colonnes imbricable
 *   - display:inline 1 à 7 colonnes imbricable
@@ -96,7 +108,8 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 .fl_grid
 , .il_grid  
 { 
-    margin: 0 -var(--gutter-half)rem; /*(1)*/
+    margin-left: -var(--gutter-half)rem; /*(1)*/
+    margin-right: -var(--gutter-half)rem; /*(1)*/
     overflow: hidden;
     /*background-color: yellow;*/
 }

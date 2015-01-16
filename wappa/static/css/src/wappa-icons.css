@@ -1,0 +1,98 @@
+
+/* Template created by @sacripant for WAPPA */
+/* Used with grunt-webfont */
+/* Based on https://github.com/endtwist/fontcustom/blob/master/lib/fontcustom/templates/fontcustom.css */
+
+
+
+
+@font-face {
+	font-family:"wappa-icons";
+	src:url("../../fonts/wappa-icons.eot?68b9cdbd3b50d3da174fbdc992e0dde2");
+	src:url("../../fonts/wappa-icons.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/wappa-icons.woff?68b9cdbd3b50d3da174fbdc992e0dde2") format("woff"),
+		url("../../fonts/wappa-icons.ttf?68b9cdbd3b50d3da174fbdc992e0dde2") format("truetype");
+	font-weight:normal;
+	font-style:normal;
+}
+
+
+
+
+
+
+/* Bootstrap Overrides */
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+	font-family:"wappa-icons";
+	display:inline-block;
+	vertical-align:middle;
+	line-height:1;
+	font-weight:normal;
+	font-style:normal;
+	speak:none;
+	text-decoration:inherit;
+	text-transform:none;
+	text-rendering:optimizeLegibility;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+}
+
+
+
+
+/* Icons */
+
+.icon-calendar:before {
+	content:"\f101";
+}
+
+.icon-check:before {
+	content:"\f102";
+}
+
+.icon-eye:before {
+	content:"\f103";
+}
+
+.icon-file:before {
+	content:"\f104";
+}
+
+.icon-home:before {
+	content:"\f105";
+}
+
+.icon-minus:before {
+	content:"\f106";
+}
+
+.icon-pencil:before {
+	content:"\f107";
+}
+
+.icon-photo:before {
+	content:"\f108";
+}
+
+.icon-plus:before {
+	content:"\f109";
+}
+
+.icon-star:before {
+	content:"\f10a";
+}
+
+.icon-user-group:before {
+	content:"\f10b";
+}
+
+.icon-x-cross:before {
+	content:"\f10c";
+}
+
+
+[class^="icon-"] i,
+[class*=" icon-"] i,
+.visuallyhidden	{ border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px; }    
+
