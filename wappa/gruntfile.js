@@ -9,6 +9,7 @@ module.exports = function(grunt){
                 admin : {
                     src : [
                         'static/css/src/config.css',
+                        'static/css/src/wappa-icons.css',
                         'static/css/src/reset.css', 
                         'static/css/src/typography.css', 
                         'static/css/src/utils+grid.css', 
@@ -17,6 +18,7 @@ module.exports = function(grunt){
                         'static/admin/css/src/adminlayout+skin.css'
                     ],
                     output : [
+                        'static/css/output/wappa-icons.css',
                         'static/css/output/reset.css', 
                         'static/css/output/typography.css', 
                         'static/css/output/utils+grid.css', 
@@ -28,6 +30,7 @@ module.exports = function(grunt){
                 front : {
                     src : [
                         'static/css/src/config.css',
+                        'static/css/src/wappa-icons.css',
                         'static/css/src/reset.css', 
                         'static/css/src/typography.css', 
                         'static/css/src/utils+grid.css', 
@@ -37,6 +40,7 @@ module.exports = function(grunt){
                     ],
                     output : [
                         'static/css/output/reset.css', 
+                        'static/css/output/wappa-icons.css',
                         'static/css/output/typography.css', 
                         'static/css/output/utils+grid.css', 
                         'static/css/output/forms.css', 
@@ -127,6 +131,24 @@ module.exports = function(grunt){
                 }]
             }
         },
+
+        webfont: {
+            icons: {
+                src: 'static/img/icons/*.svg',
+                dest: 'static/fonts',
+                destCss: 'static/css/src',
+                options: {
+                    font: '<%= pkg.name %>-icons',
+                    hashes: true,
+                    syntax: 'bootstrap',
+                    template: 'static/img/icons/icons-tmpl.css',
+                    templateOptions: {
+                        htmlDemoTemplate: 'static/img/icons/demoicons-tmpl.html',
+                        destHtml: 'static/docs'
+                    }
+                }
+            }
+        },
         
         watch: {
             options: {
@@ -148,6 +170,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.loadNpmTasks('grunt-cssnext');
+    grunt.loadNpmTasks('grunt-webfont');
 
 
     
@@ -155,6 +178,7 @@ module.exports = function(grunt){
     grunt.registerTask('default', ['cssmin:vars','cssnext']);
     grunt.registerTask('frontcss', ['cssmin:vars','cssnext', 'cssmin:front']);
     grunt.registerTask('admincss', ['cssmin:vars','cssnext', 'cssmin:admin']);
+    grunt.registerTask('icons', ['svgmin:icons','webfont:icons']);
 
 
 };
