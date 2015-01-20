@@ -119,8 +119,8 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 , .il_grid  > [class*=-span]
 , .il_grid  > *
 {
-    padding-left: var(--gutter-half)em; /*(2)*/
-    padding-right: var(--gutter-half)em; /*(2)*/
+    padding-left: var(--gutter-half)rem; /*(2)*/
+    padding-right: var(--gutter-half)rem; /*(2)*/
 }
 
 
@@ -132,7 +132,9 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
 .fl_grid:before, .fl_grid:after { content: ""; display: table; }
 .fl_grid:after                  { clear: both; }
 
-.fl_grid > [class*=-span] {
+.fl_grid > * 
+,.fl_grid > [class*=-span]
+{
     float: left;
     display: block;
 }
