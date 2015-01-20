@@ -10,10 +10,11 @@
 **	Global layout
 */
 
-.wrapper    	{  
+.wrapper    	{
+	width: 80em;
 	max-width: 100%;
 	padding: 0 var(--gutter)em;
-	/*margin: 0 auto;*/
+	margin: 0 auto;
 	/*background-color: #eee;*/
 }
                
@@ -41,28 +42,14 @@ main    		{  }
 **	Main Nav
 */
 
-.main_nav			{  }
-.ul-main_nav    	{  }
-.li-main_nav    	{  }
-.a-main_nav     	{  }
-.sub-main_nav   	{  }         
-.li-sub-main_nav	{  }
-.a-sub-main_nav 	{  }
+.l--admin_main_nav	{  
+	border-bottom: 1px solid;
+}
+.i--admin_main_nav	{
+	padding-bottom: calc( var(--vr) / 3 )rem;
+	/*background-color: #eee;*/
+}
 
-/**
-//	Site Header
-*/
-
-.site-header	{  }
-.brand			{  } /*wrap .logo + .baseline*/
-.logo       	{  }
-.site_title		{  }
-.baseline   	{  }
-
-.nav_header		{  }
-.ul-nav_header	{  }
-.li-nav_header	{  }
-.a-nav_header	{  }
                    
 /**
 //	Main

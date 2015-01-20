@@ -73,7 +73,7 @@ a:active,a:hover
 				{ outline: 0; }
 a:focus, 
 a:hover     { color: #000; }
-a           { color: #009; text-decoration: underline; }
+a           { color: #009; text-decoration: none; }
 
 /*citations*/
 blockquote, q 	{ quotes: none; }
