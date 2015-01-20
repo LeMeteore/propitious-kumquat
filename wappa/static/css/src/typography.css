@@ -1,12 +1,29 @@
 @import "config.min.css";
 /* -------------------------------------------------------------- 
    
-	typography.css
+	typography.css & color theme
 	* Sets up some sensible default typography.
 	* Thanks to Boilerplate, Knacss and blueprint
 	© sacripant.fr
 
 -------------------------------------------------------------- */
+
+
+/*
+*	Colors
+*
+-----------------*/
+
+
+
+.color1			{ color : var(--color1); }
+.color1-light	{ color : var(--color1-light); }
+.color1-dark	{ color : var(--color1-dark); }
+.color2			{ color : var(--color2); }
+.color2-light	{ color : var(--color2-light); }
+.color2-dark	{ color : var(--color2-dark); }
+
+
 
 /* Default font settings. */
 html {
@@ -17,8 +34,8 @@ body {
 	line-height: var(--vr);
 	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 
-	color: hsl(0, 0%, 30%); 
-	background: #fff;
+	color: var(--color2-darkgrey); 
+	background: var(--color2-lightgrey);
 }
 
 
@@ -29,7 +46,7 @@ body {
 -------------------------------------------------------------- */
 
 h1,h2,h3,h4,h5,h6
-	{ font-weight: normal; color: hsl(0, 0%, 15%); }
+	{ font-weight: normal; }
 
 h1, .h1 { font-size: var(--fs-h1)em;	line-height: 1;			margin-bottom: var(--vr)rem; }
 h2, .h2 { font-size: var(--fs-h2)em;	line-height: 1.1;		margin-bottom: var(--vr)rem; }
@@ -71,9 +88,10 @@ p, .p 		{
 a:focus 		{ outline: thin dotted; }
 a:active,a:hover
 				{ outline: 0; }
+
+a           { color: var(--color2); text-decoration: none; }
 a:focus, 
-a:hover     { color: #000; }
-a           { color: #009; text-decoration: none; }
+a:hover     { text-decoration: underline; }
 
 /*citations*/
 blockquote, q 	{ quotes: none; }
@@ -130,14 +148,46 @@ li ol {
 -------------------------------------------------------------- */
 /* Tables still need 'cellspacing="0"' in the markup. */
 
-table       	{ border-collapse: separate; border-spacing: 0; margin-bottom: 1.5em; width:100%; }
-table, td, th	{ vertical-align: middle; }
-th          	{ font-weight: bold; }
-thead th 		{ background: #c3d9ff; }
-th,td,caption	{ text-align: left; font-weight: normal; padding: 4px 10px 4px 5px; }
-tr.even td  	{ background: #e5ecf9; }
-tfoot       	{ font-style: italic; }
-caption     	{ background: #eee; }
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+	margin-bottom: var(--vr)em;
+	width: 100%
+}
+
+table,td,th {
+	vertical-align:middle
+}
+thead th {
+	border-bottom: 1px solid;
+}
+
+th,td,caption {
+	text-align:left;
+	font-weight:400;
+	padding:4px 10px 4px 5px
+}
+th {
+	font-weight:700;
+}
+
+tr.even td {
+	background: hsla(0, 0%, 0%, 0.05);
+}
+
+tfoot {
+	font-style:italic
+}
+
+caption {
+	/*background:#eee*/
+	/*text-align: center;*/
+	font-size: var(--fs-small)em;
+	text-transform: uppercase;
+	border-bottom: 1px solid;
+
+}
+
 
 
 
