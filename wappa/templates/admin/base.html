@@ -47,7 +47,7 @@
                 {% block branding %}{% endblock %}
                 
                 {% if user.is_active and user.is_staff %}
-                    <div class="user_tools">
+                    <div class="user_tools xsmall">
                         {% block welcome-msg %}
                             {% trans 'Welcome,' %}
                             <strong>{% firstof user.get_short_name user.get_username %}</strong>.
@@ -88,7 +88,7 @@
 
 
     {% block breadcrumbs %}
-    <div class="breadcrumbs">
+    <div class="breadcrumbs wrapper">
         <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
         {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
@@ -117,7 +117,7 @@
             
             {% block pretitle %}{% endblock %}
             
-            {% block content_title %}{% if title %}<h1>{{ title }}</h1>{% endif %}{% endblock %}
+            {% block content_title %}{% if title %}<h1 class="h2">{{ title }}</h1>{% endif %}{% endblock %}
             
             {% block content %}
 

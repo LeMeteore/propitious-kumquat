@@ -37,6 +37,9 @@ main    		{  }
 {
 	vertical-align: middle;
 }
+.user_tools {
+	text-align: right;
+}
 
 /*
 **	Main Nav
