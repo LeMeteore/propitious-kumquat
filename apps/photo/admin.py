@@ -3,6 +3,7 @@
 
 from django.contrib import admin
 from apps.photo.models import Photo, Pack
+from apps.photo.tasks import UploadToAS3
 from hvad.admin import TranslatableAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,6 +20,11 @@ class PhotoModelAdmin(TranslatableAdmin):
 
     def get_fieldsets(self, request, obj=None):
         return self.use_fieldsets
+
+    def save_model(self, request, obj, form, change):
+        obj.save()
+        UploadToAS3.delay(obj.image.name)
+
 
 class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (

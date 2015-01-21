@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'apps.photo',
     'hvad',
     'taggit',
+    'celery',
 )
 
 # https://docs.djangoproject.com/en/1.7/topics/http/middleware/
@@ -155,3 +156,7 @@ TEMPLATE_DIRS = (
 MEDIA_ROOT = "/var/www/wappa/media/"
 
 MEDIA_URL = "/media/"
+
+# Celery settings
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
