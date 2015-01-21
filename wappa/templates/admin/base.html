@@ -88,10 +88,15 @@
 
 
     {% block breadcrumbs %}
-    <div class="breadcrumbs wrapper">
-        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-        {% if title %} &rsaquo; {{ title }}{% endif %}
-    </div>
+        <div class="breadcrumbs wrapper">
+            <a href="{% url 'admin:index' %}" class="icon-home"><i>{% trans 'Home' %}</i></a>
+            {% block breadcrumbs-childs %}
+                {% if title %} 
+                    &rsaquo; 
+                    {{ title }}
+                {% endif %}
+            {% endblock %}
+        </div>
     {% endblock %}
 
 
