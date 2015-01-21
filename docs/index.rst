@@ -10,6 +10,18 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   installation_python3
+   installation_virtualenv
+   creation_projet
+   modele
+   upload_images
+   fixtures
+   internationalisation
+   localisation
+   taggit
+   amazon
+   celery
+   snippets
 
 
 
@@ -19,4 +31,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
