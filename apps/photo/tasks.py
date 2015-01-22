@@ -25,8 +25,8 @@ from django.conf import settings
 class UploadToAS3(Task):
 
     # AWS ACCESS DETAILS
-    AWS_ACCESS_KEY_ID = 'AKIAI56TPYQF65EYFULQ'
-    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_ACCESS_KEY_ID = settings.AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY = settings.AWS_SECRET_ACCESS_KEY
 
     # a bucket per author maybe
     bucket_name = 'web-application-photo-bucket'
