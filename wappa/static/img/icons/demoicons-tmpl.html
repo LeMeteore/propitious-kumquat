@@ -21,7 +21,25 @@
 		<% } %>
 
 		<h2>Usage</h2>
-		<pre><code>&lt;i class=&quot;<%= baseClass ? baseClass + ' ' : '' %><%= classPrefix %><span id="name">name</span>&quot;&gt;&lt;/i&gt;</code></pre>
+
+		<p>
+			Simply use
+			<code>class=&quot;<%= baseClass ? baseClass + ' ' : '' %><%= classPrefix %><span id="name">name</span>&quot;</code>
+			for add icon on ::before.
+		</p>
+
+		<div class="demo-icon code-demo">
+<h6 class="icon-home"> Home</h6>
+		</div>
+
+		<p>
+			you can wrap bloc content with a <code>i</code> for visually hidden :
+		</p>
+
+		<div class="demo-icon code-demo">
+<h6 class="icon-home"><i>Home</i></h6>
+		</div>
+		
 		<% if (addLigatures) { %>
 		<pre><code>&lt;i class=&quot;ligature-icons&quot;&gt;<span id="name2">name</span>&lt;/i&gt;</code></pre>
 		<% } %>
