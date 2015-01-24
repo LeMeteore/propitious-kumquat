@@ -9,3 +9,37 @@
 	* item 1
 	* Item 2
 -------------------------------------------------------------- */ 
+
+
+/*
+*	White bloc
+*	Add a white background with padding
+*/
+.white_bloc	{
+	background-color: hsla(0, 0%, 100%, 0.7);
+	padding: calc( var(--vr) / 3)rem;
+}
+/*Place label just before white_bloc*/
+.label--white_bloc {
+	margin-bottom: calc( var(--vr) / 6)rem;
+	
+}
+
+
+
+/*
+*	Buttons
+*/
+.btn {
+	/*border: 1px solid;*/
+	display: inline-block;
+	padding: .167em .33em;
+	border-radius: .33em;
+	box-shadow: inset 0 0 .1em currentColor;
+	background-color: var(--color2-light);
+}
+.btn:hover
+, .btn:focus
+{	
+	text-decoration: none;
+}

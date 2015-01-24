@@ -10,12 +10,15 @@
 <div class="content_main">
 
 {% if app_list %}
+
+    <div class="il_grid">
     {% for app in app_list %}
-        <div class="app-{{ app.app_label }} module">
+        <div class="app-{{ app.app_label }} module all-span1-3 v-space">
+            <h2 class="label--white_bloc small">
+                <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+            </h2>
+            <div class="white_bloc">
             <table>
-                <caption>
-                    <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
-                </caption>
                 {% for model in app.models %}
                     <tr class="model-{{ model.object_name|lower }}">
                     {% if model.admin_url %}
@@ -25,21 +28,23 @@
                     {% endif %}
 
                     {% if model.add_url %}
-                        <td><a href="{{ model.add_url }}" class="addlink">{% trans 'Add' %}</a></td>
+                        <td><a href="{{ model.add_url }}" class="btn small addlink">{% trans 'Add' %}</a></td>
                     {% else %}
                         <td>&nbsp;</td>
                     {% endif %}
 
                     {% if model.admin_url %}
-                        <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                        <td><a href="{{ model.admin_url }}" class="btn small changelink">{% trans 'Change' %}</a></td>
                     {% else %}
                         <td>&nbsp;</td>
                     {% endif %}
                     </tr>
                 {% endfor %}
             </table>
+            </div>
         </div>
     {% endfor %}
+    </div>
 {% else %}
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}

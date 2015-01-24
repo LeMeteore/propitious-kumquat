@@ -56,6 +56,11 @@ img[alt="placeholder"].town { background-image : url(../../img/placeholder/town.
     left: 0;
 }
 
+/*force width auto*/
+w-auto {
+    width: auto !important;
+}
+
 
 /*
 *   Horizontale grid
