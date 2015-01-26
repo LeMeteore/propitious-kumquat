@@ -160,6 +160,9 @@ module.exports = function(grunt){
             },
             html : {
                 files : '<%= files.html %>'
+            },
+            doc : {
+                files : 'static/docs/*'
             }
         },
       
