@@ -28,7 +28,9 @@ main    		{  }
 **	Admin Header 
 */
 
-.admin_header	{}
+.admin_header	{
+	margin-bottom: calc( var(--vr) / 2 )rem;
+}
 .branding	{
 	margin-bottom: 0;
 }
@@ -47,6 +49,7 @@ main    		{  }
 
 .l--admin_main_nav	{  
 	border-bottom: 1px solid;
+	margin-bottom: 0;
 }
 .i--admin_main_nav	{
 	padding-bottom: calc( var(--vr) / 3 )rem;
@@ -57,6 +60,12 @@ main    		{  }
 /**
 //	Main
 */
+
+.main--wrapper {
+	background-color: #fff;
+	padding-top: var(--vr)rem;
+	padding-bottom: var(--vr)rem;
+}
 
 .title_main    {  }
 #sidebar			{  }
