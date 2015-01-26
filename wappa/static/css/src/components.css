@@ -32,11 +32,21 @@
 */
 .btn {
 	/*border: 1px solid;*/
-	display: inline-block;
-	padding: .167em .33em;
-	border-radius: .33em;
-	box-shadow: inset 0 0 .1em currentColor;
+	color: var(--color2);
 	background-color: var(--color2-light);
+
+
+	display: inline-block;
+	vertical-align: middle;
+
+	line-height: 2em;
+	height: 2em;
+	padding: 0 .33em;
+	
+	border-radius: .33em;
+	border: 0 none;
+	box-shadow: inset 0 0 .1em currentColor;
+
 }
 .btn:hover
 , .btn:focus
