@@ -19,9 +19,11 @@
 .color1			{ color : var(--color1); }
 .color1-light	{ color : var(--color1-light); }
 .color1-dark	{ color : var(--color1-dark); }
-.color2			{ color : var(--color2); }
-.color2-light	{ color : var(--color2-light); }
-.color2-dark	{ color : var(--color2-dark); }
+
+.color2				{ color : var(--color2); }
+.color2-light		{ color : var(--color2-light); }
+.color2-darkgrey	{ color : var(--color2-darkgrey); }
+.color2-lightgrey	{ color : var(--color2-lightgrey); }
 
 
 
