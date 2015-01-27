@@ -29,15 +29,24 @@ main    		{  }
 */
 
 .admin_header	{
-	margin-bottom: calc( var(--vr) / 2 )rem;
+	padding-bottom: calc( var(--vr) / 2 )rem;
+	padding-top: calc( var(--vr) / 3 )rem;
+	background-color: var(--color2-darkgrey);
+	color: var(--color2-lightgrey);
 }
 .branding	{
 	margin-bottom: 0;
+	text-transform: uppercase;
 }
 .user_tools
 , .branding
 {
 	vertical-align: middle;
+}
+#logo-header {
+	height: 50px;
+	vertical-align: bottom;
+	display: inline-block;
 }
 .user_tools {
 	text-align: right;
@@ -62,13 +71,13 @@ main    		{  }
 */
 
 .main--wrapper {
-	background-color: #fff;
+	/*background-color: #fff;*/
 	padding-top: var(--vr)rem;
 	padding-bottom: var(--vr)rem;
 }
 
-.title_main    {  }
-#sidebar			{  }
+.title_main		{  }
+#sidebar		{  }
  
 /* Nav main */
 .nav_main		{  }
