@@ -31,7 +31,7 @@
 	--hue2 : 240;
 
 	/*Yellow*/
-	--color1      : hsl(60, 30%, 50%);
+	--color1      : hsl(60, 50%, 50%);
 	--color1-light: hsl(60, 20%, 90%);
 	--color1-dark : hsl(60, 50%, 30%);
 	

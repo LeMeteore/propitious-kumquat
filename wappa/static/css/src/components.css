@@ -33,7 +33,7 @@
 .btn {
 	/*border: 1px solid;*/
 	color: var(--color2);
-	background-color: var(--color2-light);
+	background-color: var(--color2-lightgrey);
 
 
 	display: inline-block;
