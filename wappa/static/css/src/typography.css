@@ -22,12 +22,15 @@
 
 .color2				{ color : var(--color2); }
 .color2-light		{ color : var(--color2-light); }
+.color2-grey		{ color : var(--color2-grey); }
 .color2-darkgrey	{ color : var(--color2-darkgrey); }
 .color2-lightgrey	{ color : var(--color2-lightgrey); }
 
 
 
-/* Default font settings. */
+/* 
+**	Default font settings. 
+*/
 html {
 	font-size: 100%; /*default 16px*/
 }
