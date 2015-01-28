@@ -9,19 +9,14 @@ from taggit.managers import TaggableManager
 
 class Entity(TranslatableModel):
     tags = TaggableManager()
+class Country(TranslatableModel):
+    code = models.CharField(max_length=2, primary_key=True)
     translations = TranslatedFields(
-        label = models.CharField(max_length=200),
-        description = models.CharField(max_length=200)
+        name = models.CharField(max_length=200)
         )
-    class Meta:
-        abstract = True
 
-
-class Country(models.Model):
-    label = models.CharField(max_length=200)
     def __str__(self):
-        return "%s" % self.label
-
+        return "%s" % self.lazy_translation_getter('name', str(self.pk))
 
 class Pack(Entity):
     ACTUALITE = 'ACTUALITE'
@@ -37,6 +32,9 @@ class Pack(Entity):
         (ONLINE, 'Online'),
         (OFFLINE, 'Offline'),
         )
+    class Meta:
+        verbose_name = _("country")
+        verbose_name_plural = _("countries")
 
     pack_type = models.CharField(max_length=200,
                                 choices=PACK_TYPE_CHOICES,
