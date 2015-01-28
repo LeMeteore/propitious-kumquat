@@ -34,9 +34,13 @@ main    		{  }
 	background-color: var(--color2-darkgrey);
 	color: var(--color2-lightgrey);
 }
+.admin_header a {
+	color: var(--color1);
+}
 .branding	{
 	margin-bottom: 0;
 	text-transform: uppercase;
+
 }
 .user_tools
 , .branding
@@ -44,7 +48,7 @@ main    		{  }
 	vertical-align: middle;
 }
 #logo-header {
-	height: 50px;
+	height: 40px;
 	vertical-align: bottom;
 	display: inline-block;
 }
@@ -55,14 +59,20 @@ main    		{  }
 /*
 **	Main Nav
 */
+.admin_main_nav {
+	background-color: var(--color2-grey);
+}
 
 .l--admin_main_nav	{  
-	border-bottom: 1px solid;
+	/*border-bottom: 1px solid;*/
 	margin-bottom: 0;
 }
 .i--admin_main_nav	{
-	padding-bottom: calc( var(--vr) / 3 )rem;
+	/*padding-bottom: calc( var(--vr) / 4 )rem;*/
 	/*background-color: #eee;*/
+}
+.a--admin_main_nav	{
+	color: var(--color2-darkgrey);
 }
 
                    
