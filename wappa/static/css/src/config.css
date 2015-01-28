@@ -31,19 +31,18 @@
 	--hue2 : 240;
 
 	/*Yellow*/
-	--color1      : hsl(60, 50%, 50%);
-	--color1-light: hsl(60, 20%, 90%);
-	--color1-dark : hsl(60, 50%, 30%);
+	--color1:			hsl(60, 50%, 50%);
+	--color1-bright: 	hsl(60, 80%, 50%);
+	--color1-light: 	hsl(60, 20%, 90%);
+	--color1-dark : 	hsl(60, 50%, 30%);
 	
 	/*blue*/
 	--color2      : hsl(240, 40%, 40%);
 	--color2-light: hsl(240, 50%, 80%);
 
-	--color2-grey : hsl(240, 20%, 80%);
+	--color2-grey : 	hsl(240, 12%, 75%);
 	--color2-darkgrey : hsl(240, 40%, 10%);
 	--color2-lightgrey: hsl(240, 10%, 95%);
-
-
 }
 
 /*custom-medias*/

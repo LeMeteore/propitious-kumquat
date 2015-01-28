@@ -17,6 +17,7 @@
 
 
 .color1			{ color : var(--color1); }
+.color1-bright	{ color : var(--color1-bright); }
 .color1-light	{ color : var(--color1-light); }
 .color1-dark	{ color : var(--color1-dark); }
 
