@@ -27,7 +27,8 @@
 	font-family:"wappa-icons";
 	display:inline-block;
 	vertical-align:baseline;
-	line-height:1;
+	/*Remplace lh1 by O.5 for a chrome bug*/
+	line-height:.5; 
 	font-weight:normal;
 	font-style:normal;
 	speak:none;
