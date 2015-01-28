@@ -15,7 +15,6 @@ logger = logging.getLogger(__name__)
 import sys
 import boto
 import boto.s3
-boto.set_stream_logger('boto')
 from boto.s3.key import Key
 
 
