@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # my apps
     'apps.photo',
+    'apps.taxonomy',
     'hvad',
     'taggit',
     'celery',
