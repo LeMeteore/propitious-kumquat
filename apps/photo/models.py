@@ -40,7 +40,7 @@ class Photo(models.Model):
     countries = models.ManyToManyField(Country, verbose_name=_('countries'))
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(name='date published', default=datetime.now)
-    packs = models.ManyToManyField(Pack, related_name='images')
+    packs = models.ManyToManyField(Pack, null=True, blank=True, related_name='images')
     status = models.ForeignKey(Status, verbose_name=_('status'))
 
     tags = TaggableManager()
