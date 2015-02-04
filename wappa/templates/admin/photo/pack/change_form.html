@@ -51,11 +51,35 @@
 
 {% block field_sets %}
 {% for fieldset in adminform %}
-  {% include "admin/includes/fieldset.html" %}
+  {% include "admin/photo/pack/includes/fieldset.html" %}
 {% endfor %}
 {% endblock %}
 
-{% block after_field_sets %}{% endblock %}
+    {% block after_field_sets %}
+    {% if has_add_permission %}
+        <ul >
+          {% block add-photo %}
+                      <li>
+              <a href="#" >
+                {% blocktrans %} Upload and add photo {% endblocktrans %}
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'admin:photo_photo_add' %}" >
+                {% blocktrans %} Add photo {% endblocktrans %}
+              </a>
+            </li>
+          {% endblock %}
+        </ul>
+
+      {% endif %}
+
+        {% block pack-photo-list %}
+        {% blocktrans %}Photos linked to current pack{% endblocktrans %}
+        {% load debug_tags %}
+        {% details adminform %}
+        {% endblock %}
+    {% endblock %}
 
 {% block inline_field_sets %}
 {% for inline_admin_formset in inline_admin_formsets %}
