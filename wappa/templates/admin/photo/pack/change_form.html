@@ -81,13 +81,16 @@
 <br>
 <br>
         {% load debug_tags %}
-        {% for a in pack_photos %}
+        {% for a in current_pack.photos.all %}
         <ul>
         <li>{{ a.title }}</li>
         <li>{{ a.description }}</li>
         <li>{{ a.author }}</li>
         <li>{{ a.license }}</li>
+        <li>{{ a.status }}</li>
+        <li>{{ a.id }}</li>
         <li><a href="{% url 'admin:photo_photo_change' a.id %}">{% blocktrans %}update {% endblocktrans %}</a></li>
+        <li><a href="{% url 'admin:rpfp' photo_id=a.id pack_id=current_pack.id %}">{% blocktrans %}remove from pack {% endblocktrans %}</a></li>
                 </ul>
         {% endfor%}
 
