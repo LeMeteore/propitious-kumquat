@@ -1,6 +1,7 @@
 #sqlite database
 db.sqlite3
 
+as3_secret.txt
 secret.txt
 settings.cfg
 

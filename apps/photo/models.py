@@ -5,77 +5,65 @@ from django.db import models
 from datetime import datetime
 from hvad.models import TranslatableModel, TranslatedFields
 from taggit.managers import TaggableManager
+from apps.photo import choices
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
-
-class Entity(TranslatableModel):
-    tags = TaggableManager()
+class Country(TranslatableModel):
+    code = models.CharField(max_length=2, primary_key=True)
     translations = TranslatedFields(
-        label = models.CharField(max_length=200),
-        description = models.CharField(max_length=200)
+        name = models.CharField(max_length=200)
         )
-    class Meta:
-        abstract = True
 
-
-class Country(models.Model):
-    label = models.CharField(max_length=200)
     def __str__(self):
-        return "%s" % self.label
+        return "%s" % self.lazy_translation_getter('name', str(self.pk))
 
+    class Meta:
+        verbose_name = _("country")
+        verbose_name_plural = _("countries")
 
-class Pack(Entity):
-    ACTUALITE = 'ACTUALITE'
-    REPORTAGE = 'REPORTAGE'
-    PACK_TYPE_CHOICES = (
-        (ACTUALITE, 'Actualite'),
-        (REPORTAGE, 'Reportage'),
-        )
-
-    ONLINE = 'ONLINE'
-    OFFLINE = 'OFFLINE'
-    STATUS_CHOICES = (
-        (ONLINE, 'Online'),
-        (OFFLINE, 'Offline'),
-        )
-
+class Pack(TranslatableModel):
     pack_type = models.CharField(max_length=200,
-                                choices=PACK_TYPE_CHOICES,
-                                default=ACTUALITE,
+                                choices=choices.PACK_TYPE_CHOICES,
+                                default=choices.ACTUALITE,
                                 verbose_name="type")
     status = models.CharField(max_length=200,
-                              choices=STATUS_CHOICES,
-                              default=OFFLINE)
+                              choices=choices.STATUS_CHOICES,
+                              default=choices.OFFLINE)
 
-    translations = TranslatedFields()
-    country = models.ManyToManyField(Country)
+    translations = TranslatedFields(
+        title = models.CharField(max_length=200),
+        description = models.CharField(max_length=200)
+        )
+    countries = models.ManyToManyField('Country')
     domain = models.CharField(max_length=200)
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(default=datetime.now, name='date published')
+    begin_date = models.DateField(default=datetime.now, verbose_name=_("begin_date"))
+    end_date = models.DateField(default=datetime.now, verbose_name=_("end_date"))
 
+    tags = TaggableManager()
 
     def __str__(self):
-        return "%s" % self.lazy_translation_getter('label', str(self.pk))
+        return "%s" % self.lazy_translation_getter('title', str(self.pk))
 
-class Photo(Entity):
-    ONLINE = 'ONLINE'
-    OFFLINE = 'OFFLINE'
-    STATUS_CHOICES = (
-        (ONLINE, 'Online'),
-        (OFFLINE, 'Offline'),
-        )
 
-    translations = TranslatedFields()
-    country = models.ManyToManyField(Country)
+class Photo(models.Model):
+    title = models.CharField(max_length=200, default='un titre de photo', verbose_name=_('title'))
+    description = models.CharField(max_length=200, default='une description de photo',)
+
+    author = models.ForeignKey(User, default=1, verbose_name=_('author'))
+    license = models.CharField(max_length=200, default='bsd', verbose_name=_('license'))
+
+    countries = models.ManyToManyField(Country, verbose_name=_('countries'))
     image = models.ImageField(max_length=200, upload_to='wappa')
     pub_date = models.DateField(name='date published', default=datetime.now)
-    pack = models.ManyToManyField(Pack)
+    packs = models.ManyToManyField(Pack, related_name='images')
     status = models.CharField(max_length=200,
-                              choices=STATUS_CHOICES,
-                              default=OFFLINE)
-
+                              choices=choices.STATUS_CHOICES,
+                              default=choices.OFFLINE,
+                              verbose_name=_('status'))
+    tags = TaggableManager()
 
     def __str__(self):
-        return "%s" % self.safe_translation_getter('label', str(self.pk))
-
-
-#    def default_country(self):
+        return "%s" % self.title

@@ -46,10 +46,18 @@ def get_secret_from_file(secret_file):
         error_msg = "Secret file %s missing" % secret_file
         raise ImproperlyConfigured(error_msg)
 
+def get_as3_credentials_from_file(secret_file):
+    try:
+        return [line.strip() for line in open(os.path.join(BASE_DIR, secret_file))]
+    except KeyError:
+        error_msg = "AS3 credentials file %s missing" % secret_file
+        raise ImproperlyConfigured(error_msg)
 
 #SECRET_KEY = get_env_variable('SECRET_KEY')
 #SECRET_KEY = open(os.path.join(BASE_DIR, 'settings/secret.txt')).read().strip()
 SECRET_KEY = get_secret_from_file('settings/secret.txt')
+AWS_ACCESS_KEY_ID = get_as3_credentials_from_file('settings/as3_secret.txt')[0]
+AWS_SECRET_ACCESS_KEY = get_as3_credentials_from_file('settings/as3_secret.txt')[1]
 
 ALLOWED_HOSTS = []
 
@@ -67,6 +75,7 @@ INSTALLED_APPS = (
     'apps.photo',
     'hvad',
     'taggit',
+    'celery',
 )
 
 # https://docs.djangoproject.com/en/1.7/topics/http/middleware/
@@ -155,3 +164,7 @@ TEMPLATE_DIRS = (
 MEDIA_ROOT = "/var/www/wappa/media/"
 
 MEDIA_URL = "/media/"
+
+# Celery settings
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
