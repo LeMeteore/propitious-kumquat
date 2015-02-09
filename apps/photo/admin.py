@@ -15,7 +15,12 @@ class PhotoModelAdmin(admin.ModelAdmin):
         UploadToAS3.delay(obj.image.name)
 
 class PackModelAdmin(TranslatableAdmin):
-    pass
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        pack_photos = Pack.objects.get(pk=object_id).photos.all()
+        extra_context['pack_photos'] = pack_photos
+        return super(PackModelAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
+
 
 admin.site.register(Photo, PhotoModelAdmin)
 admin.site.register(Pack, PackModelAdmin)

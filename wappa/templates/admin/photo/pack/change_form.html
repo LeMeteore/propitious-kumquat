@@ -56,7 +56,7 @@
 {% endblock %}
 
     {% block after_field_sets %}
-    {% if has_add_permission %}
+<!--    {% if has_add_permission %}
         <ul >
           {% block add-photo %}
                       <li>
@@ -73,11 +73,24 @@
         </ul>
 
       {% endif %}
-
+        -->
+<br>
         {% block pack-photo-list %}
-        {% blocktrans %}Photos linked to current pack{% endblocktrans %}
+{% blocktrans %}Photos linked to current pack{% endblocktrans %}
+
+<br>
+<br>
         {% load debug_tags %}
-        {% details adminform %}
+        {% for a in pack_photos %}
+        <ul>
+        <li>{{ a.title }}</li>
+        <li>{{ a.description }}</li>
+        <li>{{ a.author }}</li>
+        <li>{{ a.license }}</li>
+        <li><a href="{% url 'admin:photo_photo_change' a.id %}">{% blocktrans %}update {% endblocktrans %}</a></li>
+                </ul>
+        {% endfor%}
+
         {% endblock %}
     {% endblock %}
 
