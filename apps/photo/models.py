@@ -43,7 +43,8 @@ class Pack(TranslatableModel):
         )
     countries = models.ManyToManyField(Country)
     domain = models.ForeignKey(Domain, verbose_name=_('domain'))
-    image = models.ImageField(max_length=200, upload_to='wappa')
+    image = models.ForeignKey(Photo, null=True, blank=True, verbose_name=_('image preview'))
+
     pub_date = models.DateField(default=datetime.now, name='date published')
     begin_date = models.DateField(default=datetime.now, verbose_name=_("begin_date"))
     end_date = models.DateField(default=datetime.now, verbose_name=_("end_date"))
