@@ -39,7 +39,7 @@ main    		{  }
 }
 .branding	{
 	margin-bottom: 0;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 
 }
 .user_tools
@@ -48,7 +48,7 @@ main    		{  }
 	vertical-align: middle;
 }
 #logo-header {
-	height: 1.5em;
+	height: 2em;
 	vertical-align: bottom;
 	display: inline-block;
 }

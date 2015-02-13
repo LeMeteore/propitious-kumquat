@@ -43,8 +43,20 @@
         <div class="wrapper">
 
             <div class="tb_grid">
-                
-                {% block branding %}{% endblock %}
+                    
+                <h1 class="branding h6">
+
+                    {% block branding %}{% endblock %}
+
+                    {% block breadcrumbs %}
+                        <span class="breadcrumbs">
+                            <a href="{% url 'admin:index' %}">Home</a>
+                            {% block breadcrumbs-childs %}
+
+                            {% endblock %}
+                        </span>
+                    {% endblock %}
+                </h1>
                 
                 {% if user.is_active and user.is_staff %}
                     <div class="user_tools xsmall">
@@ -105,22 +117,6 @@
     <main role="main">
 
         <div class="wrapper main--wrapper">
-            
-            {% if not is_popup %}
-                {% block breadcrumbs %}
-                    <div class="breadcrumbs">
-                        <a href="{% url 'admin:index' %}" class="icon-home"><i>{% trans 'Home' %}</i></a>
-                        {% block breadcrumbs-childs %}
-                            {% if title %} 
-                                &rsaquo; 
-                                {{ title }}
-                            {% endif %}
-                        {% endblock %}
-                    </div>
-                    {% endblock %}
-            {% endif %} {# not is_popup #}
-
-
             
             {% block pretitle %}{% endblock %}
             
