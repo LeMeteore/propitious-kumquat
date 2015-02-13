@@ -5,65 +5,62 @@ from django.db import models
 from datetime import datetime
 from hvad.models import TranslatableModel, TranslatedFields
 from taggit.managers import TaggableManager
-from apps.photo import choices
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from apps.taxonomy.models import Country, Domain, Status, Gender
 
-class Country(TranslatableModel):
-    code = models.CharField(max_length=2, primary_key=True)
-    translations = TranslatedFields(
-        name = models.CharField(max_length=200)
-        )
+from django.core import urlresolvers
+from django.contrib.contenttypes.models import ContentType
+
+class Photo(models.Model):
+    title = models.CharField(max_length=200, verbose_name=_('title'))
+    description = models.TextField(max_length=200, verbose_name=_('description'))
+
+    author = models.ForeignKey(User, verbose_name=_('author'))
+    license = models.CharField(max_length=200, verbose_name=_('license'))
+    width = models.IntegerField(max_length=200, verbose_name=_('width'))
+    height = models.IntegerField(max_length=200, verbose_name=_('heigth'))
+    camera_model = models.CharField(max_length=200, verbose_name=_('camera_model'))
+    sensibilite_iso = models.CharField(max_length=200, verbose_name=_('sensibilite_iso'))
+    focal = models.CharField(max_length=200, verbose_name=_('focal'))
+    ouverture = models.CharField(max_length=200, verbose_name=_('ouverture'))
+    temps_de_pause = models.CharField(max_length=200, verbose_name=_('temps_de_pause'))
+    countries = models.ManyToManyField(Country, verbose_name=_('countries'))
+    image = models.ImageField(max_length=200, upload_to='wappa')
+    pub_date = models.DateField(name='date published', default=datetime.now)
+    status = models.ForeignKey(Status, verbose_name=_('status'))
+
+    photo_tags = TaggableManager(blank=True)
 
     def __str__(self):
-        return "%s" % self.lazy_translation_getter('name', str(self.pk))
+        return "%s" % self.title
 
-    class Meta:
-        verbose_name = _("country")
-        verbose_name_plural = _("countries")
+    def get_change_urls(self):
+        content_type = ContentType.objects.get_for_model(self.__class__)
+        return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model),args=(self.id,))
 
 class Pack(TranslatableModel):
-    pack_type = models.CharField(max_length=200,
-                                choices=choices.PACK_TYPE_CHOICES,
-                                default=choices.ACTUALITE,
-                                verbose_name="type")
-    status = models.CharField(max_length=200,
-                              choices=choices.STATUS_CHOICES,
-                              default=choices.OFFLINE)
-
     translations = TranslatedFields(
-        title = models.CharField(max_length=200),
-        description = models.CharField(max_length=200)
+        title = models.CharField(max_length=200, verbose_name=_('title')),
+        description = models.TextField(max_length=200, verbose_name=_('description'))
         )
-    countries = models.ManyToManyField('Country')
-    domain = models.CharField(max_length=200)
-    image = models.ImageField(max_length=200, upload_to='wappa')
+    pack_type = models.ForeignKey(Gender, verbose_name=_('type'))
+    status = models.ForeignKey(Status, verbose_name=_('status'))
+    countries = models.ManyToManyField(Country)
+    domain = models.ForeignKey(Domain, verbose_name=_('domain'))
+    image = models.ForeignKey(Photo, null=True, blank=True, verbose_name=_('image preview'))
+
     pub_date = models.DateField(default=datetime.now, name='date published')
     begin_date = models.DateField(default=datetime.now, verbose_name=_("begin_date"))
     end_date = models.DateField(default=datetime.now, verbose_name=_("end_date"))
 
-    tags = TaggableManager()
+    photos = models.ManyToManyField(Photo, null=True, blank=True, related_name='packs')
+
+    pack_tags = TaggableManager(blank=True)
 
     def __str__(self):
         return "%s" % self.lazy_translation_getter('title', str(self.pk))
 
-
-class Photo(models.Model):
-    title = models.CharField(max_length=200, default='un titre de photo', verbose_name=_('title'))
-    description = models.CharField(max_length=200, default='une description de photo',)
-
-    author = models.ForeignKey(User, default=1, verbose_name=_('author'))
-    license = models.CharField(max_length=200, default='bsd', verbose_name=_('license'))
-
-    countries = models.ManyToManyField(Country, verbose_name=_('countries'))
-    image = models.ImageField(max_length=200, upload_to='wappa')
-    pub_date = models.DateField(name='date published', default=datetime.now)
-    packs = models.ManyToManyField(Pack, related_name='images')
-    status = models.CharField(max_length=200,
-                              choices=choices.STATUS_CHOICES,
-                              default=choices.OFFLINE,
-                              verbose_name=_('status'))
-    tags = TaggableManager()
-
-    def __str__(self):
-        return "%s" % self.title
+    def get_change_urls(self):
+        content_type = ContentType.objects.get_for_model(self.__class__)
+        return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model), args=(self.id,))

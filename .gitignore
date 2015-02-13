@@ -63,4 +63,8 @@ target/
 # Grunt node modules
 wappa/node_modules/
 
+# minified css version for admin
 wappa/static/admin/css/adminwappa.min.css
+
+# media folder
+wappa/media
