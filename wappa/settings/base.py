@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'hvad',
     'taggit',
     'celery',
+    'imagekit',
 )
 
 # https://docs.djangoproject.com/en/1.7/topics/http/middleware/
