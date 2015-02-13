@@ -17,9 +17,9 @@
     {% endfor %}
 
     {% comment %}
-    Mark prepopulated fields in the main form and stacked inlines (.empty-form .form-row) and in tabular inlines (.empty-form.form-row)
+    Mark prepopulated fields in the main form and stacked inlines (.empty-form .form-item) and in tabular inlines (.empty-form.form-item)
     {% endcomment %}
-    $('.empty-form .form-row .field-{{ field.field.name }}, .empty-form.form-row .field-{{ field.field.name }}').addClass('prepopulated_field');
+    $('.empty-form .form-item .field-{{ field.field.name }}, .empty-form.form-item .field-{{ field.field.name }}').addClass('prepopulated_field');
     $(field.id).data('dependency_list', field['dependency_list'])
                .prepopulate(field['dependency_ids'], field.maxLength);
 {% endfor %}
