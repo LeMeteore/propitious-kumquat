@@ -1,3 +1,4 @@
+@import "config.min.css";
 /* --------------------------------------------------------------
 	forms.css
 		define default form styles
@@ -21,6 +22,8 @@ input[type="submit"]::-moz-focus-inner
 	border: 0; 
 	padding: 0; 
 }
+/*inherit color*/
+/*input[type=button], input[type=submit], button { color: inherit; }*/
 
 /*
 //	Fieldset + legend
@@ -33,7 +36,7 @@ fieldset    {
 legend      { 
 	font-size: 1.36em; /*.h5*/
 	white-space: nowrap; 
-	border-bottom: 1px solid;
+	border-bottom: 1px solid var(--color2-grey);
 	display: block;
 	width: 100%;
 	padding-bottom: 0.33em;
@@ -41,7 +44,7 @@ legend      {
 /*Fieldset border*/
 .fieldset-border {
 	margin: 0 0 1.5em 0; 
-	border: 1px solid #ccc; 
+	border: 1px dashed var(--color2-grey); 
 	padding: 0 1em 0.66em 1em;	
 }
 .fieldset-border legend {
@@ -63,7 +66,7 @@ legend      {
 label       { 
 	text-transform: uppercase; 
 	font-size: .85em;  /* .small */
-	color: #666;
+	color: var(--color2-grey);
 }
 
 
@@ -75,20 +78,21 @@ input
 , textarea
 , select 
 {
-	background-color:#eee;
+	background-color: transparent;
 	min-width: 100%; max-width: 100%;
 	padding: 0.33em;
-	border: 1px solid #ccc;
+	border: 0 dashed var(--color2-grey);
+	border-bottom-width: 1px;
 	height: 2em;
 }
 select {
+	border-width: 1px;
 	width: 100%;
 }
 input:focus
 , textarea:focus
 , select:focus 
 {
-	border-color:#666;
 	background-color: #fff;
 }
 input[type=checkbox]
@@ -100,6 +104,7 @@ input[type=checkbox]
 	max-width: none;
 }
 textarea {
+	border-width: 1px;
 	font: inherit;
 	resize: vertical;
 }
@@ -144,6 +149,7 @@ input[type=date] {
 	min-width: 0;
 	width: auto;
 	vertical-align: middle;
+	border-width: 1px;
 }
 .inline-form li {
 	margin-right: 1em; 
@@ -160,7 +166,9 @@ input[type=date] {
 	display: table;
 	width: 100%;
 }
-.input-group > * {
+.input-group > * 
+, .input-addon.btn
+{
 	display: table-cell;
 	vertical-align: middle;
 }
@@ -169,8 +177,9 @@ input[type=date] {
 }
 .input-addon {
 	width: 1%;
-	background-color: #ddd;
-	border: 1px solid #999;
+	/*background-color: #ddd;*/
+	/*border: 1px solid #999;*/
+	border-bottom: 1px dashed var(--color2-grey);
 }
 span.input-addon {
 	padding: 0 0.33em;	
