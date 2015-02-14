@@ -209,15 +209,30 @@ var DateTimeShortcuts = {
 
         // Shortcut links (calendar icon and "Today" link)
         var shortcuts_span = document.createElement('span');
-        shortcuts_span.className = DateTimeShortcuts.shortCutsClass;
-        inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling);
+
+        // shortcuts_span.className = DateTimeShortcuts.shortCutsClass; //origin line
+        shortcuts_span.className = DateTimeShortcuts.shortCutsClass + " input-addon" ; //add class input-addon
+
+
+        // inp.parentNode.insertBefore(shortcuts_span, inp.nextSibling); //origin line
+        inp.parentNode.insertBefore(shortcuts_span, inp); // sacripant change
+
+        django.jQuery(shortcuts_span).add(inp).wrapAll('<div class="input-group" />'); // Add sacripant : add wrap input-group el
+ 
+        // Today link
         var today_link = document.createElement('a');
         today_link.setAttribute('href', 'javascript:DateTimeShortcuts.handleCalendarQuickLink(' + num + ', 0);');
         today_link.appendChild(document.createTextNode(gettext('Today')));
+
+        // Icon calendar link
         var cal_link = document.createElement('a');
         cal_link.setAttribute('href', 'javascript:DateTimeShortcuts.openCalendar(' + num + ');');
         cal_link.id = DateTimeShortcuts.calendarLinkName + num;
-        quickElement('img', cal_link, '', 'src', DateTimeShortcuts.admin_media_prefix + 'img/icon_calendar.gif', 'alt', gettext('Calendar'));
+        cal_link.className = "icon-calendar h6"; // Add sacripant = use font icon
+
+        // quickElement('img', cal_link, '', 'src', DateTimeShortcuts.admin_media_prefix + 'img/icon_calendar.gif', 'alt', gettext('Calendar')); // origine line
+        quickElement( 'i', cal_link, gettext('Calendar') ); // Sacripant Change
+        
         shortcuts_span.appendChild(document.createTextNode('\240'));
         shortcuts_span.appendChild(today_link);
         shortcuts_span.appendChild(document.createTextNode('\240|\240'));

@@ -180,7 +180,9 @@ input[type=date] {
 	/*background-color: #ddd;*/
 	/*border: 1px solid #999;*/
 	border-bottom: 1px dashed var(--color2-grey);
+	white-space: nowrap;
 }
+/*use span for addon if you want a padding*/
 span.input-addon {
 	padding: 0 0.33em;	
 }
