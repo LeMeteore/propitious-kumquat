@@ -139,6 +139,8 @@
 	</fieldset>
 </form>	
 	</div>
+
+	<h1>Form composants</h1>
 	
 	<h2>Input group</h2>
 	
@@ -201,6 +203,50 @@
 
 	</div>
 	<!-- /.code-demo -->
+
+	
+
+	<h2>Calendar - Admin</h2>
+	
+	<div class="alerte__notif">
+		<p>
+			For Admin only ! (based on Django Js code)
+		</p>
+
+		<p>
+			Requirements :
+		</p>
+
+		<ul>
+			<li>Core.js</li>
+			<li>DateTimeShortcuts.js</li>
+		</ul>
+
+	</div>
+
+	<p>Ajouter la class <code>vDateField</code> à l'input de type text</p>
+
+
+		<div class="code-demo">
+		
+<form>
+    <div class="form-item field-begin_date">
+            <div>
+                    <label class="required" for="id_begin_date">Begin_date:</label>   
+                    <input class="vDateField" id="id_begin_date" name="begin_date" size="10" type="text" value="14/02/2015" />
+                    <input id="initial-id_begin_date" name="initial-begin_date" type="hidden" value="2015-02-14 13:45:34" />
+            </div>
+        
+    </div>
+</form>
+
+		</div>
+	<!-- /.code-demo -->
+
+
+
+
+
 	
 	
 </section> <!-- #doc-forms -->

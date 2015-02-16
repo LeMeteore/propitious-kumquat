@@ -2,7 +2,8 @@
 /*global tinycolor*/
 
 
-$(function() { 
+
+(function($) { 
 'use strict';
 
     /*
@@ -195,5 +196,5 @@ $(function() {
     
     
     
-});
+})(django.jQuery);
 
