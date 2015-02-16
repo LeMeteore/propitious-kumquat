@@ -178,7 +178,7 @@ module.exports = function(grunt){
 
     
     // Run plugins
-    grunt.registerTask('default', ['cssmin:vars','cssnext']);
+    grunt.registerTask('default', ['watch']);
     grunt.registerTask('frontcss', ['cssmin:vars','cssnext', 'cssmin:front']);
     grunt.registerTask('admincss', ['cssmin:vars','cssnext', 'cssmin:admin']);
     grunt.registerTask('icons', ['svgmin:icons','webfont:icons']);
