@@ -62,3 +62,6 @@ target/
 
 # Grunt node modules
 wappa/node_modules/
+
+#wappa/media
+wappa/media
