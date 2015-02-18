@@ -38,7 +38,7 @@
 	
 	/*blue*/
 	--color2      : hsl(240, 40%, 40%);
-	--color2-light: hsl(240, 50%, 80%);
+	--color2-light: hsl(240, 40%, 80%);
 
 	--color2-grey : 	hsl(240, 12%, 55%);
 	--color2-darkgrey : hsl(240, 40%, 10%);

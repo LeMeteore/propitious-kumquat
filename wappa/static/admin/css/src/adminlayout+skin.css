@@ -115,6 +115,23 @@ main    		{  }
 }
 
 
+
+
+/*
+**	Sub Nav
+*/
+
+.admin_sub_nav {
+	padding: calc( var(--vr) / 3 )em 0;
+	/*background-color: hsla(0, 0%, 0%, .05);*/
+	border-bottom: 2px solid #fff;
+}
+
+.i--admin_sub_nav {
+	vertical-align: middle;
+}
+
+
 /**
 //	Main
 */

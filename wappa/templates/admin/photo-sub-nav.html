@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls admin_static admin_list %}
+
+
+
+{% block sub-nav %}
+	<div class="admin_sub_nav">
+		<div class="wrapper">
+
+			<h3 class="visuallyhidden">Photo: navigation secondaire</h3>
+
+			<ul class="l--admin_sub_nav il_grid">
+				<li class="i--admin_sub_nav">
+                    <a 
+                    	href="{% url 'admin:photo_pack_add' %}" 
+                    	class="add__btn icon-plus small"
+                    >
+                        New Pack
+                    </a>
+				</li>
+				<li class="i--admin_sub_nav">
+					<a 
+						href="{% url 'admin:photo_pack_changelist' %}" 
+						class="a__admin-sub-nav"
+					>
+						Packs list
+					</a>
+				</li>
+				<li class="i--admin_sub_nav">
+					<a 
+						href="{% url 'admin:photo_photo_changelist' %}"
+					>
+						Photos list
+					</a>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+
+
+
+{% endblock %}

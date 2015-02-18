@@ -1,4 +1,5 @@
-{% load admin_static %}{% load firstof from future %}<!DOCTYPE html>
+{% load admin_static %}{% load firstof from future %} 
+<!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
 <head>
 
@@ -34,7 +35,6 @@
 {% load i18n %}
 
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
-
 
     {% if not is_popup %}
     <!-- Header -->
@@ -97,9 +97,13 @@
         </nav>
     {% endblock %}
 
+    {% block sub-nav %}{% endblock %}
 
     {% endif %} {# not is_popup #}
-    
+
+
+
+
 
     {% block messages %}
         {% if messages %}
