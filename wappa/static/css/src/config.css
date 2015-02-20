@@ -43,6 +43,10 @@
 	--color2-grey : 	hsl(240, 12%, 55%);
 	--color2-darkgrey : hsl(240, 40%, 10%);
 	--color2-lightgrey: hsl(240, 10%, 95%);
+
+	/*Notifs*/
+	--color-error   : hsl(0, 75%, 45%);
+	--color-error-bg: hsl(0, 40%, 85%);
 }
 
 /*custom-medias*/

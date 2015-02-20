@@ -197,14 +197,41 @@ span.input-addon {
 
 
 
-/* 
-//	Success, notice and error boxes
+/*
+*	Notifications
+*	* Error
+*	* notif
+*	* success
 */
 
-.error,.notice,.success	{ padding: .5em; margin-bottom: 1em; border: 2px solid #ddd; }
-.error       			{ background: #FBE3E4; color: #8a1f11; border-color: #FBC2C4; }
-.notice                 { background: #d1ecf7; color: #11689e; border-color: #bcdfef; }
-.success 				{ background: #E6EFC2; color: #264409; border-color: #C6D880; }
+/*colors*/
+.color-error	{ color: var(--color-error); }
+.color-error-bg	{ color: var(--color-error-bg); }
+
+.notif	{ 
+	padding: .5em; 
+	margin-bottom: 1em; 
+	border: 1px solid; 
+}
+
+.error		{ 
+	color: var(--color-error);
+}
+.notif.error 
+, .error input
+, .error textarea
+, .error select
+{
+	background: var(--color-error-bg); 	
+}
+.notice		{ 
+	background: #d1ecf7; 
+	color: #11689e; 
+}
+.success	{ 
+	background: #E6EFC2; 
+	color: #264409; 
+}
 
 .error a,				{ color: #8a1f11; }
 .notice a               { color: #514721; }
@@ -216,4 +243,4 @@ span.input-addon {
 //	add * after label.required 
 */
 
-label.required:after	{ content: " *"; color: red;}
+label.required:after	{ content: " *"; color: var(--color-error); }

@@ -87,19 +87,12 @@
 }
 
 
-
-
-
-
-
-
 /*
 **	max-width bloc
 */
 
 .mw-s	{
 	max-width: calc( var(--vr) * 15 )em;
-
 }
 
 .mw-m	{

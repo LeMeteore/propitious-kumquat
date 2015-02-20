@@ -142,45 +142,15 @@ main    		{  }
 	padding-bottom: var(--vr)rem;
 }
 
-.title_main		{  }
-#sidebar		{  }
- 
-/* Nav main */
-.nav_main		{  }
-.ul-nav_main	{  }
-.li-nav_main	{  }
-.a-nav_main		{  }
 
-                  
-.content_main   {  }
-.title-article  {  }
-.meta-article   {  /*div englobant les informations sur l'article (date,auteur,catégories,etc.*/}
-date            {  /*abbr*/}
-.auteur         {  }
-.invit-comment  {  /*lien vers le form de commentaire*/}
-.nb-comment     {  }
-.categorie      {  }
-.resume         {  }
-.article-img    {  }
-.body           {  }
 
-/**
-//	Images et galerie
+/*	
+**	Admin components
+**
 */
 
-.thumb      {/*pour toutes les vignettes*/}
-.fullsize   {/*pour toutes les img full size*/}
-        
-.galimg		   {/*ul ou ol de galerie images*/}
-.li-galimg     {  }
-.a-galimg      {  }
-
-/**
-//	Site footer
-*/
-
-.nav_footer     {  }
-.ul-nav_footer  {  }
-.li-nav_footer  {  }
-.a-nav_footer   {  }
-
+/*	Notifs */
+.errorlist {
+	margin-bottom: 0;
+	font-size: var(--fs-small)em;
+}
