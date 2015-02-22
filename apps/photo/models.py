@@ -12,7 +12,23 @@ from apps.taxonomy.models import Country, Domain, Status, Gender
 from django.core import urlresolvers
 from django.contrib.contenttypes.models import ContentType
 
+import os
+from django.conf import settings
+
 class Photo(models.Model):
+    # function called after the save function is called to rename image filename
+    def content_file_name(instance, filename):
+        fname, fext = os.path.splitext(filename)
+        filename = "%s_%s_%s%s%s%s" % (instance.author_id,
+                                        instance.id,
+                                        instance.width, "x", instance.height,
+                                        fext)
+        full_filename = os.path.join('wappa', filename)
+        # remove file if exists
+        if os.path.isfile(os.path.join(settings.MEDIA_ROOT, full_filename)):
+            os.remove(os.path.join(settings.MEDIA_ROOT, full_filename))
+        return full_filename
+
     title = models.CharField(max_length=200, verbose_name=_('title'))
     description = models.TextField(max_length=200, verbose_name=_('description'))
 
@@ -26,7 +42,7 @@ class Photo(models.Model):
     ouverture = models.CharField(max_length=200, verbose_name=_('ouverture'))
     temps_de_pause = models.CharField(max_length=200, verbose_name=_('temps_de_pause'))
     countries = models.ManyToManyField(Country, verbose_name=_('countries'))
-    image = models.ImageField(max_length=200, upload_to='wappa')
+    image = models.ImageField(max_length=200, upload_to=content_file_name)
     pub_date = models.DateField(name='date published', default=datetime.now)
     status = models.ForeignKey(Status, verbose_name=_('status'))
 
@@ -37,7 +53,24 @@ class Photo(models.Model):
 
     def get_change_urls(self):
         content_type = ContentType.objects.get_for_model(self.__class__)
-        return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model),args=(self.id,))
+        return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label,
+                                                            content_type.model),
+                                                            args=(self.id,))
+
+    @property
+    def filename(self):
+        return os.path.basename(self.image.name)
+
+    def save(self, *args, **kwargs):
+        # save image, to set the id object
+        if self.id is None:
+            tmp_img, self.image = self.image, None
+            super(Photo, self).save(*args, **kwargs)
+            self.image = tmp_img
+
+        # self.image has changed, so save is called again
+        super(Photo, self).save(*args, **kwargs)
+
 
 class Pack(TranslatableModel):
     translations = TranslatedFields(
