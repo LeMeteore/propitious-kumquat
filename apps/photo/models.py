@@ -13,16 +13,21 @@ from django.core import urlresolvers
 from django.contrib.contenttypes.models import ContentType
 
 import os
+from django.conf import settings
 
 class Photo(models.Model):
-    # function called after the save function is called
+    # function called after the save function is called to rename image filename
     def content_file_name(instance, filename):
         fname, fext = os.path.splitext(filename)
         filename = "%s_%s_%s%s%s%s" % (instance.author_id,
                                         instance.id,
                                         instance.width, "x", instance.height,
                                         fext)
-        return os.path.join('wappa', filename)
+        full_filename = os.path.join('wappa', filename)
+        # remove file if exists
+        if os.path.isfile(os.path.join(settings.MEDIA_ROOT, full_filename)):
+            os.remove(os.path.join(settings.MEDIA_ROOT, full_filename))
+        return full_filename
 
     title = models.CharField(max_length=200, verbose_name=_('title'))
     description = models.TextField(max_length=200, verbose_name=_('description'))
