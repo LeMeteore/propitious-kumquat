@@ -15,13 +15,13 @@ from django.contrib.contenttypes.models import ContentType
 import os
 
 class Photo(models.Model):
-
+    # function called after the save function is called
     def content_file_name(instance, filename):
-        ext = filename.split('.')[-1]
-        filename = "%s_%s_%s%s%s.%s" % (instance.author_id,
-                                        instance.title.replace (" ", "_"),
+        fname, fext = os.path.splitext(filename)
+        filename = "%s_%s_%s%s%s%s" % (instance.author_id,
+                                        instance.id,
                                         instance.width, "x", instance.height,
-                                        ext)
+                                        fext)
         return os.path.join('wappa', filename)
 
     title = models.CharField(max_length=200, verbose_name=_('title'))
@@ -51,6 +51,20 @@ class Photo(models.Model):
         return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label,
                                                             content_type.model),
                                                             args=(self.id,))
+
+    @property
+    def filename(self):
+        return os.path.basename(self.image.name)
+
+    def save(self, *args, **kwargs):
+        # save image, to set the id object
+        if self.id is None:
+            tmp_img, self.image = self.image, None
+            super(Photo, self).save(*args, **kwargs)
+            self.image = tmp_img
+
+        # self.image has changed, so save is called again
+        super(Photo, self).save(*args, **kwargs)
 
 
 class Pack(TranslatableModel):
