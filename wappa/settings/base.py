@@ -170,3 +170,93 @@ MEDIA_URL = "/media/"
 # Celery settings
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Logging configuration only works if the DEBUG = False ?!?!?!
+#
+LOGGING_CONFIG = None
+LOGFILE_SIZE = 50000
+# Log file count
+LOGFILE_COUNT = 10
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+            'datefmt' : "%d/%b/%Y %H:%M:%S",
+            },
+        'simple': {
+            'format': '%(levelname)s %(asctime) %(module) %(message)s',
+            'datefmt' : "%d/%b/%Y %H:%M:%S",
+            },
+        },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+            },
+        'syslog': {
+            'level':'DEBUG',
+            'class':'logging.handlers.SysLogHandler',
+            'formatter': 'verbose',
+            'facility': 'logging.handlers.SysLogHandler.LOG_LOCAL2',
+            },
+        'console':{
+            'level':'DEBUG',
+            'class':'logging.StreamHandler',
+            'formatter': 'verbose'
+            },
+        'django': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/django.log"),
+            'formatter': 'simple'
+            },
+        'django_rotate': {
+            'level': 'DEBUG',
+            'formatter': 'verbose',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/django_rotate.log"),
+            'maxBytes': LOGFILE_SIZE,
+            'backupCount': LOGFILE_COUNT,
+            },
+        'django_requests': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/django_requests.log"),
+            },
+        'apps': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/apps.log"),
+            'formatter': 'simple'
+            },
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['django_requests'],
+                'level': 'DEBUG',
+                'propagate': True,
+                },
+            'django': {
+                'handlers': ['django'],
+                'level': 'DEBUG',
+                'propagate': True,
+                },
+            'apps.photo': {
+                'handlers': ['apps'],
+                'level': 'DEBUG',
+                'propagate':True,
+            },
+        },
+    }
+
+
+import logging.config
+logging.config.dictConfig(LOGGING)
