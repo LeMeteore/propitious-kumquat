@@ -12,6 +12,8 @@ from django.core import urlresolvers
 from django.http import HttpResponseRedirect
 
 from django.contrib import messages
+from django import forms
+from hvad.forms import TranslatableModelForm
 
 class PhotoModelAdmin(admin.ModelAdmin):
 
@@ -19,7 +21,16 @@ class PhotoModelAdmin(admin.ModelAdmin):
         obj.save()
         UploadToAS3.delay(obj.image.name)
 
+
+class PackAdminForm(TranslatableModelForm):
+    class Meta:
+        model = Pack
+        widgets = {
+            'image': forms.TextInput(),
+            }
+
 class PackModelAdmin(TranslatableAdmin):
+    form = PackAdminForm
     def get_urls(self):
         urls = super(PackModelAdmin, self).get_urls()
         custom_urls = patterns('',
