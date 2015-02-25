@@ -43,7 +43,9 @@ class PackModelAdmin(TranslatableAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         pack = Pack.objects.get(pk=object_id)
+        pack_images = [ x for x in pack.photos.all() ]
         extra_context['current_pack'] = pack
+        extra_context['pack_images'] = pack_images
         return super(PackModelAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
 
     def remove_photo_from_pack(self, request, photo_id, pack_id):
