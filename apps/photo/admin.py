@@ -15,6 +15,11 @@ from django.contrib import messages
 from django import forms
 from hvad.forms import TranslatableModelForm
 
+import json
+from django.shortcuts import get_object_or_404
+#from django.forms.models import model_to_dict
+from django.core import serializers
+
 class PhotoModelAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
@@ -34,10 +39,13 @@ class PackModelAdmin(TranslatableAdmin):
     def get_urls(self):
         urls = super(PackModelAdmin, self).get_urls()
         custom_urls = patterns('',
-                               url(r'(?P<pack_id>\d+)/remove_photo/(?P<photo_id>\d+)/$',
-                                self.admin_site.admin_view(self.remove_photo_from_pack),
-                                name='rpfp'),
-                                )
+                                url(r'(?P<pack_id>\d+)/remove-photo/(?P<photo_id>\d+)/$',
+                                    self.admin_site.admin_view(self.remove_photo_from_pack),
+                                    name='rpfp'),)
+        custom_urls += patterns('',
+                                url(r'(?P<pack_id>\d+)/pack-images/$',
+                                    self.admin_site.admin_view(self.pack_images),
+                                    name='pack-images'),)
         return custom_urls + urls
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -53,6 +61,18 @@ class PackModelAdmin(TranslatableAdmin):
         photo = Photo.objects.get(pk=photo_id)
         Pack.objects.get(pk=pack_id).photos.remove(photo)
         return HttpResponseRedirect(urlresolvers.reverse("admin:photo_pack_change",args=(pack_id,)))
+
+    def pack_images(self, request, pack_id):
+        if request.is_ajax():
+            pack = get_object_or_404(Pack, id=pack_id)
+            pack_images = pack.photos.all()
+            #message = [ model_to_dict(x) for x in pack_images ]
+            message = serializers.serialize(pack_images)
+        else:
+            message = "You're the lying type, I can just tell."
+        json = json.dumps(message)
+        return HttpResponse(json, mimetype='application/json')
+
 
 admin.site.register(Photo, PhotoModelAdmin)
 admin.site.register(Pack, PackModelAdmin)
