@@ -59,7 +59,7 @@ SECRET_KEY = get_secret_from_file('settings/secret.txt')
 AWS_ACCESS_KEY_ID = get_as3_credentials_from_file('settings/as3_secret.txt')[0]
 AWS_SECRET_ACCESS_KEY = get_as3_credentials_from_file('settings/as3_secret.txt')[1]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*'
 
 
 # Application definition
