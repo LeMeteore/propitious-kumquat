@@ -21,6 +21,22 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 
 class PhotoModelAdmin(admin.ModelAdmin):
+    def get_urls(self):
+        urls = super(PhotoModelAdmin, self).get_urls()
+        custom_photo_urls = patterns('',
+                                url(r'informations/(?P<photo_id>\d+)/$',
+                                    self.admin_site.admin_view(self.informations),
+                                    name='photo-informations'),)
+        return custom_photo_urls + urls
+
+    def informations(self, request, photo_id):
+        if request.is_ajax():
+            photo = get_object_or_404(Photo, id=photo_id)
+            message = serializers.serialize(photo)
+        else:
+            message = "You're the lying type, I can just tell."
+        json = json.dumps(message)
+        return HttpResponse(json, mimetype='application/json')
 
     def save_model(self, request, obj, form, change):
         obj.save()
