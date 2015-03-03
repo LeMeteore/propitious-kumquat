@@ -51,6 +51,25 @@ class PackAdminForm(TranslatableModelForm):
             }
 
 class PackModelAdmin(TranslatableAdmin):
+    use_fieldsets = (
+        (_("Dates"), {
+            'fields': ('date published', 'begin_date', 'end_date',)
+            }),
+        (_("Images"), {
+            'fields': ('photos', 'image',)
+            }),
+        (_("Taxonomy"), {
+            'fields': ('domain', 'countries','status','pack_type','pack_tags',)
+            }),
+        (_("Language dependent"), {
+            'fields': ('title', 'description',),
+            }),
+        )
+
+    def get_fieldsets(self, request, obj=None):
+        return self.use_fieldsets
+
+
     form = PackAdminForm
     def get_urls(self):
         urls = super(PackModelAdmin, self).get_urls()
