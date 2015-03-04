@@ -51,6 +51,7 @@ class PackAdminForm(TranslatableModelForm):
             }
 
 class PackModelAdmin(TranslatableAdmin):
+    filter_horizontal = ('photos',)
     use_fieldsets = (
         (_("Dates"), {
             'classes': ('collapse',),
@@ -94,7 +95,10 @@ class PackModelAdmin(TranslatableAdmin):
         pack_images = [ x for x in pack.photos.all() ]
         extra_context['current_pack'] = pack
         extra_context['pack_images'] = pack_images
-        return super(PackModelAdmin, self).change_view(request, object_id, form_url, extra_context=extra_context)
+        return super(PackModelAdmin, self).change_view(request,
+                                                       object_id,
+                                                       form_url,
+                                                       extra_context=extra_context)
 
     def remove_photo_from_pack(self, request, photo_id, pack_id):
         messages.add_message(request, messages.SUCCESS, _('photo removed from pack with success.'))
