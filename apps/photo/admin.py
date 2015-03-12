@@ -57,8 +57,8 @@ class PackModelAdmin(TranslatableAdmin):
             'fields': ('title', 'image', 'description', 'begin_date', 'end_date',),
             }),
         (_("Sort and Display"), {
-            'classes': ('all-span1-3',),
-            'description':(_('a description fucked up')),
+            'classes': ('all-span1-3', 'fieldset-border',),
+            # 'description':(_('a description fucked up')),
             'fields': ('status', 'pack_type', 'domain', 'countries','pack_tags', 'date published')
             }),
         (_("Add Photos"), {

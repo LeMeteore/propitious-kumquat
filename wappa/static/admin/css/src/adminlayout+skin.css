@@ -13,7 +13,7 @@
 .wrapper    	{
 	width: 80em;
 	max-width: 100%;
-	padding: 0 var(--gutter)em;
+	padding: 0 calc( var(--gutter) * 2 )em;
 	margin: 0 auto;
 	/*background-color: #eee;*/
 }
