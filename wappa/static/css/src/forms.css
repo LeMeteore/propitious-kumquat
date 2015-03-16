@@ -63,10 +63,11 @@ legend      {
 	padding-top: 0.33em;
 }
 
-label       { 
+label, .label	{ 
 	text-transform: uppercase; 
 	font-size: .85em;  /* .small */
 	color: var(--color2-grey);
+	margin-bottom: calc( var(--vr) / 4)em;
 }
 
 

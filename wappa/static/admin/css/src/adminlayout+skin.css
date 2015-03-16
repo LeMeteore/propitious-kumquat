@@ -143,6 +143,21 @@ main    		{  }
 }
 
 
+/*
+//	filter bloc
+*/
+
+#changelist-filter {
+	float: left;
+	margin-right: var(--gutter)em;
+	padding-right: var(--gutter-half)em;
+	border-right: 1px solid var(--color2-grey);
+}
+#changelist-form {
+	overflow: hidden;
+}
+
+
 
 /*	
 **	Admin components
