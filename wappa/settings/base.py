@@ -53,6 +53,13 @@ def get_as3_credentials_from_file(secret_file):
         error_msg = "AS3 credentials file %s missing" % secret_file
         raise ImproperlyConfigured(error_msg)
 
+def get_watermark(watermark_file):
+    if os.path.isfile(os.path.join(MEDIA_ROOT, "wappa", watermark_file)):
+        return os.path.join(MEDIA_ROOT, "wappa", watermark_file)
+    else:
+        error_msg = "Watermark file %s is missing." % watermark_file
+        raise ImproperlyConfigured(error_msg)
+
 #SECRET_KEY = get_env_variable('SECRET_KEY')
 #SECRET_KEY = open(os.path.join(BASE_DIR, 'settings/secret.txt')).read().strip()
 SECRET_KEY = get_secret_from_file('settings/secret.txt')
@@ -168,8 +175,8 @@ MEDIA_ROOT = "/var/www/wappa/media/"
 MEDIA_URL = "/media/"
 
 # Watermarks settings
-WATERMARK1 = os.path.join(MEDIA_ROOT, "wappa/watermark1.jpg")
-WATERMARK2 = os.path.join(MEDIA_ROOT, "wappa/watermark2.jpg")
+WATERMARK_BW = get_watermark("watermark-bw.jpg")
+WATERMARK_COLOR = get_watermark("watermark-color.jpg")
 
 # Celery settings
 BROKER_URL = 'redis://localhost:6379/0'
