@@ -1,8 +1,16 @@
 {% load i18n %}
-<h3 class="h5">{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
-<ul>
+<h3 class="p">{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h3>
+<div class="btn-group v-space">
 {% for choice in choices %}
-    <li{% if choice.selected %} class="selected"{% endif %}>
-    <a href="{{ choice.query_string|iriencode }}">{{ choice.display }}</a></li>
+    	<a 
+    		href="{{ choice.query_string|iriencode }}"
+    		class="
+    			white__btn
+    			{% if choice.selected %} selected{% endif %}
+    		"
+    	>
+    		{{ choice.display }}
+    	</a>
+    </li>
 {% endfor %}
-</ul>
+</div>

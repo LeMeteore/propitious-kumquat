@@ -33,7 +33,7 @@
 	/*Yellow*/
 	--color1:			hsl(60, 50%, 50%);
 	--color1-bright: 	hsl(60, 80%, 50%);
-	--color1-light: 	hsl(60, 20%, 90%);
+	--color1-light: 	hsl(60, 50%, 85%);
 	--color1-dark : 	hsl(60, 50%, 30%);
 	
 	/*blue*/
