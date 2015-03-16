@@ -127,6 +127,8 @@
                 blocsCodes();   
                 colors();
                 fontSize();
+                // $.getScript('../../fr/admin/jsi18n/');
+                $.getScript('../admin/js/admin/DateTimeShortcuts.js');
             });         
         }       
     }
