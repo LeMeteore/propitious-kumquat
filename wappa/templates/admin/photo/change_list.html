@@ -46,6 +46,8 @@
 
 {% block content %}
     <div id="content-main">
+
+        {% comment " don't use actions links"  %}
         {% block object-tools %}
             {% if has_add_permission %}
                 <ul class="object-tools">
@@ -60,6 +62,7 @@
                 </ul>
             {% endif %}
         {% endblock %}
+        {% endcomment %}
 
         {% if cl.formset.errors %}
                 <p class="errornote">
