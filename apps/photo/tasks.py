@@ -17,9 +17,8 @@ import boto
 import boto.s3
 from boto.s3.key import Key
 
-
-
 from django.conf import settings
+from PIL import Image
 
 class UploadToAS3(Task):
 
@@ -50,18 +49,38 @@ class UploadToAS3(Task):
         # the key value
         k.set_contents_from_filename(str(f))
 
-class ReduceImageSize(Task):
+class GenerateReducedImage(Task):
+    def run(self, **kwargs):
+        pass
+
+class GenerateImageWatermarked(Task):
     def run(self, uploadfile, **kwargs):
+        # complete path to the picture
         f = os.path.join(settings.MEDIA_ROOT, uploadfile)
-        # generer plusieurs images de differentes tailles
-        # et pour chaque images, appliquer le filigrane
+        # file name & extension
+        fname, fext = os.path.splitext(f)
+        result_name = "%s%s%s" % (fname, "_watermark", fext)
+        # complete path to watermark picture
+        watermark = os.path.join(settings.MEDIA_ROOT, settings.WATERMARK1)
 
+        img = Image.open(f)
+        wmark = Image.open(watermark)
+        # where to paste
+        x1 = (img.size[0] - wmark.size[0])/2
+        y1 = (img.size[1] - wmark.size[1])/2
+        mask = wmark.convert("L").point(lambda x: min(x, 75))
 
+        img.paste(wmark, ( int(x1), int(y1)), mask)
+        img.save(result_name, "jpeg",
+                 quality=50,
+                 optimize=True,
+                 progressive=True)
 
 class RemoveOriginalImage(Task):
     def run(self, **kwargs):
         pass
 
 tasks.register(UploadToAS3)
-tasks.register(ReduceImageSize)
+tasks.register(GenerateReducedImage)
+tasks.register(GenerateImageWatermarked)
 tasks.register(RemoveOriginalImage)

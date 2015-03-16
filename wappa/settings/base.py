@@ -167,6 +167,10 @@ MEDIA_ROOT = "/var/www/wappa/media/"
 
 MEDIA_URL = "/media/"
 
+# Watermarks settings
+WATERMARK1 = os.path.join(MEDIA_ROOT, "wappa/watermark1.jpg")
+WATERMARK2 = os.path.join(MEDIA_ROOT, "wappa/watermark2.jpg")
+
 # Celery settings
 BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
