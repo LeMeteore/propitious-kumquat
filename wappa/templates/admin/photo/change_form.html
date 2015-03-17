@@ -66,11 +66,16 @@
                     {{ adminform.form.non_field_errors }}
                 {% endif %}
 
-                {% block field_sets %}
-                    {% for fieldset in adminform %}
-                        {% include "admin/includes/fieldset.html" %}
-                    {% endfor %}
-                {% endblock %}
+                <div class="fl_grid">
+                    
+                    {% block field_sets %}
+                        {% for fieldset in adminform %}
+                            {% include "admin/includes/fieldset.html" %}
+                        {% endfor %}
+                    {% endblock %}
+                    
+                </div>
+
 
                 {% block after_field_sets %}{% endblock %}
 

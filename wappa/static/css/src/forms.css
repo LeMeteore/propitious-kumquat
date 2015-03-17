@@ -34,12 +34,14 @@ fieldset    {
 	margin-bottom: 1em;
 }
 legend      { 
-	font-size: 1.36em; /*.h5*/
+	font-size: var(--fs-h6);
 	white-space: nowrap; 
 	border-bottom: 1px solid var(--color2-grey);
 	display: block;
 	width: 100%;
 	padding-bottom: 0.33em;
+	color: var(--color2-grey);
+	text-transform: uppercase;
 }
 /*Fieldset border*/
 .fieldset-border {

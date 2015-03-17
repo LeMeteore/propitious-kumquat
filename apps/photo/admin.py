@@ -52,22 +52,18 @@ class PackAdminForm(TranslatableModelForm):
 
 class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (
-        (_("Dates"), {
-            'classes': ('collapse',),
-            'fields': ('date published', 'begin_date', 'end_date',)
+        (_("Informations"), {
+            'classes': ('all-span2-3',),
+            'fields': ('title', 'image', 'description', 'begin_date', 'end_date',),
             }),
-        (_("Images"), {
-            'classes': ('extrapretty',),
-            'fields': ('photos', 'image',)
+        (_("Sort and Display"), {
+            'classes': ('all-span1-3', 'fieldset-border',),
+            # 'description':(_('a description fucked up')),
+            'fields': ('status', 'pack_type', 'domain', 'countries','pack_tags', 'date published')
             }),
-        (_("Taxonomy"), {
-            'classes': ('collapse',),
-            'description':(_('a description fucked up')),
-            'fields': ('domain', 'countries','status','pack_type','pack_tags',)
-            }),
-        (_("Language dependent"), {
-            'classes': ('wide',),
-            'fields': ('title', 'description',),
+        (_("Add Photos"), {
+            'classes': ('all-span1-1',),
+            'fields': ('photos',)
             }),
         )
 
