@@ -21,6 +21,26 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 
 class PhotoModelAdmin(admin.ModelAdmin):
+    use_fieldsets = (
+        (_("Image"), {
+            'classes': ('extrapretty',),
+            'fields': ('license', 'width','height','camera_model', 'sensibilite_iso',
+                       'focal', 'ouverture', 'temps_de_pause', 'image')
+            }),
+        (_("Taxonomy"), {
+            'classes': ('collapse',),
+            'description':(_('a description fucked up')),
+            'fields': ('countries','status','date published','author',)
+            }),
+        (_("Labels"), {
+            'classes': ('wide',),
+            'fields': ('title', 'description',),
+            }),
+        )
+
+    def get_fieldsets(self, request, obj=None):
+        return self.use_fieldsets
+
     def get_urls(self):
         urls = super(PhotoModelAdmin, self).get_urls()
         custom_photo_urls = patterns('',
