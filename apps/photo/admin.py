@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf.urls import patterns, url
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
 
 from django.contrib import messages
 from django import forms
@@ -17,8 +18,7 @@ from hvad.forms import TranslatableModelForm
 
 import json
 from django.shortcuts import get_object_or_404
-#from django.forms.models import model_to_dict
-from django.core import serializers
+
 
 class PhotoModelAdmin(admin.ModelAdmin):
     use_fieldsets = (
@@ -52,11 +52,12 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def informations(self, request, photo_id):
         if request.is_ajax():
             photo = get_object_or_404(Photo, id=photo_id)
-            message = serializers.serialize(photo)
+            json_photo = {'title': photo.title,
+                          'description': photo.description,
+                          'image': photo.image.url}
         else:
             message = "You're the lying type, I can just tell."
-        json = json.dumps(message)
-        return HttpResponse(json, mimetype='application/json')
+        return JsonResponse(data=json_photo)
 
     def save_model(self, request, obj, form, change):
         obj.save()
