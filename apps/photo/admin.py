@@ -3,7 +3,7 @@
 
 from django.contrib import admin
 from apps.photo.models import Photo, Pack, Country
-from apps.photo.tasks import UploadToAS3
+from apps.photo.tasks import UploadToAS3, GenerateImageWatermarked
 from hvad.admin import TranslatableAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -19,7 +19,6 @@ from hvad.forms import TranslatableModelForm
 import json
 from django.shortcuts import get_object_or_404
 
-
 class PhotoModelAdmin(admin.ModelAdmin):
     use_fieldsets = (
         (_("Image"), {
@@ -30,7 +29,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
         (_("Taxonomy"), {
             'classes': ('collapse',),
             'description':(_('a description fucked up')),
-            'fields': ('countries','status','date published','author',)
+            'fields': ('countries','status','date published','author', 'photo_tags',)
             }),
         (_("Labels"), {
             'classes': ('wide',),
@@ -60,8 +59,11 @@ class PhotoModelAdmin(admin.ModelAdmin):
         return JsonResponse(data=json_photo)
 
     def save_model(self, request, obj, form, change):
+        # save object first to rename change the photo name
         obj.save()
         UploadToAS3.delay(obj.image.name)
+        GenerateImageWatermarked.delay(obj.image.name)
+
 
 
 class PackAdminForm(TranslatableModelForm):
