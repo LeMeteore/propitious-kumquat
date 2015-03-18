@@ -176,7 +176,6 @@ MEDIA_URL = "/media/"
 
 # Watermarks settings
 WATERMARK_BW = get_watermark("watermark-bw.jpg")
-WATERMARK_COLOR = get_watermark("watermark-color.jpg")
 
 # Celery settings
 BROKER_URL = 'redis://localhost:6379/0'
