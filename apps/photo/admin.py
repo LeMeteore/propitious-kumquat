@@ -19,6 +19,7 @@ from hvad.forms import TranslatableModelForm
 import json
 from django.shortcuts import get_object_or_404
 
+
 class PhotoModelAdmin(admin.ModelAdmin):
     use_fieldsets = (
         (_("Image"), {
@@ -51,12 +52,12 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def informations(self, request, photo_id):
         if request.is_ajax():
             photo = get_object_or_404(Photo, id=photo_id)
-            json_photo = {'title': photo.title,
+            json_data = {'title': photo.title,
                           'description': photo.description,
                           'image': photo.image.url}
         else:
-            message = "You're the lying type, I can just tell."
-        return JsonResponse(data=json_photo)
+            json_data = {'error': "You're the lying type, I can just tell."}
+        return JsonResponse(data=json_data)
 
     def save_model(self, request, obj, form, change):
         # save object first to rename change the photo name
@@ -107,7 +108,7 @@ class PackModelAdmin(TranslatableAdmin):
                                     self.admin_site.admin_view(self.remove_photo_from_pack),
                                     name='rpfp'),)
         custom_urls += patterns('',
-                                url(r'(?P<pack_id>\d+)/pack-images/$',
+                                url(r'(?P<pack_id>\d+)/images/$',
                                     self.admin_site.admin_view(self.pack_images),
                                     name='pack-images'),)
         return custom_urls + urls
@@ -133,12 +134,14 @@ class PackModelAdmin(TranslatableAdmin):
         if request.is_ajax():
             pack = get_object_or_404(Pack, id=pack_id)
             pack_images = pack.photos.all()
-            #message = [ model_to_dict(x) for x in pack_images ]
-            message = serializers.serialize(pack_images)
+            json_data = []
+            for x in pack_images:
+                p = {'title': x.title, 'description': x.description, 'image': x.image.url}
+                json_data.append(p)
         else:
-            message = "You're the lying type, I can just tell."
-        json = json.dumps(message)
-        return HttpResponse(json, mimetype='application/json')
+            json_data = {"error": "You're the lying type, I can just tell."}
+        # in order to allow a list (non-dict) to be serialized, set safe to false
+        return JsonResponse(data=json_data, safe=False)
 
 
 admin.site.register(Photo, PhotoModelAdmin)
