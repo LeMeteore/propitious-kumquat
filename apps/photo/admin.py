@@ -44,20 +44,25 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def get_urls(self):
         urls = super(PhotoModelAdmin, self).get_urls()
         custom_photo_urls = patterns('',
-                                url(r'informations/(?P<photo_id>\d+)/$',
+                                     # example: /en/admin/photo/photo/informations/23,24,25,98/
+                                    url(r'informations/(?P<photo_id>\d+(?:,(\d+))*)/$',
                                     self.admin_site.admin_view(self.informations),
                                     name='photo-informations'),)
         return custom_photo_urls + urls
 
     def informations(self, request, photo_id):
-        if request.is_ajax():
-            photo = get_object_or_404(Photo, id=photo_id)
-            json_data = {'title': photo.title,
-                          'description': photo.description,
-                          'image': photo.image.url}
+        # retrieve comma separated list of ids
+        photo_ids_list = [int(x) for x in photo_id.split(',')]
+        json_data = []
+        if request.is_ajax:
+            for x in photo_ids_list:
+                photo = get_object_or_404(Photo, id=x)
+                json_data.append({'title': photo.title,
+                                'description': photo.description,
+                                'image': photo.image.url})
         else:
             json_data = {'error': "You're the lying type, I can just tell."}
-        return JsonResponse(data=json_data)
+        return JsonResponse(data=json_data, safe=False)
 
     def save_model(self, request, obj, form, change):
         # save object first to rename change the photo name
