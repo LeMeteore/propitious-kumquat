@@ -208,8 +208,9 @@ span.input-addon {
 */
 
 /*colors*/
-.color-error	{ color: var(--color-error); }
-.color-error-bg	{ color: var(--color-error-bg); }
+.color-error		{ color: var(--color-error); }
+.color-error-bg		{ color: var(--color-error-bg); }
+
 
 .notif	{ 
 	padding: .5em; 
@@ -217,6 +218,7 @@ span.input-addon {
 	border: 1px solid; 
 }
 
+/* ERROR */
 .error		{ 
 	color: var(--color-error);
 }
@@ -227,18 +229,33 @@ span.input-addon {
 {
 	background: var(--color-error-bg); 	
 }
-.notice		{ 
-	background: #d1ecf7; 
-	color: #11689e; 
+
+.error a				{ color: #8a1f11; }
+
+
+/* NOTICE */
+.color-notice		{ color: var(--color-notice); }
+.color-notice-bg	{ color: var(--color-notice-bg); }
+
+.notif.notice
+{ 
+	background-color: var(--color-notice-bg);
+	color: var(--color-notice); 
 }
+.notice a	{ color: var(--color2-darkgrey); }
+
+.notice .btn {
+	background-color: var(--color-notice);
+	color: var(--color-notice-bg);
+}
+
+/* SUCCESS */
 .success	{ 
 	background: #E6EFC2; 
 	color: #264409; 
 }
 
-.error a,				{ color: #8a1f11; }
-.notice a               { color: #514721; }
-.success a              { color: #264409; }
+.success a	{ color: #264409; }
 
 
 /* 

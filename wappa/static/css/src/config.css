@@ -47,6 +47,9 @@
 	/*Notifs*/
 	--color-error   : hsl(0, 75%, 45%);
 	--color-error-bg: hsl(0, 40%, 85%);
+
+	--color-notice   : hsl(30, 85%, 38%);
+	--color-notice-bg: hsl(40, 35%, 90%);
 }
 
 /*custom-medias*/
