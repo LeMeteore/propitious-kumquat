@@ -60,21 +60,16 @@ class GenerateImageWatermarked(Task):
         # file name & extension
         fname, fext = os.path.splitext(f)
         result_name_bw = "%s%s%s" % (fname, "_watermark_bw", fext)
-        result_name_color = "%s%s%s" % (fname, "_watermark_color", fext)
         # complete path to watermark picture
         watermark_bw = os.path.join(settings.MEDIA_ROOT, settings.WATERMARK_BW)
-        watermark_color = os.path.join(settings.MEDIA_ROOT, settings.WATERMARK_COLOR)
 
         img = Image.open(f)
         wmark_bw = Image.open(watermark_bw)
-        wmark_color = Image.open(watermark_color)
 
         # where to paste,
-        # assumption: all the watermarks are same size
         x1 = (img.size[0] - wmark_bw.size[0])/2
         y1 = (img.size[1] - wmark_bw.size[1])/2
-        mask_bw = wmark_bw.convert("L").point(lambda x: min(x, 75))
-        mask_color = wmark_color.convert("L").point(lambda x: min(x, 75))
+        mask_bw = wmark_bw.convert("L").point(lambda x: min(x, 100))
 
         img.paste(wmark_bw, ( int(x1), int(y1)), mask_bw)
         img.save(result_name_bw, "jpeg",
@@ -82,11 +77,6 @@ class GenerateImageWatermarked(Task):
                  optimize=True,
                  progressive=True)
 
-        img.paste(wmark_color, ( int(x1), int(y1)), mask_color)
-        img.save(result_name_color, "jpeg",
-                 quality=50,
-                 optimize=True,
-                 progressive=True)
 
 class RemoveOriginalImage(Task):
     def run(self, **kwargs):

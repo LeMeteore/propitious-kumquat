@@ -3,13 +3,14 @@
 
 from django.contrib import admin
 from apps.photo.models import Photo, Pack, Country
-from apps.photo.tasks import UploadToAS3
+from apps.photo.tasks import UploadToAS3, GenerateImageWatermarked
 from hvad.admin import TranslatableAdmin
 from django.utils.translation import ugettext_lazy as _
 
 from django.conf.urls import patterns, url
 from django.core import urlresolvers
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
 
 from django.contrib import messages
 from django import forms
@@ -17,30 +18,58 @@ from hvad.forms import TranslatableModelForm
 
 import json
 from django.shortcuts import get_object_or_404
-#from django.forms.models import model_to_dict
-from django.core import serializers
+
 
 class PhotoModelAdmin(admin.ModelAdmin):
+    use_fieldsets = (
+        (_("Image"), {
+            'classes': ('extrapretty',),
+            'fields': ('license', 'width','height','camera_model', 'sensibilite_iso',
+                       'focal', 'ouverture', 'temps_de_pause', 'image')
+            }),
+        (_("Taxonomy"), {
+            'classes': ('collapse',),
+            'description':(_('a description fucked up')),
+            'fields': ('countries','status','date published','author', 'photo_tags',)
+            }),
+        (_("Labels"), {
+            'classes': ('wide',),
+            'fields': ('title', 'description',),
+            }),
+        )
+
+    def get_fieldsets(self, request, obj=None):
+        return self.use_fieldsets
+
     def get_urls(self):
         urls = super(PhotoModelAdmin, self).get_urls()
         custom_photo_urls = patterns('',
-                                url(r'informations/(?P<photo_id>\d+)/$',
+                                     # example: /en/admin/photo/photo/informations/23,24,25,98/
+                                    url(r'informations/(?P<photo_id>\d+(?:,(\d+))*)/$',
                                     self.admin_site.admin_view(self.informations),
                                     name='photo-informations'),)
         return custom_photo_urls + urls
 
     def informations(self, request, photo_id):
-        if request.is_ajax():
-            photo = get_object_or_404(Photo, id=photo_id)
-            message = serializers.serialize(photo)
+        # retrieve comma separated list of ids
+        photo_ids_list = [int(x) for x in photo_id.split(',')]
+        json_data = []
+        if request.is_ajax:
+            for x in photo_ids_list:
+                photo = get_object_or_404(Photo, id=x)
+                json_data.append({'title': photo.title,
+                                'description': photo.description,
+                                'image': photo.image.url})
         else:
-            message = "You're the lying type, I can just tell."
-        json = json.dumps(message)
-        return HttpResponse(json, mimetype='application/json')
+            json_data = {'error': "You're the lying type, I can just tell."}
+        return JsonResponse(data=json_data, safe=False)
 
     def save_model(self, request, obj, form, change):
+        # save object first to rename change the photo name
         obj.save()
         UploadToAS3.delay(obj.image.name)
+        GenerateImageWatermarked.delay(obj.image.name)
+
 
 
 class PackAdminForm(TranslatableModelForm):
@@ -79,7 +108,7 @@ class PackModelAdmin(TranslatableAdmin):
                                     self.admin_site.admin_view(self.remove_photo_from_pack),
                                     name='rpfp'),)
         custom_urls += patterns('',
-                                url(r'(?P<pack_id>\d+)/pack-images/$',
+                                url(r'(?P<pack_id>\d+)/images/$',
                                     self.admin_site.admin_view(self.pack_images),
                                     name='pack-images'),)
         return custom_urls + urls
@@ -102,12 +131,14 @@ class PackModelAdmin(TranslatableAdmin):
         if request.is_ajax():
             pack = get_object_or_404(Pack, id=pack_id)
             pack_images = pack.photos.all()
-            #message = [ model_to_dict(x) for x in pack_images ]
-            message = serializers.serialize(pack_images)
+            json_data = []
+            for x in pack_images:
+                p = {'title': x.title, 'description': x.description, 'image': x.image.url}
+                json_data.append(p)
         else:
-            message = "You're the lying type, I can just tell."
-        json = json.dumps(message)
-        return HttpResponse(json, mimetype='application/json')
+            json_data = {"error": "You're the lying type, I can just tell."}
+        # in order to allow a list (non-dict) to be serialized, set safe to false
+        return JsonResponse(data=json_data, safe=False)
 
 
 admin.site.register(Photo, PhotoModelAdmin)
