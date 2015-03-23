@@ -192,7 +192,7 @@ span.input-addon {
 .input-addon button 
 , .input-addon input[type=submit]
 {
-	background: none;
+	/*background: none;*/
 	border: 0 none;
 	width: auto;
 	margin-bottom: -2px;
