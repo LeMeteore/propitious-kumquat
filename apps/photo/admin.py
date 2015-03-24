@@ -53,16 +53,21 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def informations(self, request, photo_id):
         # retrieve comma separated list of ids
         photo_ids_list = [int(x) for x in photo_id.split(',')]
-        json_data = []
+        #json_data = []
+        json_data = {}
         if request.is_ajax:
             for x in photo_ids_list:
-                photo = get_object_or_404(Photo, id=x)
-                json_data.append({'title': photo.title,
-                                'description': photo.description,
-                                'image': photo.image.url})
+                try:
+                    p = Photo.objects.get(id=x)
+                    json_data[x] = {'title': p.title,
+                                    'description': p.description,
+                                    'image': p.image.url}
+                except:
+                    json_data[x] = {"error":"not found"}
         else:
             json_data = {'error': "You're the lying type, I can just tell."}
-        return JsonResponse(data=json_data, safe=False)
+
+        return JsonResponse(data=json_data)
 
     def save_model(self, request, obj, form, change):
         # save object first to rename change the photo name
