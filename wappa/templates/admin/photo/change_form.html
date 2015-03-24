@@ -74,10 +74,69 @@
                         {% endfor %}
                     {% endblock %}
                     
+                    {% block after_field_sets %}
+
+                        <div class="pack_photos all-span1-1">
+                            
+                            <h3 class="legend">
+                                Liste des photos liées au pack
+                            </h3>
+
+                            <ul class="l--pack_photos fl_grid">
+                                <li class="i--pack_photos all-span1-5">
+                                    <div class="white_bloc">
+                                        <figure>
+                                            <img src="/static/img/placeholder/14-190913-3-01.jpg" alt=""/>
+                                            <figcation>
+                                                <h3 class="h--l--pack_photos p">
+                                                    Arrivée de françois hollande au mali dans le cadre de la ceremonie solennelle.
+                                                </h3>
+                                                <p class="metas--l--pack-photos small">
+                                                    <span class="photo-status">Online</span>
+                                                    <time datetime="2013-09-19">19 09 2013</time>
+                                                </p>
+                                                
+                                            </figcation>
+
+                                            <div class="actions--i--pack_photos">
+                                                <button class="icon-star" title="Choose as image pack">
+                                                    <i>Choose as image pack</i>
+                                                </button>
+                                                <button class="icon-pencil" title="Edit">
+                                                    <i>Edit</i>
+                                                </button>
+                                                <button class="icon-eye" title="View in front office">
+                                                    <i>View in front office</i>
+                                                </button>
+                                                <button class="icon-x-cross" title="Remove from pack">
+                                                    <i>Remove from pack</i>
+                                                </button>
+                                            </div>
+                                        </figure>                                        
+                                    </div>
+
+
+                                </li>
+
+
+
+                            </ul>
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+                    {% endblock %}
                 </div>
 
 
-                {% block after_field_sets %}{% endblock %}
 
                 {% block inline_field_sets %}
                     {% for inline_admin_formset in inline_admin_formsets %}
