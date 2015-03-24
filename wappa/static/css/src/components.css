@@ -133,6 +133,43 @@
 	border-bottom-right-radius:	.33em;
 }
 
+
+
+/*
+**	Rounded Buttons (for icons)
+*/
+
+.rounded_btn
+,[class*=--rounded_btn]
+{
+	display: inline-block;
+	padding: 0;
+	border: none;
+
+	color: var(--color2-lightgrey);
+	background-color: var(--color2-grey);
+	
+	height: 1.8em;
+	width : 1.8em;
+	border-radius: 50%;
+}
+
+.rounded_btn:hover
+, .rounded_btn:active 
+{
+	background-color: var(--color2-darkgrey);
+}
+.rounded_btn:active {
+	color: var(--color1-bright);
+	box-shadow: 0 0 .05em .1em var(--color1-bright);
+}
+
+/*	Red rounded btn */
+
+.red--rounded_btn {
+	background-color: var(--color-error);
+}
+
 /*
 **	max-width bloc
 */
