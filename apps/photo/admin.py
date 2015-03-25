@@ -85,6 +85,7 @@ class PackAdminForm(TranslatableModelForm):
             }
 
 class PackModelAdmin(TranslatableAdmin):
+    raw_id_fields = ("photos",)
     use_fieldsets = (
         (_("Informations"), {
             'classes': ('all-span2-3',),
