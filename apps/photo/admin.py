@@ -82,10 +82,10 @@ class PackAdminForm(TranslatableModelForm):
         model = Pack
         widgets = {
             'image': forms.TextInput(),
-
             }
 
 class PackModelAdmin(TranslatableAdmin):
+    raw_id_fields = ("photos",)
     use_fieldsets = (
         (_("Dates"), {
             'classes': ('collapse',),
