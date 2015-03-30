@@ -32,8 +32,7 @@
 			dataType: 'json',
 		})
 		.done(function(data) {
-			if (callback) 
-			{
+			if (callback) {
 				callback(data);
 			}
 		});
@@ -48,10 +47,8 @@
 
 		Mustache.parse(template);
 
-
 		// Charge les previews des photos exitantes
-		if (photosval) 
-		{
+		if (photosval) {
 			imgsInfo(function(data){
 				render(template, data, target);
 			});
