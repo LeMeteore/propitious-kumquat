@@ -20,6 +20,8 @@ DATABASES = {
 }
 
 
+MEDIA_ROOT = "/var/www/wappa/media/" or os.path.join(BASE_DIR, 'media')
+
 # See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup
 INSTALLED_APPS += (
     'debug_toolbar',
