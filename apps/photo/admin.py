@@ -3,7 +3,8 @@
 
 from django.contrib import admin
 from apps.photo.models import Photo, Pack, Country
-from apps.photo.tasks import UploadToAS3, GenerateImageWatermarked
+from apps.photo.tasks import uploadimgtoas3, changeimgsize, generatewatermarkedimg
+from celery import chain
 from hvad.admin import TranslatableAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -72,9 +73,11 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         # save object first to rename change the photo name
         obj.save()
-        UploadToAS3.delay(obj.image.name)
-        GenerateImageWatermarked.delay(obj.image.name)
-
+        (
+        uploadimgtoas3.s(obj.image.name) |
+        changeimgsize.s() |
+        generatewatermarkedimg.s()
+        ).apply_async()
 
 
 class PackAdminForm(TranslatableModelForm):
