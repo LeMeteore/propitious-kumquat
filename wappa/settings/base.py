@@ -170,8 +170,8 @@ TEMPLATE_DIRS = (
 # Media files ( user uploaded contents)
 # https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-MEDIA_ROOT
 
-# MEDIA_ROOT = "/var/www/wappa/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = "/var/www/wappa/media/"
+
 MEDIA_URL = "/media/"
 
 # Watermarks settings
