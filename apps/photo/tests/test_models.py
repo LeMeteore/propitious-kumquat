@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from django.core.files import File
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from django.conf import settings
+from django.utils.translation import activate
+from random import randint
 
 # Create your tests here.
 class MyTest(TestCase):
@@ -52,29 +55,34 @@ class MyTest(TestCase):
 
 class PhotoTest(MyTest):
     def test_photo_creation(self):
-        p = self.create_photo(pk=5)
-        self.assertTrue(isinstance(p, Photo))
-        self.assertEqual(p.__str__(), p.title)
+        for lang in ['en', 'fr']:
+            activate(lang)
+            p = self.create_photo(pk=randint(1,9))
+            self.assertTrue(isinstance(p, Photo))
+            self.assertEqual(p.__str__(), p.title)
+            self.assertEqual(p.filename, os.path.basename(p.image.name))
+            self.assertEqual(p.get_change_urls(), os.path.join('/'+lang, 'admin/photo/photo', str(p.id)+'/'))
 
 
 class PackTest(MyTest):
-    def create_pack(self):
-        photo = self.create_photo(pk=8)
-        p = Pack.objects.language('en').create(title = "une pack de test",
-                                                description = "description d'une pack de test",
-                                                pack_type = self.type,
-                                                status = self.status,
-                                                domain = self.domain,
-                                                image = photo,
-                                                id = 5
-                  )
-
+    def create_pack(self, lang):
+        photo = self.create_photo(pk=randint(1,9))
+        p = Pack.objects.language(lang).create(title = "une pack de test",
+                                               description = "description d'une pack de test",
+                                               pack_type = self.type,
+                                               status = self.status,
+                                               domain = self.domain,
+                                               image = photo,
+                                               id = randint(1,9)
+                        )
         # p should be saved first before adding m2m relations
         p.countries.add(self.country)
         p.photos.add(photo)
         return p
 
     def test_pack_creation(self):
-        p = self.create_pack()
-        self.assertTrue(isinstance(p, Pack))
-        self.assertEqual(p.__str__(), p.title)
+        for lang in ['fr', 'en']:
+            activate(lang)
+            p = self.create_pack(lang)
+            self.assertTrue(isinstance(p, Pack))
+            self.assertEqual(p.__str__(), p.title)
