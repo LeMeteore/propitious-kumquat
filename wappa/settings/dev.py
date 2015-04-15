@@ -27,6 +27,7 @@ INSTALLED_APPS += (
     'debug_toolbar',
     'django_extensions',
     'template_debug',
+    'coverage',
 )
 
 class DisableMigrations(object):
