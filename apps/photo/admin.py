@@ -20,6 +20,7 @@ from hvad.forms import TranslatableModelForm
 import json
 from django.shortcuts import get_object_or_404
 
+from .filters import StatusFilter
 
 class PhotoModelAdmin(admin.ModelAdmin):
     use_fieldsets = (
@@ -88,6 +89,7 @@ class PackAdminForm(TranslatableModelForm):
             }
 
 class PackModelAdmin(TranslatableAdmin):
+    list_filter = (StatusFilter,)
     raw_id_fields = ("photos",)
     use_fieldsets = (
         (_("Informations"), {
