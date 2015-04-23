@@ -95,5 +95,5 @@ class Pack(TranslatableModel):
         return "%s" % self.lazy_translation_getter('title', str(self.pk))
 
     def get_change_urls(self):
-        content_type = ContentType.objects.get_for_model(self.__class__)
-        return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model), args=(self.id,))
+        ct = ContentType.objects.get_for_model(self.__class__)
+        return urlresolvers.reverse("admin:%s_%s_change" % (ct.app_label, ct.model), args=(self.id,))
