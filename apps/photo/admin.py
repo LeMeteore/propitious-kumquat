@@ -23,6 +23,12 @@ from django.shortcuts import get_object_or_404
 from .filters import StatusFilter
 
 class PhotoModelAdmin(admin.ModelAdmin):
+    def changelist_view(self, request, extra_context=None, ):
+        extra_context = extra_context or {}
+        photos = [(x.title, x.description, x.image.name) for x in Photo.objects.all()]
+        extra_context['photos_list'] = photos
+        return super(PhotoModelAdmin, self).changelist_view(request,
+                                                            extra_context=extra_context)
     use_fieldsets = (
         (_("Image"), {
             'classes': ('extrapretty',),
