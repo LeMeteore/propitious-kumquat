@@ -16,63 +16,72 @@
 		iframe#iframe__sac-iframe-modal
 */
 
-(function($){
+var iframeModal = (function($){
 	'use strict';
 
-	var modal = 0;
+	// public API
+	var modal = {
+		isActive : 0,
 
-	var template = $('<div id="sac-iframe-modal"> \
+		template : $('<div id="sac-iframe-modal"> \
 			<button id="close__sac-iframe-modal" role="button" class="icon-x-cross"> \
 				<i>Close modal</i> \
 			</button> \
 			<iframe id="iframe__sac-iframe-modal" /> \
 		</div> \
-	');
+		'),
+
+		open : function() {
+			modal.template.show();
+			modal.isActive = 1;
+		},
+		
+		close : function() {
+			$('iframe', modal.template)[0].src = '';
+			modal.template.hide();
+			modal.isActive = 1;
+		},
+	};
+
+
 
 	var addTemplate = function(){
-		$('body').append(template);
-	};
+			$('body').append(modal.template);
+		},
 
-	var actions = {
-		open: function() {
-			template.show();
-			modal = 1;
-		},
-		close: function() {
-			$('iframe', template)[0].src = '';
-			template.hide();
-			modal = 0;
-		},
-		load: function(url, callback) {
-			$('iframe', template)[0].src = url;
+		load = function(url, callback) {
+			$('iframe', modal.template)[0].src = url;
 			if(callback) callback();
-		}
-	};
+		};
 
-	$(function() {
+		$(function() {
 
-		var openBtn = $('[data-iframe-modal=open]');
+			var openBtn = $('[data-iframe-modal=open]');
 
-		if (openBtn.length) {
-			addTemplate();
+			if (openBtn.length) {
 
-			openBtn.click(function(e) {
-				e.preventDefault();
-				var url = this.href;
-				actions.load(url, function(){
-					actions.open();
+				addTemplate();
+
+				openBtn.click(function(e) {
+					e.preventDefault();
+					var url = this.href;
+					load(url, function(){
+						modal.open();
+					});
 				});
-			});
 
-			$('#close__sac-iframe-modal', template).click(function(e) {
-				e.preventDefault();
-				actions.close();
-			});
-		}
+				$('#close__sac-iframe-modal', modal.template).click(function(e) {
+					e.preventDefault();
+					modal.close();
+				});
+			}
 
 
-		// Stuff to do as soon as the DOM is ready;
-	});
+			// Stuff to do as soon as the DOM is ready;
+		});
+
+		return modal;
+
 })(django.jQuery);
 
 
