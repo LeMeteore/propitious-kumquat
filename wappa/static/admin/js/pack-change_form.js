@@ -69,6 +69,9 @@ var packPhotos = (function($) {
 	var addToFavorite = function(e){
 		var btn = $(e.target),
 			tile = getTile( btn );
+		
+		photosTiles.find('[data-action=favorite].active').removeClass('active');
+		btn.addClass('active');
 
 		favPhotoInput.val(tile[1]);
 	};
