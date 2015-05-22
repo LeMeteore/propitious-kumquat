@@ -36,8 +36,8 @@
                         </h3>
                         <p class="metas--l--pack-photos small">
                             <span class="photo-id">#{{id}}</span>
-                            <span class="photo-status">Online</span>
-                            <time datetime="2013-09-19">19 09 2013</time>
+                            <span class="photo-status">{{status}}</span>
+                            <time datetime="2013-09-19">{{date}}</time>
                         </p>
                         
                     </figcation>
@@ -47,6 +47,7 @@
                             type="button"
                             class="icon-star rounded_btn" 
                             title="Choose as image pack"
+                            data-action="favorite"
                         >
                             <i>Choose as image pack</i>
                         </button>

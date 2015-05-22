@@ -155,11 +155,14 @@
 }
 
 .rounded_btn:hover
-, .rounded_btn:active 
+, .rounded_btn:active
+, .rounded_btn.active 
 {
 	background-color: var(--color2-darkgrey);
 }
-.rounded_btn:active {
+.rounded_btn:active 
+, .rounded_btn.active 
+{
 	color: var(--color1-bright);
 	box-shadow: 0 0 .05em .1em var(--color1-bright);
 }

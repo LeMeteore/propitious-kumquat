@@ -24,40 +24,69 @@
 var packPhotos = (function($) {
 	'use strict';
 
-	var photosList = [];
-		// photosTiles = $();
+	var photosInput,
+		photosInputVal,
+		photosWrapper,
+		photosTiles,
+		favPhotoInput,
+		favPhotoId,
+		photosList = [];
 
 
-	var removePhoto = function(e){
 
-		var $this = $(e.target),
-			tile = $this.parents('.i--pack_photos'),
+	var activeFavorite = function(){
+		favPhotoId = favPhotoInput.val();
+
+		if(favPhotoId) {
+			var activeTile = photosTiles.filter('[data-id=' + favPhotoId + ']');	
+			activeTile.find('[data-action=favorite]').addClass('active');
+		}
+	};
+
+	/*
+	//	Tiles Btn action
+	*/
+
+	var getTile = function(el){
+		var tile = el.parents('.i--pack_photos'),
 			tileID = tile.data('id');
 
-		// console.log(tileID);
+		return [ tile, tileID ];
+	};
 
-		var idIndex = photosList.indexOf(tileID+'');
+	var removePhoto = function(e){
+		var tile = getTile( $(e.target) );
+
+		// remove photoId to photoList
+		var idIndex = photosList.indexOf( tile[1]+'' );
 		photosList.splice(idIndex, 1);	
-		tile.remove();
+		photosInput.val(photosList.join(','));
 
-		$('#id_photos').val(photosList.join(','));
-
-
-		// console.log(photosList);
-
+		// remove tile
+		tile[0].remove();
 	};
 
+	var addToFavorite = function(e){
+		var btn = $(e.target),
+			tile = getTile( btn );
+
+		favPhotoInput.val(tile[1]);
+	};
+
+	/*
 	// Ajoute les images au template
-	var render = function(template, data, target){
+	*/
+	var render = function(template, data, target, callback){
+		// console.log('render');
 		var renderer = Mustache.render(template, {photos : data} );
-			
-			// var html = $.parseHTML(renderer);
-			// var newTiles = $(html).filter('.i--pack_photos');
-			// photosTiles = photosTiles.add(newTiles);
-			// target.append(newTiles);
+		target.append(renderer);
 
-			target.append(renderer);
+		photosTiles = $('.i--pack_photos');
+		console.log(photosTiles);
+
+		if (callback) callback();
 	};
+
 
 	// Récupère les infos des images via AJAX
 	var getImgInfo = function(callback){
@@ -76,45 +105,32 @@ var packPhotos = (function($) {
 
 	// On Ready
 	$(document).ready(function() {
-		var photosInput = $('#id_photos'),
-			photosval = photosInput.val(),
-			template = $('#i-photo-tpl').html(),
-			photosWrapper = $('#l--pack_photos');
+		photosInput = $('#id_photos');
+		photosInputVal = photosInput.val();
+		photosWrapper = $('#l--pack_photos');
+		favPhotoInput = $('#id_image');
 
-		if(photosval) photosList = photosval.split(',');
-
-		console.log(photosList);
-
-		// console.log(photosList);
-		// console.log(photosList.length);
+		if(photosInputVal) photosList = photosInputVal.split(',');
 		
+		var template = $('#i-photo-tpl').html();
 		Mustache.parse(template);
 
 		// Charge les previews des photos exitantes
 		if (photosList.length) {
-			getImgInfo(function(data){
-				
-				render(template, data, photosWrapper);
-
-				// stock input value in array
-				// photosTiles = $('.i--pack_photos');
-
-				// console.log( $('[data-action=remove]', data) );
-				// console.log( $(data) );
+			getImgInfo(function(data){	
+				render(template, data, photosWrapper, function(){
+					activeFavorite();
+				});
 			});
 		}
 
 
+
 		// remove tiles
 		photosWrapper.on('click', '[data-action=remove]', removePhoto );
+		photosWrapper.on('click', '[data-action=favorite]', addToFavorite );
 
-					// $('[data-action=remove]', html).click(function(e) {
-			// 	console.log(e);
-			// });
 
-		// $('[data-action=remove]', photosTiles).click(function() {
-		// 	console.log('remove tile');
-		// });
     });
 
 
