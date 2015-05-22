@@ -26,7 +26,7 @@
     {% verbatim %}
     <script id="i-photo-tpl" type="x-tmpl-mustache">
         {{#photos}}
-        <li class="i--pack_photos all-span1-5">
+        <li class="i--pack_photos all-span1-5" data-id="{{id}}">
             <div class="white_bloc">
                 <figure>
                     <img src="{{image}}" alt="alt"/>
@@ -35,6 +35,7 @@
                             {{title}}
                         </h3>
                         <p class="metas--l--pack-photos small">
+                            <span class="photo-id">#{{id}}</span>
                             <span class="photo-status">Online</span>
                             <time datetime="2013-09-19">19 09 2013</time>
                         </p>
@@ -67,6 +68,7 @@
                             type="button"
                             class="icon-x-cross red--rounded_btn" 
                             title="Remove from pack"
+                            data-action="remove"
                         >
                             <i>Remove from pack</i>
                         </button>
