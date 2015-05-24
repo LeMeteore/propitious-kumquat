@@ -65,11 +65,12 @@ class Photo(models.Model):
         # save image, to set the id object
         if self.id is None:
             tmp_img, self.image = self.image, None
-            super(Photo, self).save(*args, **kwargs)
+            #super(Photo, self).save(*args, **kwargs)
+            super().save(*args, **kwargs)
             self.image = tmp_img
 
         # self.image has changed, so save is called again
-        super(Photo, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class Pack(TranslatableModel):
