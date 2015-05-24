@@ -25,10 +25,11 @@ from .filters import StatusFilter
 class PhotoModelAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None, ):
         extra_context = extra_context or {}
+        # TODO: retrieve only needed fields
         photos = [(x.title, x.description, x.image.name) for x in Photo.objects.all()]
         extra_context['photos_list'] = photos
-        return super(PhotoModelAdmin, self).changelist_view(request,
-                                                            extra_context=extra_context)
+        return super().changelist_view(request,
+                                       extra_context=extra_context)
     use_fieldsets = (
         (_("Image"), {
             'classes': ('extrapretty',),
@@ -50,7 +51,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
         return self.use_fieldsets
 
     def get_urls(self):
-        urls = super(PhotoModelAdmin, self).get_urls()
+        urls = super().get_urls()
         custom_photo_urls = patterns('',
                                      # example: /en/admin/photo/photo/informations/23,24,25,98/
                                     url(r'informations/(?P<photo_id>\d+(?:,(\d+))*)/$',
@@ -123,7 +124,7 @@ class PackModelAdmin(TranslatableAdmin):
 
     form = PackAdminForm
     def get_urls(self):
-        urls = super(PackModelAdmin, self).get_urls()
+        urls = super().get_urls()
         custom_urls = patterns('',
                                 url(r'(?P<pack_id>\d+)/remove-photo/(?P<photo_id>\d+)/$',
                                     self.admin_site.admin_view(self.remove_photo_from_pack),
@@ -137,10 +138,11 @@ class PackModelAdmin(TranslatableAdmin):
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         pack = Pack.objects.get(pk=object_id)
+        # TODO: retrieve only needed fields
         pack_images = [ x for x in pack.photos.all() ]
         extra_context['current_pack'] = pack
         extra_context['pack_images'] = pack_images
-        return super(PackModelAdmin, self).change_view(request,
+        return super().change_view(request,
                                                        object_id,
                                                        form_url,
                                                        extra_context=extra_context)
