@@ -21,6 +21,7 @@
 
 	/*Vertical rythme*/
 	--vr: 1.5;
+	--third-vr : calc( var(--vr) / 3 );
 
 	/*v-gutter (based vertical rythme )*/
 	--gutter : var(--vr);
