@@ -51,19 +51,22 @@ var packPhotos = (function($) {
 		var tile = el.parents('.i--pack_photos'),
 			tileID = tile.data('id');
 
-		return [ tile, tileID ];
+		return {
+			el: tile, 
+			id: tileID
+		};
 	};
 
 	var removePhoto = function(e){
 		var tile = getTile( $(e.target) );
 
 		// remove photoId to photoList
-		var idIndex = photosList.indexOf( tile[1]+'' );
+		var idIndex = photosList.indexOf( tile.id+'' );
 		photosList.splice(idIndex, 1);	
 		photosInput.val(photosList.join(','));
 
 		// remove tile
-		tile[0].remove();
+		tile.el.remove();
 	};
 
 	var addToFavorite = function(e){
@@ -73,7 +76,7 @@ var packPhotos = (function($) {
 		photosTiles.find('[data-action=favorite].active').removeClass('active');
 		btn.addClass('active');
 
-		favPhotoInput.val(tile[1]);
+		favPhotoInput.val(tile.id);
 	};
 
 	/*
