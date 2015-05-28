@@ -1,0 +1,93 @@
+{% extends "admin/photo/change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+
+{% block after_field_sets %}
+<div class="pack_photos all-span1-1">
+
+    <h3 class="legend">
+        Liste des photos liées au pack
+    </h3>
+
+    <a 
+        class="btn" 
+        href="/fr/admin/photo/photo/?_popup=1"
+        data-iframe-modal="open"
+    >
+            Select Photo
+    </a>
+
+    <ul id="l--pack_photos" class="l--photos fl_grid"></ul>
+
+
+
+
+
+    {% verbatim %}
+    <script id="i-photo-tpl" type="x-tmpl-mustache">
+        {{#photos}}
+        <li class="i--photos i--pack_photos all-span1-5" data-id="{{id}}">
+            <figure class="fig--i--photos">
+                <div class="img--i--photos">
+                    <img src="{{image}}" alt="alt"/>
+                </div>
+                <figcation class="figcap--i--photos">
+                    <h3 class="h--i--photos small">
+                        {{title}}
+                    </h3>
+                    <p class="metas--i--photos tb_grid xsmall">
+                        <span class="photo-id">#{{id}}</span>
+                        <span class="photo-status">{{status}}</span>
+                        <time class="photo-date" datetime="2013-09-19">{{date}}</time>
+                    </p>
+                    
+                </figcation>
+            </figure>                                        
+
+            <div class="btns--i--photos small">
+                <button 
+                    type="button"
+                    class="icon-star rounded_btn" 
+                    title="Choose as image pack"
+                    data-action="favorite"
+                >
+                    <i>Choose as image pack</i>
+                </button>
+                <button 
+                    type="button"
+                    class="icon-pencil rounded_btn" 
+                    title="Edit"
+                >
+                    <i>Edit</i>
+                </button>
+                <button
+                    type="button"
+                    class="icon-eye rounded_btn" 
+                    title="View in front office"
+                >
+                    <i>View in front office</i>
+                </button>
+                <button
+                    type="button"
+                    class="icon-x-cross red--rounded_btn" 
+                    title="Remove from pack"
+                    data-action="remove"
+                >
+                    <i>Remove from pack</i>
+                </button>
+            </div>
+        </li> 
+        {{/photos}}       
+    </script>
+    {% endverbatim %}
+</div>
+{% endblock %}
+
+
+
+{% block additional-js %}
+    <script src="/static/admin/js/mustache.js"></script>
+    <script src="/static/js/sac-iframe-modal.js"></script>
+    <script src="/static/admin/js/pack-change_form.js"></script>
+
+{% endblock %}

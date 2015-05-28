@@ -172,6 +172,40 @@ main    		{  }
 
 
 
+/*	SAC IFRAME MODAL 
+*	Need sac-iframe-modal.js
+
+*	for use : add [data-iframe-modal="open"] to a link
+*	<a href="/admin/…" data-iframe-modal="open" />
+*/
+
+#sac-iframe-modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0 3em 3em;
+	background-color: hsla(0, 0%, 0%, .8);
+	text-align: right;
+}
+#close__sac-iframe-modal {
+	font-size: var(--fs-h4)em;
+	margin: .5em 0; 
+	background: none;
+	border: none;
+	padding: 0;
+	color: var(--color2-lightgrey);
+}
+
+#iframe__sac-iframe-modal {
+	height: calc( 100% - 3em);
+	width: 100%;
+}
+
+
 /* CALENDARS & CLOCKS */
 
 .calendarbox, .clockbox {

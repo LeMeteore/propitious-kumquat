@@ -133,6 +133,108 @@
 	border-bottom-right-radius:	.33em;
 }
 
+
+
+/*
+**	Rounded Buttons (for icons)
+*/
+
+.rounded_btn
+,[class*="--rounded_btn"]
+{
+	display: inline-block;
+	padding: 0;
+	border: none;
+
+	color: var(--color2-lightgrey);
+	background-color: var(--color2-grey);
+	
+	height: 1.8em;
+	width : 1.8em;
+	border-radius: 50%;
+}
+
+.rounded_btn:hover
+, .rounded_btn:active
+, .rounded_btn.active 
+{
+	background-color: var(--color2-darkgrey);
+}
+.rounded_btn:active 
+, .rounded_btn.active 
+{
+	color: var(--color1-bright);
+	box-shadow: 0 0 .05em .1em var(--color1-bright);
+}
+
+/*	Red rounded btn */
+
+.red--rounded_btn {
+	background-color: var(--color-error);
+}
+
+
+/*
+**	Photo
+*/
+
+.photo-date {
+	white-space: nowrap;
+}
+
+
+/*
+**	Photo tile
+*/
+
+.i--photos {
+}
+.fig--i--photos	{
+	background-color: hsla(0, 0%, 100%, .4);
+	/*background-color: var(--color2-darkgrey);*/
+	/*color: var(--color2-lightgrey);*/
+	padding: calc( var(--vr) / 3 )em;
+	/*background-color: hsla(0, 0%, 100%, .7);*/
+}
+
+.img--i--photos	{
+	height: 0;
+	padding-top: 80%;
+	text-align: center;
+	position: relative;
+}
+.img--i--photos > img	{
+	/*padding: calc( var(--vr) / 3 )em;*/
+	/*padding-bottom: calc( var(--vr) / 3 )em;*/
+	/*padding-bottom: 0;*/
+	width: auto;
+	max-height: 100%;
+	margin: auto;
+	margin-bottom: 0;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+}
+.h--i--photos {
+	margin-bottom: calc( var(--vr) / 3 )em;
+	line-height: 1.2;
+	max-height: 2.4em;
+	overflow: hidden;
+}
+
+
+.btns--i--photos	{
+	text-align: right;
+	background-color: var(--color1-light);
+	padding: var(--third-vr)em;
+}
+
+.btns--i--photos > button	{
+	color: var(--color1-light);
+}
+
 /*
 **	max-width bloc
 */
