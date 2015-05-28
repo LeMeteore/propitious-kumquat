@@ -153,10 +153,16 @@ class PackModelAdmin(TranslatableAdmin):
     def pack_images(self, request, pack_id):
         if request.is_ajax():
             pack = get_object_or_404(Pack, id=pack_id)
+            #pack_images = pack.photos.all().values(*["id", "title", "description", "image", "date published"])
             pack_images = pack.photos.all()
-            json_data = []
+            json_data = list()
             for x in pack_images:
-                p = {'title': x.title, 'description': x.description, 'image': x.image.url}
+                p = {'id': x.id,
+                     'status': x.status.lazy_translation_getter('name'),
+                     'title': x.title,
+                     'description': x.description,
+                     'image': x.image.url,
+                     'date published': getattr(x, 'date published').strftime("%d-%m-%Y"),}
                 json_data.append(p)
         else:
             json_data = {"error": "You're the lying type, I can just tell."}
