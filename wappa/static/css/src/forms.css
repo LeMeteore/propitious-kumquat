@@ -207,11 +207,6 @@ span.input-addon {
 *	* success
 */
 
-/*colors*/
-.color-error		{ color: var(--color-error); }
-.color-error-bg		{ color: var(--color-error-bg); }
-
-
 .notif	{ 
 	padding: .5em; 
 	margin-bottom: 1em; 
@@ -219,7 +214,10 @@ span.input-addon {
 }
 
 /* ERROR */
-.error		{ 
+.color-error		{ color: var(--color-error); }
+.color-error-bg		{ color: var(--color-error-bg); }
+
+.error, .alert		{ 
 	color: var(--color-error);
 }
 .notif.error 
@@ -231,6 +229,8 @@ span.input-addon {
 }
 
 .error a				{ color: #8a1f11; }
+
+/*For Btn : use .error__btn*/
 
 
 /* NOTICE */
