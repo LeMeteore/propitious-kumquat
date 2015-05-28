@@ -17,7 +17,7 @@
             Select Photo
     </a>
 
-    <ul id="l--pack_photos" class="l--pack_photos fl_grid"></ul>
+    <ul id="l--pack_photos" class="l--photos fl_grid"></ul>
 
 
 
@@ -26,55 +26,55 @@
     {% verbatim %}
     <script id="i-photo-tpl" type="x-tmpl-mustache">
         {{#photos}}
-        <li class="i--pack_photos all-span1-5" data-id="{{id}}">
-            <div class="white_bloc">
-                <figure>
+        <li class="i--photos i--pack_photos all-span1-5" data-id="{{id}}">
+            <figure class="fig--i--photos">
+                <div class="img--i--photos">
                     <img src="{{image}}" alt="alt"/>
-                    <figcation>
-                        <h3 class="h--l--pack_photos p">
-                            {{title}}
-                        </h3>
-                        <p class="metas--l--pack-photos small">
-                            <span class="photo-id">#{{id}}</span>
-                            <span class="photo-status">{{status}}</span>
-                            <time datetime="2013-09-19">{{date}}</time>
-                        </p>
-                        
-                    </figcation>
+                </div>
+                <figcation class="figcap--i--photos">
+                    <h3 class="h--i--photos small">
+                        {{title}}
+                    </h3>
+                    <p class="metas--i--photos tb_grid xsmall">
+                        <span class="photo-id">#{{id}}</span>
+                        <span class="photo-status">{{status}}</span>
+                        <time class="photo-date" datetime="2013-09-19">{{date}}</time>
+                    </p>
+                    
+                </figcation>
+            </figure>                                        
 
-                    <div class="actions--i--pack_photos">
-                        <button 
-                            type="button"
-                            class="icon-star rounded_btn" 
-                            title="Choose as image pack"
-                            data-action="favorite"
-                        >
-                            <i>Choose as image pack</i>
-                        </button>
-                        <button 
-                            type="button"
-                            class="icon-pencil rounded_btn" 
-                            title="Edit"
-                        >
-                            <i>Edit</i>
-                        </button>
-                        <button
-                            type="button"
-                            class="icon-eye rounded_btn" 
-                            title="View in front office"
-                        >
-                            <i>View in front office</i>
-                        </button>
-                        <button
-                            type="button"
-                            class="icon-x-cross red--rounded_btn" 
-                            title="Remove from pack"
-                            data-action="remove"
-                        >
-                            <i>Remove from pack</i>
-                        </button>
-                    </div>
-                </figure>                                        
+            <div class="btns--i--photos small">
+                <button 
+                    type="button"
+                    class="icon-star rounded_btn" 
+                    title="Choose as image pack"
+                    data-action="favorite"
+                >
+                    <i>Choose as image pack</i>
+                </button>
+                <button 
+                    type="button"
+                    class="icon-pencil rounded_btn" 
+                    title="Edit"
+                >
+                    <i>Edit</i>
+                </button>
+                <button
+                    type="button"
+                    class="icon-eye rounded_btn" 
+                    title="View in front office"
+                >
+                    <i>View in front office</i>
+                </button>
+                <button
+                    type="button"
+                    class="icon-x-cross red--rounded_btn" 
+                    title="Remove from pack"
+                    data-action="remove"
+                >
+                    <i>Remove from pack</i>
+                </button>
             </div>
         </li> 
         {{/photos}}       
