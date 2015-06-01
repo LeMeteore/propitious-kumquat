@@ -19,68 +19,80 @@
 var iframeModal = (function($){
 	'use strict';
 
+	var	template = $('<div id="sac-iframe-modal">' +
+			'	<button id="close__sac-iframe-modal" role="button" class="icon-x-cross">' +
+			'		<i>Close modal</i>' +
+			'	</button>' +
+			'	<iframe id="iframe__sac-iframe-modal" />' +
+			'</div>'
+		),
+
+
+		addTemplate = function(){
+			$('body').append(template);
+		},
+
+		load = function(url, callback) {
+			$('iframe', template)[0].src = url;
+			if(callback) callback();
+		};
+
+
+
 	// public API
 	var modal = {
 		isActive : 0,
 
-		template : $('<div id="sac-iframe-modal"> \
-			<button id="close__sac-iframe-modal" role="button" class="icon-x-cross"> \
-				<i>Close modal</i> \
-			</button> \
-			<iframe id="iframe__sac-iframe-modal" /> \
-		</div> \
-		'),
-
-		open : function() {
-			modal.template.show();
+		show : function() {
+			template.show();
 			modal.isActive = 1;
 		},
 		
+		hide : function() {
+			$('iframe', modal.template)[0].src = '';
+			template.hide();
+			modal.isActive = 0;
+		},
+
+		open : function(el) {
+			var url = el.href;
+			console.log(url);
+			load(url, function(){
+				modal.show();
+			});
+		},
+
 		close : function() {
 			$('iframe', modal.template)[0].src = '';
-			modal.template.hide();
-			modal.isActive = 1;
-		},
+			modal.hide();
+		}
 	};
 
 
 
-	var addTemplate = function(){
-			$('body').append(modal.template);
-		},
+	$(function() {
 
-		load = function(url, callback) {
-			$('iframe', modal.template)[0].src = url;
-			if(callback) callback();
-		};
+		addTemplate();
 
-		$(function() {
+		var dataBtn = $('[data-iframe-modal=open]');
 
-			var openBtn = $('[data-iframe-modal=open]');
+		if (dataBtn.length) {
+			dataBtn.click(function(e) {
+				e.preventDefault();
+				// console.log(this);
+				modal.open(this);
+			});
+		}
 
-			if (openBtn.length) {
-
-				addTemplate();
-
-				openBtn.click(function(e) {
-					e.preventDefault();
-					var url = this.href;
-					load(url, function(){
-						modal.open();
-					});
-				});
-
-				$('#close__sac-iframe-modal', modal.template).click(function(e) {
-					e.preventDefault();
-					modal.close();
-				});
-			}
-
-
-			// Stuff to do as soon as the DOM is ready;
+		$('#close__sac-iframe-modal', modal.template).click(function(e) {
+			e.preventDefault();
+			modal.close();
 		});
 
-		return modal;
+		// Stuff to do as soon as the DOM is ready;
+	});
+
+	return modal;
 
 })(django.jQuery);
 

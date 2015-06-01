@@ -21,7 +21,7 @@
 
 
 
-var packPhotos = (function($) {
+var packPhotos = (function($, modal) {
 	'use strict';
 
 	var photosInput,
@@ -88,7 +88,6 @@ var packPhotos = (function($) {
 		target.append(renderer);
 
 		photosTiles = $('.i--pack_photos');
-		console.log(photosTiles);
 
 		if (callback) callback();
 	};
@@ -98,11 +97,12 @@ var packPhotos = (function($) {
 	var getImgInfo = function(callback){
 		$.ajax({
 			url: '/static/admin/js/test.txt',
-			// url :'/en/admin/photo/photo/informations/' + photosval + '/',
+			// url :'/en/admin/photo/photo/informations/' + photosInputVal + '/',
 			type: 'GET',
 			dataType: 'json',
 		})
 		.done(function(data) {
+			console.log(data);
 			if (callback) {
 				callback(data);
 			}
@@ -130,15 +130,17 @@ var packPhotos = (function($) {
 			});
 		}
 
-
-
-		// remove tiles
+		// remove tiles btn
 		photosWrapper.on('click', '[data-action=remove]', removePhoto );
+		// favorite img btn
 		photosWrapper.on('click', '[data-action=favorite]', addToFavorite );
-
+		// Edit Img btn
+		photosWrapper.on('click', '[data-action=edit]', function(event){
+			event.preventDefault();
+			modal.open(this);
+		});
 
     });
 
 
-
-})(django.jQuery);
+})(django.jQuery, iframeModal);
