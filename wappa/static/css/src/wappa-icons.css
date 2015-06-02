@@ -8,10 +8,10 @@
 
 @font-face {
 	font-family:"wappa-icons";
-	src:url("../../fonts/wappa-icons.eot?68b9cdbd3b50d3da174fbdc992e0dde2");
+	src:url("../../fonts/wappa-icons.eot?074f6ed8849ee9259311e4e0ae97e25d");
 	src:url("../../fonts/wappa-icons.eot?#iefix") format("embedded-opentype"),
-		url("../../fonts/wappa-icons.woff?68b9cdbd3b50d3da174fbdc992e0dde2") format("woff"),
-		url("../../fonts/wappa-icons.ttf?68b9cdbd3b50d3da174fbdc992e0dde2") format("truetype");
+		url("../../fonts/wappa-icons.woff?074f6ed8849ee9259311e4e0ae97e25d") format("woff"),
+		url("../../fonts/wappa-icons.ttf?074f6ed8849ee9259311e4e0ae97e25d") format("truetype");
 	font-weight:normal;
 	font-style:normal;
 }
@@ -27,8 +27,7 @@
 	font-family:"wappa-icons";
 	display:inline-block;
 	vertical-align:baseline;
-	/*Remplace lh1 by O.5 for a chrome bug*/
-	line-height:.5; 
+	line-height:1;
 	font-weight:normal;
 	font-style:normal;
 	speak:none;
