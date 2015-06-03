@@ -10,9 +10,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'wappa.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
     url(r'^(?P<filename>(robots.txt)|(humans.txt))$',
         home_files, name='home-files'),
 )
@@ -20,6 +17,7 @@ urlpatterns = patterns('',
 urlpatterns += i18n_patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^dashboard/', include('apps.photo.dashboard_urls')),
     url(r'^$', home, name='home'),
 )
 
