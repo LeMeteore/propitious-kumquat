@@ -201,8 +201,13 @@ main    		{  }
 	color: #f0f0f3;
 }
 
-#iframe__sac-iframe-modal {
+#content__sac-iframe-modal {
 	height: calc( 100% - 3em);
+	width: 100%;
+}
+
+#content__sac-iframe-modal > iframe {
+	height: 100%;
 	width: 100%;
 }
 

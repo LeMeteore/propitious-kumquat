@@ -96,8 +96,8 @@ var packPhotos = (function($, modal) {
 	// Récupère les infos des images via AJAX
 	var getImgInfo = function(callback){
 		$.ajax({
-			url: '/static/admin/js/test.txt',
-			// url :'/en/admin/photo/photo/informations/' + photosInputVal + '/',
+			// url: '/static/admin/js/test.txt',
+			url :'/en/admin/photo/photo/informations/' + photosInputVal + '/',
 			type: 'GET',
 			dataType: 'json',
 		})
@@ -138,6 +138,20 @@ var packPhotos = (function($, modal) {
 		photosWrapper.on('click', '[data-action=edit]', function(event){
 			event.preventDefault();
 			modal.open(this);
+		});
+
+
+		// IMPORT PHOTO
+
+		$('#select-photo-btn').on('click', function(event) {
+			event.preventDefault();
+
+			modal.open(this, function(content){
+				var photos = content.find('.i--photos');
+
+				// photos.css('outline', '10px solid red');
+				// console.log(photos);
+			});
 		});
 
     });
