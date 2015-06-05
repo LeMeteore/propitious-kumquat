@@ -19,8 +19,11 @@ DATABASES = {
     }
 }
 
-
-MEDIA_ROOT = "/var/www/wappa/media/" or os.path.join(BASE_DIR, 'media')
+import django
+if django.conf.settings.DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIAL_URL = '/media/'
+    WATERMARK_BW = os.path.join(MEDIA_ROOT, "wappa", "watermark-bw.jpg")
 
 # See: http://django-debug-toolbar.readthedocs.org/en/latest/installation.html#explicit-setup
 INSTALLED_APPS += (
