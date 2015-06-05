@@ -19,7 +19,8 @@ from hvad.forms import TranslatableModelForm
 
 import json
 from django.shortcuts import get_object_or_404
-
+from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import PageNotAnInteger
 from .filters import StatusFilter
 
 class PhotoModelAdmin(admin.ModelAdmin):
@@ -31,7 +32,17 @@ class PhotoModelAdmin(admin.ModelAdmin):
         #            'id': x.id,
         #            'description': x.description,
         #            'image': x.image.name} for x in Photo.objects.all()]
-        photos = [x for x in Photo.objects.all()]
+        photos_list = [x for x in Photo.objects.all()]
+        paginator = Paginator(photos_list, 10) # 10 photos per page
+        page = request.GET.get('page')
+
+        try:
+            photos = paginator.page(page)
+        except PageNotAnInteger:
+            photos = paginator.page(1)
+        except EmptyPage:
+            photos = paginator.page(paginator.num_pages)
+
         extra_context['photos_list'] = photos
         return super().changelist_view(request,
                                        extra_context=extra_context)
