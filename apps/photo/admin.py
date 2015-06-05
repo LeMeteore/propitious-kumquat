@@ -26,7 +26,12 @@ class PhotoModelAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None, ):
         extra_context = extra_context or {}
         # TODO: retrieve only needed fields
-        photos = [(x.title, x.description, x.image.name) for x in Photo.objects.all()]
+        #photos = [(x.title, x.description, x.image.name) for x in Photo.objects.all()]
+        # photos = [{'title': x.title,
+        #            'id': x.id,
+        #            'description': x.description,
+        #            'image': x.image.name} for x in Photo.objects.all()]
+        photos = [x for x in Photo.objects.all()]
         extra_context['photos_list'] = photos
         return super().changelist_view(request,
                                        extra_context=extra_context)
