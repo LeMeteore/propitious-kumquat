@@ -3,15 +3,16 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+from django.template.response import TemplateResponse
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth import login as auth_login
+from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 
 @login_required(login_url='/dashboard/login/')
 def dashboard(request):
-    return HttpResponse("this is the dashboard")
-    #return render(request, 'photo/dashboard.html')
+    #return HttpResponse("this is the dashboard")
+    return render(request, 'photo/dashboard.html')
 
 @csrf_protect
 def login(request, authentication_form=AuthenticationForm,):
@@ -23,4 +24,9 @@ def login(request, authentication_form=AuthenticationForm,):
             return HttpResponseRedirect('/dashboard/')
     else:
         form = AuthenticationForm()
-    return render(request, 'photo/login.html', {'user_form': form})
+    return render(request, 'photo/registration/login.html',
+                  {'user_form': form})
+
+def logout(request, template_name="photo/registration/logged_out.html"):
+    auth_logout(request)
+    return TemplateResponse(request, template_name)
