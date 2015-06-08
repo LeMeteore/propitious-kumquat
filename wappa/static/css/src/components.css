@@ -205,6 +205,7 @@
 */
 
 .i--photos {
+	margin-bottom: var(--vr)em;
 }
 .fig--i--photos	{
 	background-color: hsla(0, 0%, 100%, .4);
@@ -239,6 +240,8 @@
 	line-height: 1.2;
 	max-height: 2.4em;
 	overflow: hidden;
+	font-style: italic;
+	text-align: center;
 }
 
 
