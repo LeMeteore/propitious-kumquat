@@ -1,0 +1,58 @@
+{% extends "admin/photo/change_list.html" %}
+{% load i18n admin_urls admin_static admin_modify debug_tags %}
+
+{% block display_result_list %}
+	<ul class="l--photos fl_grid">
+
+    {% for photo in photos_list %}
+    	<li class="i--photos all-span1-5" data-id="{{ photo.id }}">
+	        <figure class="fig--i--photos">
+	        	<div class="img--i--photos">
+		            <img class="" src="{{ photo.image.url }}" alt="{{ photo.title }}">	        		
+	        	</div>
+	            <figcaption class="figcap--i--photos">
+	                <h3 class="h--i--photos small">
+	                    {{ photo.title }}
+	                </h3>
+	            </figcaption>
+	        </figure>                                        
+		</li>
+    {% endfor %}
+
+	</ul> <!-- /.l--photos -->
+{% endblock %}
+
+
+
+	<li class="i--photos all-span1-3">
+        <figure class="fig--i--photos">
+        	<div class="img--i--photos">
+	            <img class="" src="../img/placeholder/14-190913-3-01.jpg" alt="img alt">	        		
+        	</div>
+            <figcaption class="figcap--i--photos">
+                <h3 class="h--i--photos small">
+                    Arrivée de François Hollande au Mali dans le cadre de la cérémonie solennelle
+                </h3>
+                <p class="metas--i--photos tb_grid xsmall">
+                    <span class="photo-id">#32</span>
+                    <span class="photo-status">Online</span>
+                    <time class="photo-date" datetime="2013-09-19">19 09 2013</time>
+                </p>
+            </figcaption>
+
+        </figure>                                        
+        <div class="btns--i--photos small">
+            <button type="button" class="icon-star rounded_btn" title="Choose as image pack" data-action="favorite">
+                <i>Choose as image pack</i>
+            </button>
+            <button type="button" class="icon-pencil rounded_btn" title="Edit">
+                <i>Edit</i>
+            </button>
+            <button type="button" class="icon-eye rounded_btn" title="View in front office">
+                <i>View in front office</i>
+            </button>
+            <button type="button" class="icon-x-cross red--rounded_btn" title="Remove from pack" data-action="remove">
+                <i>Remove from pack</i>
+            </button>
+        </div>
+	</li>
