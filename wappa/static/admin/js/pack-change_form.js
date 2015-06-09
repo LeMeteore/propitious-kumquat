@@ -33,6 +33,11 @@ var packPhotos = (function($, modal) {
 		photosList = [],
 
 
+	getPhotosInputVal = function(){
+		photosInputVal = photosInput.val();
+	},
+
+
 
 	activeFavorite = function(){
 		favPhotoId = favPhotoInput.val();
@@ -85,7 +90,7 @@ var packPhotos = (function($, modal) {
 	render = function(template, data, target, callback){
 		// console.log('render');
 		var renderer = Mustache.render(template, {photos : data} );
-		target.append(renderer);
+		target.html(renderer);
 
 		photosTiles = $('.i--pack_photos');
 
@@ -106,6 +111,14 @@ var packPhotos = (function($, modal) {
 			if (callback) {
 				callback(data);
 			}
+		});
+	},
+
+	displayPhotos = function(template){
+		getImgInfo(function(data){	
+			render(template, data, photosWrapper, function(){
+				activeFavorite();
+			});
 		});
 	},
 
@@ -148,9 +161,11 @@ var packPhotos = (function($, modal) {
 	*/
 	$(document).ready(function() {
 		photosInput = $('#id_photos');
-		photosInputVal = photosInput.val();
 		photosWrapper = $('#l--pack_photos');
 		favPhotoInput = $('#id_image');
+
+		getPhotosInputVal();
+
 
 		if(photosInputVal) photosList = photosInputVal.split(',');
 		
@@ -159,11 +174,7 @@ var packPhotos = (function($, modal) {
 
 		// Charge les previews des photos exitantes
 		if (photosList.length) {
-			getImgInfo(function(data){	
-				render(template, data, photosWrapper, function(){
-					activeFavorite();
-				});
-			});
+			displayPhotos(template);
 		}
 
 		// remove tiles btn
@@ -185,6 +196,7 @@ var packPhotos = (function($, modal) {
 			modal.open(this, function(content){
 				var photos = content.find('.i--photos');
 
+				// Select / unselect photos
 				photos.each(function(index, el) {
 					var photo = $(el),
 						id = photo.data().id.toString();
@@ -199,6 +211,13 @@ var packPhotos = (function($, modal) {
 						return false;
 					});
 				});
+
+				// before close modale
+				modal.beforeClose = function(){
+					photosInput.val(photosList.join(','));
+					getPhotosInputVal();
+					displayPhotos(template);
+				};
 
 
 
