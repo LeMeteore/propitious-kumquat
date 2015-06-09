@@ -30,24 +30,24 @@ var packPhotos = (function($, modal) {
 		photosTiles,
 		favPhotoInput,
 		favPhotoId,
-		photosList = [];
+		photosList = [],
 
 
 
-	var activeFavorite = function(){
+	activeFavorite = function(){
 		favPhotoId = favPhotoInput.val();
 
 		if(favPhotoId) {
 			var activeTile = photosTiles.filter('[data-id=' + favPhotoId + ']');	
 			activeTile.find('[data-action=favorite]').addClass('active');
 		}
-	};
+	},
 
 	/*
 	//	Tiles Btn action
 	*/
 
-	var getTile = function(el){
+	getTile = function(el){
 		var tile = el.parents('.i--pack_photos'),
 			tileID = tile.data('id');
 
@@ -55,9 +55,9 @@ var packPhotos = (function($, modal) {
 			el: tile, 
 			id: tileID
 		};
-	};
+	},
 
-	var removePhoto = function(e){
+	removePhoto = function(e){
 		var tile = getTile( $(e.target) );
 
 		// remove photoId to photoList
@@ -67,9 +67,9 @@ var packPhotos = (function($, modal) {
 
 		// remove tile
 		tile.el.remove();
-	};
+	},
 
-	var addToFavorite = function(e){
+	addToFavorite = function(e){
 		var btn = $(e.target),
 			tile = getTile( btn );
 		
@@ -77,12 +77,12 @@ var packPhotos = (function($, modal) {
 		btn.addClass('active');
 
 		favPhotoInput.val(tile.id);
-	};
+	},
 
 	/*
 	// Ajoute les images au template
 	*/
-	var render = function(template, data, target, callback){
+	render = function(template, data, target, callback){
 		// console.log('render');
 		var renderer = Mustache.render(template, {photos : data} );
 		target.append(renderer);
@@ -90,11 +90,11 @@ var packPhotos = (function($, modal) {
 		photosTiles = $('.i--pack_photos');
 
 		if (callback) callback();
-	};
+	},
 
 
 	// Récupère les infos des images via AJAX
-	var getImgInfo = function(callback){
+	getImgInfo = function(callback){
 		$.ajax({
 			// url: '/static/admin/js/test.txt',
 			url :'/en/admin/photo/photo/informations/' + photosInputVal + '/',
@@ -102,14 +102,50 @@ var packPhotos = (function($, modal) {
 			dataType: 'json',
 		})
 		.done(function(data) {
-			console.log(data);
+			// console.log(data);
 			if (callback) {
 				callback(data);
 			}
 		});
+	},
+
+
+	/*
+	//	Add remove photo since Add modal
+	*/
+
+	photoInList = function(id) {
+		var result = {
+			inList : true,
+			index : photosList.indexOf(id)
+		};
+
+		if ( result.index === -1 ) {
+			result.inList = false;
+		}
+
+		return result;
+	},
+
+	addRemove = function(el, id){
+		console.log('addRemove');
+
+		var photo = photoInList(id);
+
+		if ( photo.inList ) {
+			el.removeClass('selected');
+			photosList.splice(photo.index, 1);
+		} else {
+			el.addClass('selected');
+			photosList.push(id);
+		}
+
+		console.log(photosList);
 	};
 
-	// On Ready
+	/*
+	//	On Ready
+	*/
 	$(document).ready(function() {
 		photosInput = $('#id_photos');
 		photosInputVal = photosInput.val();
@@ -149,8 +185,23 @@ var packPhotos = (function($, modal) {
 			modal.open(this, function(content){
 				var photos = content.find('.i--photos');
 
-				// photos.css('outline', '10px solid red');
-				// console.log(photos);
+				photos.each(function(index, el) {
+					var photo = $(el),
+						id = photo.data().id.toString();
+
+					if ( photoInList(id).inList ) {
+						$(el).addClass('selected');
+					}
+
+					// Add / Remove when click in photo figure
+					$('.fig--i--photos', photo).click(function() {
+						addRemove(photo, id);
+						return false;
+					});
+				});
+
+
+
 			});
 		});
 
