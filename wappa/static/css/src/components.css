@@ -255,6 +255,11 @@
 	color: var(--color1-light);
 }
 
+/*selected tile*/
+.i--photos.selected {
+	outline: 2px solid red; 
+}
+
 /*
 **	max-width bloc
 */
