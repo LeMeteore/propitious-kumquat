@@ -37,22 +37,22 @@ class DisableMigrations(object):
 
 TEST_IN_PROGRESS = False
 
+
+# if debug, do not put media root under /var/www
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIAL_URL = '/media/'
+WATERMARK_BW = os.path.join(MEDIA_ROOT, "wappa", "watermark-bw.jpg")
+
+# if debug, is this config for email server
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@wappa.com'
+
+
+
 if 'test' in sys.argv[1:] or 'jenkins' or 'test_coverage' in sys.argv[1:]:
     TESTS_IN_PROGRESS = True
     MIGRATION_MODULES = DisableMigrations()
-
-
-import django
-if django.conf.settings.DEBUG:
-    # if debug, do not put media root under /var/www
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIAL_URL = '/media/'
-    WATERMARK_BW = os.path.join(MEDIA_ROOT, "wappa", "watermark-bw.jpg")
-
-    # id debug, is this config for email server
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 1025
-    EMAIL_HOST_USER = ''
-    EMAIL_HOST_PASSWORD = ''
-    EMAIL_USE_TLS = False
-    DEFAULT_FROM_EMAIL = 'testing@wappa.com'

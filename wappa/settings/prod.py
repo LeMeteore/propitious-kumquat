@@ -32,3 +32,6 @@ TEMPLATE_LOADERS = (
         'django.template.loaders.app_directories.Loader',
         )),
 )
+
+# Watermarks settings
+WATERMARK_BW = get_watermark("watermark-bw.jpg")
