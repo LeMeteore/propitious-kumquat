@@ -83,9 +83,18 @@ var iframeModal = (function($){
 			});
 		},
 
+		beforeClose : null,
+
 		close : function() {
+
+			if (typeof modal.beforeClose === 'function') {
+				modal.beforeClose();
+			}
+			
 			$('iframe', modal.template)[0].src = '';
 			modal.hide();
+
+			modal.beforeClose = null;
 		}
 	};
 
@@ -107,7 +116,8 @@ var iframeModal = (function($){
 
 		$('#close__sac-iframe-modal', modal.template).click(function(e) {
 			e.preventDefault();
-			modal.close();
+
+			if (modal.isActive) modal.close();
 		});
 
 		// Stuff to do as soon as the DOM is ready;
