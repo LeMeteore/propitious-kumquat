@@ -47,20 +47,16 @@ class PhotoModelAdmin(admin.ModelAdmin):
         return super().changelist_view(request,
                                        extra_context=extra_context)
     use_fieldsets = (
-        (_("Image"), {
-            'classes': ('extrapretty',),
-            'fields': ('license', 'width','height','camera_model', 'sensibilite_iso',
-                       'focal', 'ouverture', 'temps_de_pause', 'image')
+        (_("Photo"), {
+            'classes': ('all-span1-4',),
+            'fields': ('image', 'camera_model', 'width','height',
+                       'focal', 'ouverture', 'temps_de_pause', 'sensibilite_iso', 'license' )
             }),
-        (_("Taxonomy"), {
-            'classes': ('collapse',),
-            'description':(_('a description fucked up')),
-            'fields': ('countries','status','date published','author', 'photo_tags',)
-            }),
-        (_("Labels"), {
-            'classes': ('wide',),
-            'fields': ('title', 'description',),
-            }),
+        (_("Fields"), {
+            'classes': ('all-span3-4',),
+            'fields': ('title', 'description','author',
+                       'countries', 'status', 'photo_tags', 'date published')
+            })
         )
 
     def get_fieldsets(self, request, obj=None):
