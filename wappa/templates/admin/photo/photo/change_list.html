@@ -15,12 +15,14 @@
 	                    {{ photo.title }}
 	                </h3>
 	            </figcaption>
-            </figure>                                        
+            </figure> 
+            {% if not is_popup %}                                       
             <div class="btns--i--photos small">
                 <a href="/fr/admin/photo/photo/{{ photo.id }}" class="icon-pencil rounded_btn" title="Edit">
                     <i>Edit</i>
                 </a>
             </div>
+            {% endif %}
 		</li>
     {% endfor %}
 
