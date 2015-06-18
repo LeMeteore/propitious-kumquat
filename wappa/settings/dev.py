@@ -44,14 +44,15 @@ MEDIAL_URL = '/media/'
 WATERMARK_BW = os.path.join(MEDIA_ROOT, "wappa", "watermark-bw.jpg")
 
 # if debug, is this config for email server
+# to launch an smtp server: python -m smtpd -n -c DebuggingServer localhost:1025
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'testing@wappa.com'
-
-
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@wappa.io'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'messages')
 
 if 'test' in sys.argv[1:] or 'jenkins' or 'test_coverage' in sys.argv[1:]:
     TESTS_IN_PROGRESS = True
