@@ -18,6 +18,8 @@ urlpatterns = patterns(
     url(r'^$', views.dashboard, name='index'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
+    url(r'^catalog/pack/$', views.packs, name='packs'),
+    url(r'^catalog/photo/$', views.photos, name='photos')
 )
 
 
