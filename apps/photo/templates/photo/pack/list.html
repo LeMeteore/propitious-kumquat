@@ -1,0 +1,49 @@
+{% extends "photo/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+{% trans 'Custom packs list' %}
+
+<table>
+  <tr>
+    <th>{% trans 'name' %}</th>
+    <th>{% trans 'description' %}</th>
+  </tr>
+{% for pack in packs %}
+  <tr>
+    <td>{{ pack.title  }}</td>
+    <td>{{ pack.description }}</td>
+  </tr>
+{% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if packs.has_previous %}
+            <a href="?page={{ packs.previous_page_number }}">{% trans 'previous' %}</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ packs.number }} {% trans 'of' %} {{ packs.paginator.num_pages }}.
+        </span>
+
+        {% if packs.has_next %}
+            <a href="?page={{ packs.next_page_number }}">{% trans 'next'}</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

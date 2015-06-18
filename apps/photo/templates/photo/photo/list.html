@@ -1,0 +1,49 @@
+{% extends "photo/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+{% trans 'Custom photos list' %}
+
+<table>
+  <tr>
+    <th>{% trans 'name' %}</th>
+    <th>{% trans 'description' %}</th>
+  </tr>
+{% for photo in photos %}
+  <tr>
+    <td>{{ photo.title  }}</td>
+    <td>{{ photo.description }}</td>
+  </tr>
+{% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if photos.has_previous %}
+            <a href="?page={{ photos.previous_page_number }}">{% trans 'previous' %}</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ photos.number }} {% trans 'of' %} {{ photos.paginator.num_pages }}.
+        </span>
+
+        {% if photos.has_next %}
+            <a href="?page={{ photos.next_page_number }}">{% trans 'next'}</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
