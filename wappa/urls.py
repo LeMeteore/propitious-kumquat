@@ -17,7 +17,7 @@ urlpatterns = patterns('',
 urlpatterns += i18n_patterns(
     '',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^dashboard/', include('apps.photo.dashboard_urls')),
+    url(r'^dashboard/', include('apps.photo.dashboard_urls', namespace='dashboard')),
     url(r'^$', home, name='home'),
 )
 
