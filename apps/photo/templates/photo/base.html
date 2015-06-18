@@ -36,9 +36,9 @@
                     <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
                 {% endif %}
                 {% if user.has_usable_password %}
-                <a href="{% url 'dashboard_password_change' %}">{% trans 'Change password' %}</a> /
+                <a href="{% url 'dashboard:password_change' %}">{% trans 'Change password' %}</a> /
                 {% endif %}
-                <a href="{% url 'dashboard_logout' %}">{% trans 'Log out' %}</a>
+                <a href="{% url 'dashboard:logout' %}">{% trans 'Log out' %}</a>
             {% endblock %}
         </div>
         {% endif %}
@@ -47,7 +47,7 @@
     <!-- END Header -->
     {% block breadcrumbs %}
     <div class="breadcrumbs">
-    <a href="{% url 'dashboard_index' %}">{% trans 'Home' %}</a>
+    <a href="{% url 'dashboard:index' %}">{% trans 'Home' %}</a>
     {% if title %} &rsaquo; {{ title }}{% endif %}
     </div>
     {% endblock %}

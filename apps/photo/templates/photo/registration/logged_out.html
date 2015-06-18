@@ -1,12 +1,12 @@
 {% extends "photo/base_site.html" %}
 {% load i18n %}
 
-{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'dashboard_index' %}">{% trans 'Home' %}</a></div>{% endblock %}
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="{% url 'dashboard:index' %}">{% trans 'Home' %}</a></div>{% endblock %}
 
 {% block content %}
 custom logged out template
 <p>{% trans "Thanks for spending some quality time with the Web site today." %}</p>
 
-<p><a href="{% url 'dashboard_login' %}">{% trans 'Log in again' %}</a></p>
+<p><a href="{% url 'dashboard:login' %}">{% trans 'Log in again' %}</a></p>
 
 {% endblock %}
