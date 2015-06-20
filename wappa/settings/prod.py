@@ -2,6 +2,8 @@
 # -*- coding:utf-8 -*-
 
 from .base import *
+import boto
+import boto.s3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -9,6 +11,18 @@ TEMPLATE_DEBUG = False
 
 # You must set ALLOWED_HOSTS if Debug is false
 ALLOWED_HOSTS = ['178.62.127.105'] # ['*'] or ['127.0.0.1', 'localhost'] or [www.wappa.com]
+
+# a bucket per author maybe
+bucket_name = 'web-application-photo-bucket'
+
+# try to get a connection to AS3
+try:
+    conn = boto.connect_s3(AWS_ACCESS_KEY_ID,
+                           AWS_SECRET_ACCESS_KEY)
+    # retrieve the bucket owned by me
+    AS3_BUCKET = conn.get_bucket(bucket_name)
+except:
+    raise ImproperlyConfigured("No valid AS3 connection/bucket found")
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
