@@ -13,7 +13,14 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-if hasattr(settings, 'conn'):
+try:
+    settings.AS3_BUCKET
+except AttributeError:
+    # we do not have a valid connection to AS3, do nothing
+    @shared_task
+    def uploadimgtoas3(uploadfile, **kwargs):
+        pass
+else:
     # we have a valid connection to AS3
     def percent_cb(complete, total):
         sys.stdout.write('.')
@@ -22,17 +29,12 @@ if hasattr(settings, 'conn'):
     @shared_task
     def uploadimgtoas3(uploadfile, **kwargs):
         f = os.path.join(settings.MEDIA_ROOT, uploadfile)
-        k = Key(bucket)
+        k = Key(settings.AS3_BUCKET)
         # the key, should be the file name
         k.key = str(uploadfile)
         # the key value
         k.set_contents_from_filename(str(f))
         return uploadfile
-else:
-    # we do not have a valid connection to AS3, do nothing
-    @shared_task
-    def uploadimgtoas3(uploadfile, **kwargs):
-        pass
 
 @shared_task
 def changeimgsize(uploadfile, **kwargs):
