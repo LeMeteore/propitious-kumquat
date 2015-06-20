@@ -2,10 +2,24 @@
 # -*- coding:utf-8 -*-
 
 from .base import *
+import boto
+import boto.s3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
+
+# a bucket per author maybe
+bucket_name = 'web-application-photo-bucket'
+
+# try to get a connection to AS3
+try:
+    conn = boto.connect_s3(AWS_ACCESS_KEY_ID,
+                           AWS_SECRET_ACCESS_KEY)
+    # retrieve the bucket owned by me
+    bucket = conn.get_bucket(bucket_name)
+except:
+    pass
 
 DATABASES = {
     'default': {
