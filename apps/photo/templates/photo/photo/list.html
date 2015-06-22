@@ -26,6 +26,27 @@
 {% endfor %}
 </table>
 
+
+
+<br>
+<p>{% trans 'Status filters' %}</p>
+<ul>
+<li><a href="?">{% trans 'All' %}</li>
+{% for s in statuses %}
+<li><a href="?sn={{ s.id }}">{% trans s.name %}</a></li>
+{% endfor %}
+</ul>
+
+<br>
+<p>{% trans 'User filters' %}</p>
+<ul>
+<li><a href="?">{% trans 'All' %}</li>
+{% for u in users %}
+<li><a href="?un={{ u.id }}">{% trans u.username %}</a></li>
+{% endfor %}
+</ul>
+
+
 <div class="pagination">
     <span class="step-links">
         {% if photos.has_previous %}

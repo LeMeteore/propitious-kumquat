@@ -26,6 +26,34 @@
 {% endfor %}
 </table>
 
+
+<br>
+<p>{% trans 'Status filters' %}</p>
+<ul>
+<li><a href="?">{% trans 'All' %}</li>
+{% for s in statuses %}
+<li><a href="?sn={{ s.id }}">{% trans s.name %}</a></li>
+{% endfor %}
+</ul>
+
+<br>
+<p>{% trans 'Domain filters' %}</p>
+<ul>
+<li><a href="?">{% trans 'All' %}</li>
+{% for d in domains %}
+<li><a href="?dn={{ d.id }}">{% trans d.name %}</a></li>
+{% endfor %}
+</ul>
+
+<br>
+<p>{% trans 'Type filters' %}</p>
+<ul>
+<li><a href="?">{% trans 'All' %}</li>
+{% for t in types %}
+<li><a href="?tn={{ t.id }}">{% trans t.name %}</a></li>
+{% endfor %}
+</ul>
+
 <div class="pagination">
     <span class="step-links">
         {% if packs.has_previous %}
