@@ -9,9 +9,15 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
 
+from apps.taxonomy.models import Status, Domain, Country, Gender
 from apps.photo.models import Pack, Photo
 from django.core.paginator import Paginator, EmptyPage
 from django.core.paginator import PageNotAnInteger
+
+import hvad
+from django.db.models import Q
+from functools import reduce
+from django.contrib.auth.models import Group, Permission, User
 
 @login_required(login_url='/dashboard/login/')
 def dashboard(request):
@@ -38,8 +44,29 @@ def logout(request, template_name="photo/registration/logged_out.html"):
 
 @login_required(login_url='/dashboard/login/')
 def packs(request):
-    packs_list = [x for x in Pack.objects.all()]
-    paginator = Paginator(packs_list, 10) # 10 packs per page
+    lang = request.LANGUAGE_CODE # or django.utils.translation.get_language()
+    stam = hvad.utils.get_translation_aware_manager(Status)
+    dtam = hvad.utils.get_translation_aware_manager(Domain)
+    ttam = hvad.utils.get_translation_aware_manager(Gender) #pack type
+
+    status_list = [ s for s in stam.language(lang).all() ]
+    domain_list = [ s for s in dtam.language(lang).all() ]
+    type_list = [ s for s in ttam.language(lang).all() ]
+
+    q = list()
+    if request.GET.get('sn'):
+        q.append(Q(status__id=request.GET.get('sn')))
+    if request.GET.get('dn'):
+        q.append(Q(domain__id=request.GET.get('dn')))
+    if request.GET.get('tn'):
+        q.append(Q(pack_type__id=request.GET.get('tn')))
+
+    if q:
+        pack_list = [ p for p in Pack.objects.filter(reduce(lambda x,y: y and y, q)) ]
+    else:
+        pack_list = [ p for p in Pack.objects.all() ]
+
+    paginator = Paginator(pack_list, 10) # 10 packs per page
     page = request.GET.get('page')
     try:
         packs = paginator.page(page)
@@ -48,14 +75,34 @@ def packs(request):
     except EmptyPage:
         packs = paginator.page(paginator.num_pages)
     template = 'photo/pack/list.html'
+
     return render(request, template,
-                  {'packs': packs})
+                  {'packs': packs,
+                   'statuses': status_list,
+                  'domains': domain_list,
+                  'types': type_list})
 
 
 @login_required(login_url='/dashboard/login/')
 def photos(request):
-    photos_list = [x for x in Photo.objects.all()]
-    paginator = Paginator(photos_list, 10) # 10 photos per page
+    lang = request.LANGUAGE_CODE # or django.utils.translation.get_language()
+    stam = hvad.utils.get_translation_aware_manager(Status)
+
+    status_list = [ s for s in stam.language(lang).all() ]
+    user_list = [ u for u in User.objects.all() ]
+
+    q = list()
+    if request.GET.get('sn'):
+        q.append(Q(status__id=request.GET.get('sn')))
+    if request.GET.get('un'):
+        q.append(Q(author__id=request.GET.get('dn')))
+
+    if q:
+        photo_list = [ p for p in Photo.objects.filter(reduce(lambda x,y: x and y, q)) ]
+    else:
+        photo_list = [ p for p in Photo.objects.all() ]
+
+    paginator = Paginator(photo_list, 10) # 10 photos per page
     page = request.GET.get('page')
     try:
         photos = paginator.page(page)
@@ -65,4 +112,6 @@ def photos(request):
         photos = paginator.page(paginator.num_pages)
     template = 'photo/photo/list.html'
     return render(request, template,
-                  {'photos': photos})
+                  {'photos': photos,
+                   'users': user_list,
+                  'statuses': status_list})
