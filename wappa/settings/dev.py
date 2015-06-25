@@ -54,6 +54,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@wappa.io'
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'messages')
 
-if 'test' in sys.argv[1:] or 'jenkins' or 'test_coverage' in sys.argv[1:]:
+if 'test' in sys.argv[1:] or 'jenkins' in sys.argv[1:] or 'test_coverage' in sys.argv[1:]:
     TESTS_IN_PROGRESS = True
     MIGRATION_MODULES = DisableMigrations()
