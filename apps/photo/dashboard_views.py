@@ -115,3 +115,11 @@ def photos(request):
                   {'photos': photos,
                    'users': user_list,
                   'statuses': status_list})
+
+@login_required(login_url='/dashboard/login/')
+def add_pack(request):
+    return HttpResponse("this is the add pack form")
+
+@login_required(login_url='/dashboard/login/')
+def add_photo(request):
+    return HttpResponse("this is the add photo form")
