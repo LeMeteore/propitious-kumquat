@@ -55,7 +55,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
         (_("Taxonomy"), {
             'classes': ('collapse',),
             'description':(_('a description fucked up')),
-            'fields': ('countries','status','date published','author', 'photo_tags',)
+            'fields': ('countries','status','pub_date','author', 'photo_tags',)
             }),
         (_("Labels"), {
             'classes': ('wide',),
@@ -92,7 +92,9 @@ class PhotoModelAdmin(admin.ModelAdmin):
                           'title': p.title,
                           'description': p.description,
                           'image': p.image.url,
-                          'date published': getattr(p, 'date published').strftime("%d-%m-%Y"),}
+                          #'date published': getattr(p, 'date published').strftime("%d-%m-%Y"),
+                          'date published': p.exif_date.strftime("%d-%m-%Y"),
+                          }
                     json_data.append(pp)
                 except:
                     pp = {"error":"not found"}
