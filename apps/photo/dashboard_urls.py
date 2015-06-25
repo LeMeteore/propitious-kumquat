@@ -19,7 +19,9 @@ urlpatterns = patterns(
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^catalog/pack/$', views.packs, name='packs'),
-    url(r'^catalog/photo/$', views.photos, name='photos')
+    url(r'^catalog/photo/$', views.photos, name='photos'),
+    url(r'^catalog/pack/add/$', views.add_pack, name='add_pack'),
+    url(r'^catalog/photo/add/$', views.add_photo, name='add_photo'),
 )
 
 
