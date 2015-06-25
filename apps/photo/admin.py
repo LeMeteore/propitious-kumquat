@@ -55,7 +55,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
         (_("Fields"), {
             'classes': ('all-span3-4',),
             'fields': ('title', 'description','author',
-                       'countries', 'status', 'photo_tags', 'date published')
+                       'countries', 'status', 'photo_tags', 'pub_date')
             })
         )
 
