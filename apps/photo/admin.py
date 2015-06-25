@@ -88,7 +88,7 @@ class PhotoModelAdmin(admin.ModelAdmin):
                           'title': p.title,
                           'description': p.description,
                           'image': p.image.url,
-                          'date published': getattr(p, 'date published').strftime("%d-%m-%Y"),}
+                          'date published': p.exif_date.strftime("%d-%m-%Y"),}
                     json_data.append(pp)
                 except:
                     pp = {"error":"not found"}
