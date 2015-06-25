@@ -43,7 +43,8 @@ class Photo(models.Model):
     temps_de_pause = models.CharField(max_length=200, verbose_name=_('temps_de_pause'))
     countries = models.ManyToManyField(Country, verbose_name=_('countries'))
     image = models.ImageField(max_length=200, upload_to=content_file_name)
-    pub_date = models.DateField(name='date published', default=datetime.now)
+    exif_date = models.DateField(verbose_name=_('date exif'), default=datetime.now)
+    pub_date = models.DateField(verbose_name=_('date published'), default=datetime.now)
     status = models.ForeignKey(Status, verbose_name=_('status'))
 
     photo_tags = TaggableManager(blank=True)
@@ -84,7 +85,7 @@ class Pack(TranslatableModel):
     domain = models.ForeignKey(Domain, verbose_name=_('domain'))
     image = models.ForeignKey(Photo, null=True, blank=True, verbose_name=_('image preview'))
 
-    pub_date = models.DateField(default=datetime.now, name='date published')
+    pub_date = models.DateField(default=datetime.now, verbose_name=_('date published'))
     begin_date = models.DateField(default=datetime.now, verbose_name=_("begin_date"))
     end_date = models.DateField(default=datetime.now, verbose_name=_("end_date"))
 
