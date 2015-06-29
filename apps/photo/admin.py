@@ -127,7 +127,7 @@ class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (
         (_("Dates"), {
             'classes': ('collapse',),
-            'fields': ('date published', 'begin_date', 'end_date',)
+            'fields': ('pub_date', 'begin_date', 'end_date',)
             }),
         (_("Images"), {
             'classes': ('extrapretty',),
@@ -191,7 +191,7 @@ class PackModelAdmin(TranslatableAdmin):
                      'title': x.title,
                      'description': x.description,
                      'image': x.image.url,
-                     'date published': getattr(x, 'date published').strftime("%d-%m-%Y"),}
+                     'date published': x.exif_date.strftime("%d-%m-%Y"),}
                 json_data.append(p)
         else:
             json_data = {"error": "You're the lying type, I can just tell."}
