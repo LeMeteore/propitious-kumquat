@@ -49,3 +49,8 @@ TEMPLATE_LOADERS = (
 
 # Watermarks settings
 WATERMARK_BW = get_watermark("watermark-bw.jpg")
+
+# check deploy
+# https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
