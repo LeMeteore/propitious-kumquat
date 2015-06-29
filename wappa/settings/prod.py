@@ -53,5 +53,9 @@ WATERMARK_BW = os.path.join(BASE_DIR, "watermark-bw.jpg")
 
 # check deploy
 # https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
+
+# TODO:
+# enable when tls will be available
+#CSRF_COOKIE_SECURE = True
+#SESSION_COOKIE_SECURE = True
