@@ -10,7 +10,8 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 
 # You must set ALLOWED_HOSTS if Debug is false
-ALLOWED_HOSTS = ['178.62.127.105'] # ['*'] or ['127.0.0.1', 'localhost'] or [www.wappa.com]
+# ['*'] or ['127.0.0.1', 'localhost'] or [www.wappa.com]
+ALLOWED_HOSTS = ['178.62.127.105', '139.162.212.48']
 
 # a bucket per author maybe
 bucket_name = 'web-application-photo-bucket'
@@ -31,8 +32,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'wappa',
-        'USER': 'wappa',
-        'PASSWORD': '75708787712200040608',
+        'USER': 'awa',
+        'PASSWORD': 'zR5b7AAJ4KMNDgFdW1CPRkSWLOy9qS2HQtEjhtcVGWe8EjXfiqxbP3PIC5wmsTi',
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'CONN_MAX_AGE': 600,
@@ -48,7 +49,7 @@ TEMPLATE_LOADERS = (
 )
 
 # Watermarks settings
-WATERMARK_BW = get_watermark("watermark-bw.jpg")
+WATERMARK_BW = os.path.join(BASE_DIR, "watermark-bw.jpg")
 
 # check deploy
 # https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
