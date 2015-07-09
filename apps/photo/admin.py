@@ -127,7 +127,7 @@ class PackModelAdmin(TranslatableAdmin):
     use_fieldsets = (
         (_("Dates"), {
             'classes': ('collapse',),
-            'fields': ('date published', 'begin_date', 'end_date',)
+            'fields': ('pub_date', 'begin_date', 'end_date',)
             }),
         (_("Images"), {
             'classes': ('extrapretty',),
