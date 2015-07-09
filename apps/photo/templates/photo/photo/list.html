@@ -20,7 +20,7 @@
   </tr>
 {% for photo in photos %}
   <tr>
-    <td>{{ photo.title  }}</td>
+    <td><a href="{% url 'dashboard:edit_photo' photo.id %}">{{ photo.title  }}</a></td>
     <td>{{ photo.description }}</td>
   </tr>
 {% endfor %}

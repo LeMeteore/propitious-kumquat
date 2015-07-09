@@ -1,0 +1,128 @@
+{% extends "photo/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+<div class="fieldWrapper">
+    {{ form.title.errors }}
+    <label for="{{ form.title.id_for_label }}">{% trans 'Title' %}:</label>
+    {{ form.title }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.description.errors }}
+    <label for="{{ form.description.id_for_label }}">{% trans 'Description' %}:</label>
+    {{ form.description }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.author.errors }}
+    <label for="{{ form.description.id_for_label }}">{% trans 'Author' %}:</label>
+    {{ form.author }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.license.errors }}
+    <label for="{{ form.license.id_for_label }}">{% trans 'License' %}:</label>
+    {{ form.license }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.width.errors }}
+    <label for="{{ form.width.id_for_label }}">{% trans 'Width' %}:</label>
+    {{ form.width }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.height.errors }}
+    <label for="{{ form.height.id_for_label }}">{% trans 'Height' %}:</label>
+    {{ form.height }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.camera_model.errors }}
+    <label for="{{ form.camera_model.id_for_label }}">{% trans 'Camera model' %}:</label>
+    {{ form.camera_model }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.sensibilite_iso.errors }}
+    <label for="{{ form.sensibilite_iso.id_for_label }}">{% trans 'Sensibilite ISO' %}:</label>
+    {{ form.sensibilite_iso }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.focal.errors }}
+    <label for="{{ form.focal.id_for_label }}">{% trans 'Focale' %}:</label>
+    {{ form.focal }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.ouverture.errors }}
+    <label for="{{ form.ouverture.id_for_label }}">{% trans 'Ouverture' %}:</label>
+    {{ form.ouverture }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.temps_de_pause.errors }}
+    <label for="{{ form.temps_de_pause.id_for_label }}">{% trans 'Temps de pause' %}:</label>
+    {{ form.temps_de_pause }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.countries.errors }}
+    <label for="{{ form.countries.id_for_label }}">{% trans 'Countries' %}:</label>
+    {{ form.countries }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.image.errors }}
+    <label for="{{ form.image.id_for_label }}">{% trans 'Image' %}:</label>
+    {{ form.image }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.exif_date.errors }}
+    <label for="{{ form.exif_date.id_for_label }}">{% trans 'Exif date' %}:</label>
+    {{ form.exif_date }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.pub_date.errors }}
+    <label for="{{ form.pub_date.id_for_label }}">{% trans 'Publication date' %}:</label>
+    {{ form.pub_date }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.status.errors }}
+    <label for="{{ form.status.id_for_label }}">{% trans 'Status' %}:</label>
+    {{ form.status }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.photo_tags.errors }}
+    <label for="{{ form.photo_tags.id_for_label }}">{% trans 'Tags' %}:</label>
+    {{ form.photo_tags }}
+</div>
+
+    <input type="submit" value="{% trans 'Submit' %}" />
+</form>
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

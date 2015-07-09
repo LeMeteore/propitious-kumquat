@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
+from apps.photo.forms import PhotoForm
 
 from apps.taxonomy.models import Status, Domain, Country, Gender
 from apps.photo.models import Pack, Photo
@@ -18,6 +19,11 @@ import hvad
 from django.db.models import Q
 from functools import reduce
 from django.contrib.auth.models import Group, Permission, User
+from django.core import urlresolvers
+from django.shortcuts import get_object_or_404
+
+from django.contrib import messages
+from django.utils.translation import ugettext_lazy as _
 
 @login_required(login_url='/dashboard/login/')
 def dashboard(request):
@@ -116,10 +122,35 @@ def photos(request):
                    'users': user_list,
                   'statuses': status_list})
 
+@csrf_protect
 @login_required(login_url='/dashboard/login/')
 def add_pack(request):
     return HttpResponse("this is the add pack form")
 
+@csrf_protect
 @login_required(login_url='/dashboard/login/')
-def add_photo(request):
-    return HttpResponse("this is the add photo form")
+def add_photo(request, id=None):
+    template = 'photo/photo/form.html'
+    if id:
+        photo = get_object_or_404(Photo, pk=id)
+        message = _('Photo successfully updated.')
+        # if photo.author != request.user:
+        #     return HttpResponseForbidden()
+    else:
+        photo = Photo(author=request.user)
+        message = _('Photo successfully added.')
+
+    if request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES, instance=photo)
+        if form.is_valid():
+            # process data if necessary
+            # save
+            form.save()
+            #
+            messages.add_message(request, messages.INFO, message)
+            # redirect
+            return HttpResponseRedirect(urlresolvers.reverse('dashboard:photos'))
+    else:
+        form = PhotoForm(instance=photo)
+    return render(request, template,
+                  {'form': form})
