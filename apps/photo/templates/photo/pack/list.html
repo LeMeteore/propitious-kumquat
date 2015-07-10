@@ -20,7 +20,7 @@
   </tr>
 {% for pack in packs %}
   <tr>
-    <td>{{ pack.title  }}</td>
+    <td><a href="{% url 'dashboard:edit_pack' pack.id %}">{{ pack.title  }}</a></td>
     <td>{{ pack.description }}</td>
   </tr>
 {% endfor %}

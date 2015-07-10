@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm
-from apps.photo.forms import PhotoForm
+from apps.photo.forms import PhotoForm, PackForm
 
 from apps.taxonomy.models import Status, Domain, Country, Gender
 from apps.photo.models import Pack, Photo
@@ -124,8 +124,26 @@ def photos(request):
 
 @csrf_protect
 @login_required(login_url='/dashboard/login/')
-def add_pack(request):
-    return HttpResponse("this is the add pack form")
+def add_pack(request, id=None):
+    template = 'photo/pack/form.html'
+    if id:
+        pack = get_object_or_404(Pack, pk=id)
+        message = _('Pack successfully updated.')
+    else:
+        pack = Pack()
+        message = _('Pack successfully added.')
+
+    if request.method == 'POST':
+        form = PackForm(request.POST, instance=pack)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.INFO, message)
+            return HttpResponseRedirect(urlresolvers.reverse('dashboard:packs'))
+    else:
+        form = PackForm(instance=pack)
+    return render(request, template,
+                  {'form': form})
+
 
 @csrf_protect
 @login_required(login_url='/dashboard/login/')
