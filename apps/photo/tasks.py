@@ -20,34 +20,36 @@ from PIL import Image
 
 from celery import shared_task
 
-# AWS ACCESS DETAILS
-AWS_ACCESS_KEY_ID = settings.AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY = settings.AWS_SECRET_ACCESS_KEY
+# import the logging library
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
-# a bucket per author maybe
-bucket_name = 'web-application-photo-bucket'
-conn = boto.connect_s3(AWS_ACCESS_KEY_ID,
-                       AWS_SECRET_ACCESS_KEY)
-#bucket = conn.create_bucket(bucket_name,
-#                            location=boto.s3.connection.Location.DEFAULT)
 
-# retrieve the bucket owned by me
-bucket = conn.get_bucket(bucket_name)
+try:
+    settings.AS3_BUCKET
+except AttributeError:
+    # we do not have a valid connection to AS3, do nothing
+    @shared_task
+    def uploadimgtoas3(uploadfile, **kwargs):
+        pass
+else:
+    # we have a valid connection to AS3
+    def percent_cb(complete, total):
+        sys.stdout.write('.')
+        sys.stdout.flush()
 
-def percent_cb(complete, total):
-    sys.stdout.write('.')
-    sys.stdout.flush()
+    @shared_task
+    def uploadimgtoas3(uploadfile, **kwargs):
+        f = os.path.join(settings.MEDIA_ROOT, uploadfile)
+        k = Key(settings.AS3_BUCKET)
+        # the key, should be the file name
+        k.key = str(uploadfile)
+        # the key value
+        k.set_contents_from_filename(str(f))
+        logger.info("Image {0} uploaded to AS3".format(f))
+        return uploadfile
 
-@shared_task
-def uploadimgtoas3(uploadfile, **kwargs):
-    f = os.path.join(settings.MEDIA_ROOT, uploadfile)
-    k = Key(bucket)
-    # the key, should be the file name
-    k.key = str(uploadfile)
-    # the key value
-    k.set_contents_from_filename(str(f))
-    logger.info("Image {0} uploaded to AS3".format(f))
-    return uploadfile
 
 @shared_task
 def changeimgsize(uploadfile, **kwargs):
