@@ -7,7 +7,8 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wappa.settings.dev')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wappa.settings.prod')
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'wappa.settings.prod'
 app = Celery('wappa')
 app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
