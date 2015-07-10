@@ -2,6 +2,14 @@
 # -*- coding:utf-8 -*-
 
 import os
+
+from celery.task import Task
+from celery.registry import tasks
+from celery.utils.log import get_task_logger
+
+# Get an instance of a logger
+logger = get_task_logger(__name__)
+
 import sys
 from boto.s3.key import Key
 from django.conf import settings
@@ -12,6 +20,7 @@ from celery import shared_task
 import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
 
 try:
     settings.AS3_BUCKET
@@ -34,6 +43,7 @@ else:
         k.key = str(uploadfile)
         # the key value
         k.set_contents_from_filename(str(f))
+        logger.info("Image {0} uploaded to AS3".format(f))
         return uploadfile
 
 @shared_task
@@ -48,6 +58,7 @@ def changeimgsize(uploadfile, **kwargs):
     io = ii.resize((128,128))
     of = "%s%s" % (fname, fext)
     io.save(of, "jpeg")
+    logger.info("New image size generated from file {0}".format(f))
     return of
 
 @shared_task
@@ -74,3 +85,4 @@ def generatewatermarkedimg(resizedfile, **kwargs):
              quality=50,
              optimize=True,
              progressive=True)
+    logger.info("Watermarked image generated from {0}".format(f))
