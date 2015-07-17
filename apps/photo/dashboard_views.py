@@ -59,6 +59,11 @@ def packs(request):
     domain_list = [ s for s in dtam.language(lang).all() ]
     type_list = [ s for s in ttam.language(lang).all() ]
 
+    if 'is_modal' in request.GET and request.GET.get('is_modal') == '1':
+        is_modal = True
+    else:
+        is_modal = False
+
     q = list()
     if request.GET.get('sn'):
         q.append(Q(status__id=request.GET.get('sn')))
@@ -84,8 +89,9 @@ def packs(request):
 
     return render(request, template,
                   {'packs': packs,
+                   'is_modal': is_modal,
                    'statuses': status_list,
-                  'domains': domain_list,
+                   'domains': domain_list,
                   'types': type_list})
 
 
@@ -96,6 +102,11 @@ def photos(request):
 
     status_list = [ s for s in stam.language(lang).all() ]
     user_list = [ u for u in User.objects.all() ]
+
+    if 'is_modal' in request.GET and request.GET.get('is_modal') == '1':
+        is_modal = True
+    else:
+        is_modal = False
 
     q = list()
     if request.GET.get('sn'):
@@ -119,6 +130,7 @@ def photos(request):
     template = 'photo/photo/list.html'
     return render(request, template,
                   {'photos': photos,
+                   'is_modal': is_modal,
                    'users': user_list,
                   'statuses': status_list})
 
