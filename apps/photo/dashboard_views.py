@@ -73,9 +73,9 @@ def packs(request):
         q.append(Q(pack_type__id=request.GET.get('tn')))
 
     if q:
-        pack_list = [ p for p in Pack.objects.filter(reduce(lambda x,y: y and y, q)) ]
+        pack_list = [ p for p in Pack.objects.language(lang).filter(reduce(lambda x,y: x and y, q)) ]
     else:
-        pack_list = [ p for p in Pack.objects.all() ]
+        pack_list = [ p for p in Pack.objects.language(lang).all() ]
 
     paginator = Paginator(pack_list, 10) # 10 packs per page
     page = request.GET.get('page')
