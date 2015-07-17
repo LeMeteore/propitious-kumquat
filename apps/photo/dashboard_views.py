@@ -11,7 +11,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from apps.photo.forms import PhotoForm, PackForm
 
 from apps.taxonomy.models import Status, Domain, Country, Gender
-from apps.photo.models import Pack, Photo
+from apps.photo.models import Pack, PackTranslation, Photo
 from django.core.paginator import Paginator, EmptyPage
 from django.core.paginator import PageNotAnInteger
 
@@ -140,6 +140,7 @@ def add_pack(request, id=None):
     template = 'photo/pack/form.html'
     if id:
         pack = get_object_or_404(Pack, pk=id)
+        pack_photos = pack.photos.values_list('id')
         message = _('Pack successfully updated.')
     else:
         pack = Pack()
@@ -147,8 +148,30 @@ def add_pack(request, id=None):
 
     if request.method == 'POST':
         form = PackForm(request.POST, instance=pack)
+
+        # ugly and probably dangerous hack
+        photos = form.data.get('photos', '')
+        photos = photos.strip('[]')
+        photos = "".join(photos.split())
+        photos = photos.split(',')
+        form.data['photos'] = photos
+
         if form.is_valid():
-            form.save()
+            pack = form.save(commit=False)
+            if not id: pack.save()
+            pack_en = PackTranslation.objects.get_or_create(master_id=pack.id,
+                                                            language_code='en')
+            pack_en[0].title=form.cleaned_data.get('title_en','')
+            pack_en[0].description=form.cleaned_data.get('description_en','')
+            pack_en[0].save()
+
+            pack_fr = PackTranslation.objects.get_or_create(master_id=pack.id,
+                                                            language_code='fr')
+            pack_fr[0].title=form.cleaned_data.get('title_fr','')
+            pack_fr[0].description=form.cleaned_data.get('description_fr','')
+            pack_fr[0].save()
+            form.save_m2m()
+
             messages.add_message(request, messages.INFO, message)
             return HttpResponseRedirect(urlresolvers.reverse('dashboard:packs'))
     else:

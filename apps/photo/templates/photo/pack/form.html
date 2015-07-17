@@ -15,25 +15,32 @@
 {% block content %}
 <div id="content-main">
 
-<div class="hvad-language-tabs nani-language-tabs">
- <span class="empty"><a href="?language=en">{% trans 'Show English translation' %}</a> </span>
- <span class="empty"><a href="?language=fr">{% trans 'Show French translation' %}</a> </span>
-</div>
-
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.non_field_errors }}
 
 <div class="fieldWrapper">
-    {{ form.title.errors }}
-    <label for="{{ form.title.id_for_label }}">{% trans 'Title' %}:</label>
-    {{ form.title }}
+    {{ form.title_fr.errors }}
+    <label for="{{ form.title_fr.id_for_label }}">{% trans 'French Title' %}:</label>
+    {{ form.title_fr }}
 </div>
 
 <div class="fieldWrapper">
-    {{ form.description.errors }}
-    <label for="{{ form.description.id_for_label }}">{% trans 'Description' %}:</label>
-    {{ form.description }}
+    {{ form.description_fr.errors }}
+    <label for="{{ form.description_fr.id_for_label }}">{% trans 'French Description' %}:</label>
+    {{ form.description_fr }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.title_en.errors }}
+    <label for="{{ form.title_en.id_for_label }}">{% trans 'English Title' %}:</label>
+    {{ form.title_en }}
+</div>
+
+<div class="fieldWrapper">
+    {{ form.description_en.errors }}
+    <label for="{{ form.description_en.id_for_label }}">{% trans 'English Description' %}:</label>
+    {{ form.description_en }}
 </div>
 
 <div class="fieldWrapper">
@@ -89,7 +96,7 @@
 
 <div class="fieldWrapper">
     {{ form.photos.errors }}
-    <label for="{{ form.pack_tags.id_for_label }}">{% trans 'Photos' %}:</label>
+    <label for="{{ form.photos.id_for_label }}">{% trans 'Photos' %}:</label>
     {{ form.photos }}
 </div>
 
