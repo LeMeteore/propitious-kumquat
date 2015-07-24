@@ -196,6 +196,7 @@ def add_photo(request, id=None):
         #     return HttpResponseForbidden()
     else:
         photo = Photo(author=request.user)
+        n = ''
         edit = False
         message = _('Photo successfully added.')
 
@@ -213,5 +214,4 @@ def add_photo(request, id=None):
         form = PhotoForm(instance=photo)
     return render(request, template,
                   {'form': form,
-                   'edit': edit,
-                  'filename': n})
+                   'edit': edit, 'filename': n})
