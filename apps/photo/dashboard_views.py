@@ -190,7 +190,7 @@ def add_photo(request, id=None):
     if id:
         photo = get_object_or_404(Photo, pk=id)
         edit = True
-        namefile = photo.image.name
+        n = photo.image.name
         message = _('Photo successfully updated.')
         # if photo.author != request.user:
         #     return HttpResponseForbidden()
@@ -214,4 +214,4 @@ def add_photo(request, id=None):
     return render(request, template,
                   {'form': form,
                    'edit': edit,
-                  'filename': namefile})
+                  'filename': n})
