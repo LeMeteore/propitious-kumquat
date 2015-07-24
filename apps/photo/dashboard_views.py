@@ -189,6 +189,7 @@ def add_photo(request, id=None):
     template = 'photo/photo/form.html'
     if id:
         photo = get_object_or_404(Photo, pk=id)
+        filename = photo.image.name
         edit = True
         message = _('Photo successfully updated.')
         # if photo.author != request.user:
@@ -212,4 +213,5 @@ def add_photo(request, id=None):
         form = PhotoForm(instance=photo)
     return render(request, template,
                   {'form': form,
-                   'edit': edit})
+                   'edit': edit,
+                  'filename': filename})
