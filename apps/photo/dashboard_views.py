@@ -141,9 +141,11 @@ def add_pack(request, id=None):
     if id:
         pack = get_object_or_404(Pack, pk=id)
         pack_photos = pack.photos.values_list('id')
+        edit = True
         message = _('Pack successfully updated.')
     else:
         pack = Pack()
+        edit = False
         message = _('Pack successfully added.')
 
     if request.method == 'POST':
@@ -177,7 +179,8 @@ def add_pack(request, id=None):
     else:
         form = PackForm(instance=pack)
     return render(request, template,
-                  {'form': form})
+                  {'form': form,
+                   'edit': edit})
 
 
 @csrf_protect
@@ -186,11 +189,13 @@ def add_photo(request, id=None):
     template = 'photo/photo/form.html'
     if id:
         photo = get_object_or_404(Photo, pk=id)
+        edit = True
         message = _('Photo successfully updated.')
         # if photo.author != request.user:
         #     return HttpResponseForbidden()
     else:
         photo = Photo(author=request.user)
+        edit = False
         message = _('Photo successfully added.')
 
     if request.method == 'POST':
@@ -206,4 +211,5 @@ def add_photo(request, id=None):
     else:
         form = PhotoForm(instance=photo)
     return render(request, template,
-                  {'form': form})
+                  {'form': form,
+                   'edit': edit})
