@@ -8,7 +8,7 @@ apt-get update
 
 # declare an array variable
 # access: echo "${arr[0]}", "${arr[1]}"
-declare -a pkgs=("redis-server" "emacs24-nox" "tmux" "git" "git-core" "python3" "python3-doc" "python3-dev" "python-setuptools" "uwsgi-plugin-python" "postgresql-contrib" "postgresql" "libpq-dev" "libjpeg-dev" "zlib1g-dev" "libpng12-dev" "gcc" "make" "build-essential" "fail2ban" "rkhunter" "chkrootkit")
+declare -a pkgs=("redis-server" "emacs24-nox" "tmux" "git" "git-core" "python3" "python3-doc" "python3-dev" "python-setuptools" "uwsgi-plugin-python" "postgresql-contrib" "postgresql" "libpq-dev" "libjpeg-dev" "zlib1g-dev" "libpng12-dev" "libsqlite3-dev" "gcc" "make" "build-essential" "fail2ban" "rkhunter" "chkrootkit")
 
 ## now loop through the above array
 for i in "${pkgs[@]}"
