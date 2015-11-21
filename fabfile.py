@@ -25,7 +25,7 @@ env.code_repo = 'git@bitbucket.org:wappa-team/wappa1.git'
 env.django_settings_module = 'settings.prod'
 env.owner = 'awa'
 
-PYTHON_BIN = "python3.4"
+PYTHON_BIN = "python3.5"
 PYTHON_PREFIX = ""  # e.g. /usr/local  Use "" for automatic
 PYTHON_FULL_PATH = "%s/bin/%s" % (PYTHON_PREFIX, PYTHON_BIN) if PYTHON_PREFIX else PYTHON_BIN
 
@@ -58,7 +58,7 @@ def ensure_virtualenv():
         return
     # otherwise create virtualenv
     with cd(env.code_dir):
-        sudo("pyvenv %s" % env.virtualenv, user='awa')
+        sudo("pyvenv-3.5 %s" % env.virtualenv, user='awa')
 
 @task
 def ensure_src_dir():
@@ -68,7 +68,8 @@ def ensure_src_dir():
         if not exists(posixpath.join(env.code_dir, '.git')):
             sudo('git clone %s .' % (env.code_repo), user='awa')
             # branches should be params
-            sudo('git checkout -b %s %s' %('beta-back-office', 'origin/beta-back-office'), user='awa')
+            # sudo('git checkout -b %s %s' %('beta-back-office', 'origin/beta-back-office'), user='awa')
+            sudo('git checkout -b %s %s' %('dashboard', 'origin/dashboard'), user='awa')
 
 @task
 def push_sources():
@@ -76,9 +77,10 @@ def push_sources():
     Push source code to server
     """
     ensure_src_dir()
-    local('git push origin_wappa beta-back-office')
+    #local('git push origin_wappa beta-back-office')
+    local('git push origin_wappa dashboard')
     with cd(env.code_dir):
-        sudo('git pull origin beta-back-office', user='awa')
+        sudo('git pull origin dashboard', user='awa')
 
 
 @task
