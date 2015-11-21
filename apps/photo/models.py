@@ -34,8 +34,8 @@ class Photo(models.Model):
 
     author = models.ForeignKey(User, verbose_name=_('author'))
     license = models.CharField(max_length=200, verbose_name=_('license'))
-    width = models.IntegerField(max_length=200, verbose_name=_('width'))
-    height = models.IntegerField(max_length=200, verbose_name=_('heigth'))
+    width = models.IntegerField(verbose_name=_('width'))
+    height = models.IntegerField(verbose_name=_('heigth'))
     camera_model = models.CharField(max_length=200, verbose_name=_('camera_model'))
     sensibilite_iso = models.CharField(max_length=200, verbose_name=_('sensibilite_iso'))
     focal = models.CharField(max_length=200, verbose_name=_('focal'))
@@ -89,7 +89,7 @@ class Pack(TranslatableModel):
     begin_date = models.DateField(default=datetime.now, verbose_name=_("begin_date"))
     end_date = models.DateField(default=datetime.now, verbose_name=_("end_date"))
 
-    photos = models.ManyToManyField(Photo, null=True, blank=True, related_name='packs')
+    photos = models.ManyToManyField(Photo, blank=True, related_name='packs')
 
     pack_tags = TaggableManager(blank=True)
 
