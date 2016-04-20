@@ -190,7 +190,7 @@ def add_photo(request, id=None):
     if id:
         photo = get_object_or_404(Photo, pk=id)
         edit = True
-        n = p.image.name.split('/')[1]
+        n = photo.image.name.split('/')[1]
         message = _('Photo successfully updated.')
         # if photo.author != request.user:
         #     return HttpResponseForbidden()
